@@ -1,0 +1,86 @@
+.mainPrivacy {
+    position: absolute;
+    top: 180px;
+    left: 328px;
+    padding-right: 64px;
+    margin-bottom: 40px;
+    height: auto;
+}
+
+.headerPrivacy {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+a {
+    color: rgb(0, 0, 192);
+}
+
+p {
+    margin-bottom: 24px;
+}
+
+#sideMenu p {
+    margin-bottom: 0;
+}
+
+.jblue {
+    color: rgb(0, 0, 192)
+}
+
+li::marker {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+@media (max-width: 725px) {
+    .mainPrivacy {
+        left: 290px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .mainPrivacy {
+        left: 0;
+        margin-left: 16px;
+    }
+
+    li,
+    span,
+    p,
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 425px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    .mainPrivacy {
+        padding-right: 16px;
+    }
+
+    .headerPrivacy {
+        justify-content: center;
+        gap: 16px;
+    }
+
+    li,
+    span,
+    p,
+    body {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/contacts_page/contacts.css">
+    <link rel="stylesheet" href="./assets/css/contacts_page/contacts_responsive.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/add_task_page/add_task.css">
+    <link rel="stylesheet" href="./assets/css/add_task_page/add_task_responsive.css">
+    <script src="./script.js" defer></script>
+    <script src="./js/add_task.js" defer></script>
+    <script src="./js/add_task_fields.js" defer></script>
+    <script src="./js/add_task_HTML.js" defer></script>
+    <script src="./js/register.js" defer></script>
+    <script src="./js/render_summary.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+</head>
+
+<body onload="initAddTask('toDo')">
+    <header w3-include-html="assets/templates/header_template.html"></header>
+    <aside id="sideMenu" w3-include-html="assets/templates/side_menu_template.html"></aside>
+    <div class="main" w3-include-html="assets/templates/add_task_template.html"></div>
+    <div id="toastMsg" class="preventSelect"></div>
+
+    <div id="mobileMenuBox" w3-include-html="assets/templates/mobile_side_menu.html"></div>
+</body>
+</html>

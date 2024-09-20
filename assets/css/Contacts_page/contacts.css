@@ -1,0 +1,516 @@
+/* Conatcts */
+
+#contacts {
+    width: 456px;
+    background-color: white;
+    overflow-y: scroll;
+    box-shadow: 4px 0px 6px 0 rgba(0, 0, 0, 0.08);
+    z-index: 999;
+    position: fixed;
+    top: 96px;
+    left: 232px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#addContactBtnContainer {
+    min-height: 101px;
+    display: flex;
+    align-items: center;
+}
+
+#addContactBtn {
+    width: 352px;
+    color: white;
+    background-color: #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+#addContactBtn:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+#myContactsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alphabet {
+    width: 352px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+}
+
+.alphabetLetter {
+    padding-left: 40px;
+}
+
+.seperator {
+    height: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.myContacts {
+    width: 352px;
+}
+
+.contactCard {
+    height: 78px;
+    padding-left: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.contactCard:hover {
+    cursor: pointer;
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+}
+
+.contactInitials {
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    height: 42px;
+    width: 42px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 45px;
+    background-color: #FF7A00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactDetails {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contactName {
+    font-size: 20px;
+}
+
+.mailColor {
+    color: #007CEE;
+    font-size: 16px;
+}
+
+/* Contacts Title Bar */
+
+#mobileSettingBtnContainer {
+    display: none;
+}
+
+#closeWindowBtn {
+    display: none;
+}
+
+#contactTitleBar {
+    position: absolute;
+    top: 206px;
+    left: 743px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+#contactsTitle {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+#devider {
+    height: 59px;
+    width: 3px;
+    background-color: #29ABE2;
+    border-radius: 30px;
+}
+
+#contactsSlogan {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+/* Contact Card */
+
+.d-none {
+    display: none !important;
+}
+
+#mobileMainContactContainer {
+    display: none;
+}
+
+#mainContactDetails {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 21px;
+    position: fixed;
+    top: 311px;
+    left: 750px;
+}
+
+#mainContactContainer_1 {
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+
+.initialCircle {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    background-color: #FF7A00;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userNameFontSize {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.initialCircle span {
+    color: white;
+}
+
+#contactSetup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#settings {
+    display: flex;
+    gap: 16px;
+}
+
+#settings div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#edit {
+    width: 62px;
+}
+
+#remove {
+    width: 81px;
+}
+
+#settings span {
+    font-size: 16px;
+    color: #2A3647;
+}
+
+#edit:hover img {
+    filter: invert(56%) sepia(80%) saturate(2198%) hue-rotate(166deg) brightness(102%) contrast(77%);
+}
+
+#edit:hover span {
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+#remove:hover img {
+    filter: invert(56%) sepia(80%) saturate(2198%) hue-rotate(166deg) brightness(102%) contrast(77%);
+}
+
+#remove:hover span {
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+#edit:hover {
+    cursor: pointer;
+}
+
+#remove:hover {
+    cursor: pointer;
+}
+
+#mainContactContainer_2 {
+    width: 207px;
+    height: 74px;
+    display: flex;
+    align-items: center;
+}
+
+#mainContactContainer_3 {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contactDataTitle {
+    height: 19px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.contactData {
+    height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.link {
+    color: #007CEE;
+}
+
+.link:hover {
+    cursor: pointer;
+}
+
+#mailContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#phoneContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Add Contact Cards */
+
+@keyframes swipeInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes swipeOutToRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(300%);
+        opacity: 0;
+    }
+}
+
+.slideIn {
+    animation: swipeInFromRight 100ms ease-in-out forwards;
+}
+
+.slideOut {
+    animation: swipeOutToRight 100ms ease-in-out forwards;
+}
+
+.cardBg {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.editContactCard {
+    z-index: 2500;
+    width: 1212px;
+    height: 592px;
+    border-radius: 30px;
+    background-color: white;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.leftBlueSection {
+    box-sizing: border-box;
+    width: max-content;
+    height: 594px;
+    padding: 66px 46px;
+    background-color: #2A3647;
+    border-radius: 30px 0px 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallCardLogo {
+    width: 53.933px;
+    height: 66.483px;
+    position: absolute;
+    top: 154px;
+    left: 45.5px;
+}
+
+.cardTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.addCardHeadingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.addCardHeadline {
+    font-size: 61px;
+    font-weight: 700;
+    color: white;
+}
+
+.addCardSubHeadline {
+    font-size: 27px;
+    font-weight: 400;
+    color: white;
+}
+
+.devider3 {
+    display: block !important;
+    margin-top: 8px;
+    height: 3px;
+    width: 90px;
+    background-color: #29ABE2;
+    border-radius: 30px;
+}
+
+.cardInitials_bg {
+    width: 120px;
+    height: 120px;
+    background-color: #FFC700;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 204px;
+    left: 550px;
+}
+
+.cardIntitials {
+    color: white;
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.newContactSilhouette {
+    filter: brightness(2);
+    width: 64px;
+}
+
+.closeAddContact_btn {
+    filter: invert(1);
+    cursor: pointer;
+    position: absolute;
+    top: 48px;
+    left: 1132px;
+}
+
+.editContactCard form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: absolute;
+    top: 137px;
+    right: 48px;
+}
+
+form button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.addContactInputContainer {
+    width: 380px;
+    height: 24px;
+    padding: 13px 21px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.addContactInput {
+    width: 100%;
+    flex: 1;
+    font-size: 20px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.addContactInput:focus {
+    outline: none;
+}
+
+.addContactInput::placeholder {
+    color: #D1D1D1;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addSummit_btn {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.addSummit_btn button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.addContactCancel_btn {
+    background-color: white;
+    border: 1px solid #2A3647;
+}
+
+.addContactCreate_btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    background-color: #2A3647;
+}
+
+.mobileCardBg {
+    display: none;
+}
+
+.mobileEditContactCard {
+    display: none;
+}

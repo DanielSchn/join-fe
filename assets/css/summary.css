@@ -1,0 +1,243 @@
+/* summary site */
+
+.summary {
+    background-color: #F6F7F8;
+}
+
+.sumHead {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.sumHead p {
+    color: #2A3647;
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.sumHead h1 {
+    margin: 0;
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.sumHeadDash {
+    border-left: 3px solid;
+    height: 59px;
+    border-radius: 3px;
+}
+
+.sumHeadPosition {
+    position: fixed;
+    top: 206px;
+    left: 280px;
+}
+
+.sumToDo {
+    background-color: #FFFFFF;
+    width: 264px;
+    height: 168px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+}
+
+.sumToDo:hover {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    scale: 1.1;
+    transition: ease-in-out 100ms;
+}
+
+.sumToDoDone {
+    background-color: #FFFFFF;
+    width: 264px;
+    height: 168px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+}
+
+.sumToDoDone:hover {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    scale: 1.1;
+    transition: ease-in-out 100ms;
+}
+
+.sumUpcoming {
+    background-color: #FFFFFF;
+    width: 560px;
+    height: 168px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.sumUpcoming:hover {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    scale: 1.1;
+    transition: ease-in-out 100ms;
+}
+
+.sumTasks {
+    background-color: #FFFFFF;
+    width: 168px;
+    height: 168px;
+    border-radius: 30px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sumTasks:hover {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    scale: 1.1;
+    transition: ease-in-out 100ms;
+}
+
+.sumTasksPos {
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+}
+
+.sumToDoPos {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.dashboard {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 560px;
+    height: 562px;
+    top: 335px;
+    left: 280px;
+    gap: 28px
+}
+
+.textToDo {
+    text-align: center;
+}
+
+.img69px {
+    height: 69px;
+    width: 69px;
+}
+
+.font64pxBold {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.font64pxBold700 {
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.font16px {
+    font-size: 16px;
+}
+
+.font21pxBold {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.font47pxBold500 {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.dateDeadline {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.sumUrgentDash {
+    border-left: 2px solid #D1D1D1;
+    height: 102.02px;
+    border-radius: 2px;
+}
+
+.sumLogoUrgent {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    text-align: center;
+    align-items: center;
+}
+
+.greeting {
+    position: fixed;
+    left: 968px;
+    top: 547.5px;
+}
+
+.sumHeadDashVertical {
+    display: none;
+}
+
+.lightBlue {
+    color: #29ABE2;
+}
+
+.sumToDo:hover .img69px {
+    content: url('../img/sum_todo_white.svg');
+}
+
+.sumToDoDone:hover .img69px {
+    content: url('../img/sum_done_white.svg');
+}
+
+#mobileGreeting {
+    text-align: center;
+    color: #2A3647;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.mobileGreetingStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    width: 100svw;
+}
+
+#mobileGreetingUserName {
+    color: #29ABE2;
+    font-size: 47px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dNone {
+    display: none;
+}

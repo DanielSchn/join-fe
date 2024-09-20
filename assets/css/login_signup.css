@@ -1,0 +1,377 @@
+:root {
+    --fontSizeHuge: 61px;
+    --fontSizeNormal: 20px;
+    --fontSizeSmall: 16px;
+    --fontSize21px: 21px;
+    --fontWeight700: 700;
+    --fontWeight400: 400;
+    --menuBarWidth: 232px;
+    --shadowSubtle: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    --shadowStronger: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --scrollbarWidth: 17px;
+    --lightGray1: #D1D1D1;
+    --lightGray2: #F6F7F8;
+    --lightGray3: #A8A8A8;
+    --darkBlue1: #2A3647;
+    --darkBlue2: #091931;
+    --lightBlue1: #29ABE2;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+body {
+    margin: 0;
+    background: var(--lightGray2);
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: var(--fontSizeNormal);
+}
+
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--fontSizeHuge);
+    margin: 0;
+}
+
+input {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--lightGray1);
+    outline: none;
+    font-family: 'Inter';
+    font-size: var(--fontSizeNormal);
+    padding: 12px 21px;
+}
+
+input::placeholder {
+    color: var(--lightGray1);
+}
+
+.dNone {
+    display: none !important;
+}
+
+.indexWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.toSignUp {
+    display: none;
+    align-items: center;
+    gap: 35px;
+}
+
+.toSignUpMobile {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.signUpHeadPosMobile {
+        display: none;
+        justify-content: flex-end;
+        align-items: center;
+}
+
+.inputLogInSignUp {
+    width: 422px;
+    max-height: 48px;
+}
+
+.logInInputContainer {
+    border: 1px solid var(--lightGray1);
+
+}
+
+.logInFormPos {
+    display: flex;
+    justify-content: center;
+}
+
+#mainBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 128px;
+}
+
+.mainDivLogin {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mainDivSignup {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 128px;
+}
+
+.signUpHeadPos {
+    height: 164px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 122px 0 0;
+}
+
+.logIn {
+    width: 652px;
+    height: 493px;
+    background: var(--white);
+    border-radius: 30px;
+    padding-top: 48px;
+}
+
+.signUp {
+    width: 598px;
+    height: 630px;
+    background: var(--white);
+    border-radius: 30px;
+    padding-top: 48px;
+}
+
+.mailIcon {
+    background: url('../img/login_signup_icons/mail.svg') no-repeat;
+    background-position: calc(100% - 21px) center;
+}
+
+.nameIcon {
+    background: url('../img/login_signup_icons/person.svg') no-repeat;
+    background-position: calc(100% - 21px) center;
+}
+
+.successfullSignUp {
+    width: 312px;
+    height: 74px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--white);
+    background-color: var(--darkBlue1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signedUpOverlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.signUpFormBody {
+    opacity: 0.3;
+}
+
+.visibilityIcon {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    right: 21px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.passwordIcon {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    right: 21px;
+    transform: translateY(-50%);
+}
+
+.inputContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 32px;
+}
+
+.loginDash {
+    border-top: 3px solid #29ABE2;
+    width: 150px;
+
+}
+
+.logInHead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.logInForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+footer {
+    display: flex;
+    gap: 16px;
+}
+
+footer a {
+    color: var(--lightGray3);
+}
+
+footer a:hover {
+    color: var(--lightBlue1);
+}
+
+.rememberMe {
+    margin: 0 0 32px 39px;
+}
+
+.acceptPrivacy {
+    margin: 0 0 32px 39px;
+    color: var(--lightGray3);
+}
+
+.acceptPrivacy a {
+    color: var(--lightBlue1);
+}
+
+.logInBtns {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.logInButton {
+    background-color: var(--darkBlue1);
+    width: 110px;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    font-size: var(--fontSize21px);
+    color: var(--white);
+    font-weight: var(--fontWeight700);
+    cursor: pointer;
+    outline: none;
+}
+
+.logInButton:hover {
+    background-color: var(--lightBlue1);
+    box-shadow: var(--shadowStronger);
+}
+
+.signUpButton {
+    background-color: var(--darkBlue1);
+    width: 126px;
+    height: 55px;
+    border: none;
+    border-radius: 8px;
+    font-size: var(--fontSize21px);
+    color: var(--white);
+    font-weight: var(--fontWeight700);
+    cursor: pointer;
+    outline: none;
+}
+
+.signUpButton:hover {
+    background-color: var(--lightBlue1);
+    box-shadow: var(--shadowStronger);
+}
+
+.guestLogInButton {
+    background-color: var(--white);
+    outline: none;
+    border: 1px solid var(--darkBlue1);
+    border-radius: 8px;
+    width: 177px;
+    height: 48px;
+    font-size: var(--fontSize21px);
+    font-weight: var(--fontWeight700);
+    color: var(--darkBlue1);
+    cursor: pointer;
+}
+
+.guestLogInButton:hover {
+    color: var(--lightBlue1);
+    border-color: var(--lightBlue1);
+    box-shadow: var(--shadowStronger);
+}
+
+.signUpBtnHead {
+    width: 91px;
+    height: 49px;
+    border: none;
+    outline: none;
+    background-color: var(--darkBlue1);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: var(--fontSizeSmall);
+    font-weight: var(--fontWeight700);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUpBtnHead:hover {
+    box-shadow: var(--shadowStronger);
+    background-color: var(--lightBlue1);
+}
+
+.arrowLeft {
+    width: 32px;
+    height: 32px;
+    position: fixed;
+    margin: 16px 0 0 48px;
+}
+
+#startLogo.logo {
+    position: fixed;
+    width: 100.03px;
+    height: 121.97px;
+    top: 512px;
+    left: 720px;
+    transform: translate(0%, 0%) scale(1.5);
+    transition: all 500ms ease-in-out;
+}
+
+#startLogo.logo.transformed {
+    top: 80px;
+    left: 77px;
+    transform: translate(0%, 0%) scale(1);
+}
+
+.errorMessage {
+    margin-bottom: 16px;
+    color: red;
+    font-size: var(--fontSizeSmall);
+}
+
+#userNotFound {
+    margin: 8px 0 16px 0;
+    position: fixed;
+}
+
+.logo {
+    position: fixed;
+    top: 80px;
+    left: 77px;
+}

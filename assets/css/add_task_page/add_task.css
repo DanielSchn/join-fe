@@ -1,0 +1,375 @@
+:root {
+    --sidePadding: 144px;
+    --top: 110px;
+    --bottom: 80px;
+    --subtasksLiHeight: 32px;
+    --subtasksLiVerticalMargin: 6px;
+    --absoluteContentWidth: calc(100vw - var(--menuBarWidth) - calc(var(--sidePadding) * 5 / 2));
+}
+
+.addTaskForm {
+    flex: 1;
+    margin: var(--top) calc(var(--sidePadding) * 3 / 2) var(--bottom) var(--sidePadding);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--top) - var(--bottom) - 96px);
+    max-width: 1920px;
+}
+
+.addTaskFormMain {
+    padding-top: 48px;
+    width: 100%;
+    display: flex;
+    gap: calc(var(--sidePadding) / 2);
+}
+
+.addTaskFormMainSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.addTaskFormMainSideOne {
+    gap: 32px;
+}
+
+.addTaskFormMainSideTwo {
+    gap: 24px;
+}
+
+.addTaskForm h2 {
+    color: var(--darkBlue1);
+}
+
+.addTaskField {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.red {
+    color: #FF8190;
+    margin: 0;
+}
+
+#addTaskAssignedMenu {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+#addTaskAssignedMenu li {
+    display: flex;
+    gap: 16px;
+    padding: 7px 16px;
+}
+
+#addTaskAssignedMenu button {
+    box-shadow: none;
+}
+
+#addTaskAssignedMenu li:active,
+.addTaskAssignedChecked {
+    background: var(--darkBlue1);
+    color: white;
+    transition: 75ms ease-in-out;
+}
+
+#addTaskAssignedMenu .addTaskAssignedChecked:hover {
+    background: var(--darkBlue2);
+    transition: 75ms ease-in-out;
+}
+
+#addTaskAssignedMenu li:active img,
+#addTaskAssignedMenu .checked {
+    content: url('../../img/checkbox_white_checked.svg');
+}
+
+#addTaskAssignedMenu li:active {
+    background: var(--darkBlue2);
+}
+
+#addTaskAssignedMenu li .contactDetails {
+    flex: 1;
+}
+
+#addTaskAssignedMenu li button {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+#assignedIcons {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 92px;
+    max-width: 100%;
+}
+
+#assignedIcons div {
+    margin-right: -12px;
+}
+
+#addTaskDueContainer {
+    width: 100%;
+    display: flex;
+    gap: 0;
+    margin: 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--lightGray1);
+    box-sizing: border-box;
+    position: relative;
+    transition: 100ms ease-in-out;
+}
+
+#addTaskDueContainer:hover {
+    border-color: #BEBEBE;
+    transition: 100ms ease-in-out;
+}
+
+#addTaskDueContainer:active {
+    border-color: var(--lightBlue1);
+    transition: 100ms ease-in-out;
+}
+
+#addTaskDueText {
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 48px;
+}
+
+#addTaskDue {
+    border: none;
+    width: 100%;
+    cursor: text;
+}
+
+.addTaskPrioBtns {
+    display: flex;
+    gap: 16px;
+}
+
+.addTaskPrioBtns button {
+    flex: 1;
+    padding-left: 0;
+    padding-right: 0;
+    background: white;
+    box-shadow: var(--shadowSubtle);
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.addTaskPrioBtns button:hover {
+    box-shadow: var(--shadowStronger);
+}
+
+.addTaskPrioBtnsSelected {
+    color: white;
+    font-weight: 600;
+    box-shadow: none;
+}
+
+button.addTaskPrio1Selected {
+    background: #FF3D00;
+}
+
+button.addTaskPrio2Selected {
+    background: #FF7A00;
+}
+
+button.addTaskPrio3Selected {
+    background: #7AE229;
+}
+
+.addTaskPrioBtns button img {
+    width: 20px;
+}
+
+#addSubtaskInputContainer {
+    cursor: text;
+}
+
+#addSubtaskIconsActive {
+    display: flex;
+    gap: 4px;
+}
+
+.subtasksContainer {
+    width: 100%;
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    margin: var(--subtasksLiVerticalMargin) 0;
+}
+
+#subtasksLeftMargin {
+    width: calc((var(--absoluteContentWidth) + 1px + var(--sidePadding)) / 2);
+}
+
+.subtasksListContainer {
+    flex: 1;
+    min-height: 0;
+}
+
+#subtasksList {
+    margin: 0;
+    padding: 0;
+}
+
+#subtasksList li {
+    font-size: var(--fontSizeSmall);
+    border-radius: 10px;
+    margin: 0 0 calc(var(--subtasksLiVerticalMargin) * 2) 0;
+    padding: 0 16px;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    height: var(--subtasksLiHeight);
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li:hover {
+    background: var(--lightGray4);
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li span {
+    flex: 1;
+    margin-left: 8px;
+}
+
+#subtasksList li button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+#subtasksList li button img {
+    display: block;
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li button,
+#subtasksList li .vr {
+    display: none;
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li:hover button,
+#subtasksList li:hover .vr,
+#subtasksList .editSubtask button,
+#subtasksList .editSubtask .vr {
+    display: initial;
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li:hover button:hover {
+    filter: invert(56%) sepia(80%) saturate(2198%) hue-rotate(166deg) brightness(102%) contrast(77%);
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList .editSubtask:hover button:hover {
+    filter: none;
+}
+
+#subtasksList .editSubtask button img:hover {
+    background: var(--lightGray4);
+    border-radius: 50%;
+}
+
+#subtasksList .editSubtask {
+    border-radius: 0;
+    border-bottom: 1px solid var(--lightBlue1);
+    box-sizing: border-box;
+    height: calc(var(--subtasksLiHeight));
+    background: white;
+    display: flex;
+    align-items: center;
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList .editSubtask:hover {
+    background: white;
+    transition: 75ms ease-in-out;
+}
+
+#subtasksList li input {
+    flex: 1;
+    font-size: var(--fontSizeSmall);
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+#subtasksList .vr {
+    height: 24px;
+}
+
+.addTaskBottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTaskBottom div {
+    display: flex;
+    align-items: flex-end;
+}
+
+.addTaskBottom div:nth-child(2) {
+    gap: 16px;
+}
+
+.addTaskBottom button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 44px;
+}
+
+.addTaskBottom .btnPrimary {
+    background-image: url('../../img/check_white.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) 50%;
+}
+
+.addTaskBottom .btnSecondary {
+    background-image: url('../../img/cancel.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) 50%;
+}
+
+.addTaskBottom .btnSecondary:hover {
+    background-image: url('../../img/cancel_hover.svg');
+}
+
+#toastMsg {
+    position: fixed;
+    z-index: 200;
+    bottom: -74px;
+    left: calc(var(--menuBarWidth)/2 + 50vw - 163px - var(--sidePadding)/4);
+    width: 326px;
+    height: 74px;
+    border-radius: 20px;
+    color: var(--white);
+    background-color: var(--darkBlue1);
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 125ms ease-in-out;
+}
+
+#toastMsg img {
+    filter: brightness(2);
+    height: 26px;
+}

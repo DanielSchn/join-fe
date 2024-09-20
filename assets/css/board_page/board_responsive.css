@@ -1,0 +1,137 @@
+/** responsive **/
+
+
+@media (max-width:870px) {
+    aside {
+      display: none;
+    }
+  
+    .boardContent {
+      margin-left: 30px;
+      justify-content: center;
+    }
+  
+    .boardHeaderContainer {
+      margin-left: 0px;
+      justify-content: center;
+    }
+  
+    .boardHeader {
+      display: flex;
+      margin-left: 0px;
+      width: 80vw;
+    }
+  
+    .boardHeaderMobile button {
+  
+      background-color: #2a3647;
+      border: unset;
+      border-radius: 10px;
+      padding: 8px 16px;
+      color: white;
+      font-size: 21px;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      
+      margin-bottom: 8px;
+    }
+  
+  
+  
+    #mobileMenuBox {
+      height: 80px;
+      background-color: #2A3647;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  
+    .linkAlign {
+      height: 76px;
+      width: 80px;
+      padding: 0px;
+      border-radius: 16px;
+      justify-content: center;
+      flex-direction: column;
+    }
+  
+    .linkAlign img {
+      height: 24px;
+    }
+  
+    .activ_bg img {
+      filter: brightness(2);
+    }
+  
+    .linkAlign a {
+      font-family: Open Sans, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  
+    .addTaskDesktopButton{
+      display:none;
+    }
+  
+    .addTaskDesktopMobile{
+      display: flex;
+    }
+  
+    .boardHeaderMobile{
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+  
+    }
+  
+    .inputWithImg{
+      width: auto;
+      
+    }
+  
+    .boardHeaderContainer{
+      margin-left: 30px;
+      margin-right: 30px;
+      justify-content: flex-start;
+  
+    }
+
+    .dragAreaDone{
+      margin-bottom: 120px;
+    }
+
+    .boardHeader h1 {
+      font-size: 55px;
+    }
+  }
+
+  @media (min-width: 595px){
+    .changeStatusMobile{
+      display: none;
+    }
+
+  }
+
+  @media (max-width: 400px){
+    #findTask {
+      width: 150px;
+    }
+
+    .boardHeader h1 {
+      font-size: 44px;
+    }
+
+    .taskTitle {
+      font-size: 40px;
+      font-weight: 700;
+    }
+    .taskSection {
+      margin-right: 0px;
+  }
+  }

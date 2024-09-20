@@ -1,0 +1,410 @@
+:root {
+    --fontSizeHuge: 61px;
+    --fontSizeNormal: 20px;
+    --fontSizeSmall: 16px;
+    --fontSizeVerySmall: 14px;
+    --fontSize21px: 21px;
+    --fontWeight700: 700;
+    --fontWeight400: 400;
+    --menuBarWidth: 232px;
+    --mainWidth: calc(100vw - var(--menuBarWidth));
+    --shadowSubtle: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    --shadowStronger: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --scrollbarWidth: 17px;
+    --lightGray1: #D1D1D1;
+    --lightGray2: #F6F7F8;
+    --lightGray3: #A8A8A8;
+    --lightGray4: #EEEEEE;
+    --darkBlue1: #2A3647;
+    --darkBlue2: #091931;
+    --lightBlue1: #29ABE2;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+body {
+    margin: 0;
+    background: var(--lightGray2);
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: var(--fontSizeNormal);
+}
+
+.main {
+    width: var(--mainWidth);
+    padding-left: var(--menuBarWidth);
+    display: flex;
+    justify-content: center;
+}
+
+.preventSelect {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+p {
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--fontSizeHuge);
+    margin: 0;
+}
+
+h2 {
+    /* Feldtitel in ADD TASK und Kontaktnamen in CONTACTS */
+    font-size: var(--fontSizeNormal);
+    font-weight: 400;
+    margin: 0;
+    display: flex;
+}
+
+.fontSizeSmall {
+    font-size: var(--fontSizeSmall);
+}
+
+button {
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-family: 'Inter';
+    font-size: var(--fontSizeNormal);
+    padding: 16px;
+    transition: 75ms ease-in-out;
+}
+
+button:hover {
+    box-shadow: var(--shadowStronger);
+    transition: 75ms ease-in-out;
+}
+
+.btnPrimary {
+    background: var(--darkBlue1);
+    color: white;
+    font-weight: 600;
+}
+
+.btnPrimary:hover {
+    background: var(--lightBlue1);
+}
+
+.btnSecondary {
+    border: 1px solid var(--darkBlue1);
+    padding: 15px 16px;
+    background: none;
+    color: var(--darkBlue1);
+}
+
+.btnSecondary:hover {
+    border-color: var(--lightBlue1);
+    color: var(--lightBlue1);
+}
+
+#mobileSideMenuBox {
+    display: flex;
+    flex-direction: row;
+}
+
+/* vr für "vertical ruler", vertikale Linie */
+.vr {
+    width: 1px;
+    max-height: 100%;
+    background: var(--lightGray1);
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Header */
+
+.headerStyle {
+    position: relative;
+    height: 96px;
+    padding-right: 40px;
+    padding-left: 348px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+#headerName {
+    font-size: 20px;
+}
+
+#smalInterface {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+#help {
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#help:hover {
+    cursor: pointer;
+}
+
+#help img:hover {
+    height: 24px;
+    width: 24px;
+}
+
+#user {
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    color: #28abe2;
+    font-weight: bold;
+    border: 3px solid #2A3647;
+    border-radius: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#user:hover {
+    cursor: pointer;
+    background-color: #0C2E621F;
+}
+
+#mobileLogo {
+    display: none;
+}
+
+#mobileMenuBox {
+    display: none;
+}
+
+#mobileAddContactBtnContainer {
+    display: none;
+}
+
+/* Aside Menu */
+
+aside {
+    width: 232px;
+    padding: 62px 0px;
+    background-color: #2a3647;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menuBox {
+    height: 229px;
+    width: 232px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    top: -50px;
+}
+
+.linkAlign {
+    color: #CDCDCD;
+    font-size: 16px;
+    font-weight: 400;
+    height: 46px;
+    padding: 8px 56px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.linkAlign img {
+    height: 30px;
+    width: 30px;
+}
+
+.menuLink {
+    color: #CDCDCD;
+}
+
+.activMenuLink {
+    color: white;
+}
+
+.activMenuIcon {
+    filter: brightness(2);
+}
+
+.activ_bg {
+    background-color: #091931;
+}
+
+.menuHover:hover{
+    cursor: pointer;
+    background-color: #2A3D59;
+}
+
+#infos {
+    width: 126px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#infos a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #A8A8A8;
+    text-decoration: none;
+    padding: 8px;
+}
+
+#infos a:hover {
+    cursor: pointer;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+.hiddenMenuText {
+    width: 150px;
+    height: 158px;
+    border-radius: 20px 0 20px 20px;
+    background-color: var(--darkBlue1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: var(--fontSizeSmall);
+    gap: 16px;
+}
+
+.hiddenMenuText a {
+    cursor: pointer;
+    margin-left: 26px;
+    color: #CDCDCD;
+}
+
+.hiddenMenuText a:hover {
+    color: #b3aaaa;
+}
+
+.hiddenMenuPos {
+    right: 40px;
+    position: absolute;
+    z-index: 1;
+}
+
+/* responsive Header */
+
+@media (max-width: 950px) {
+    .headerStyle {
+        justify-content: end;
+    }
+
+    #headerName {
+        display: none;
+    }
+
+    #smalInterface img {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .headerStyle {
+        height: 80px;
+        padding: 0px 32px;
+        justify-content: space-between;
+    }
+
+    #mobileLogo {
+        display: block;
+    }
+
+    #user {
+        height: 40px;
+        width: 40px;
+        border: 2px solid #2A3647;
+        font-size: 14px;
+    }
+}
+
+/* Responsive Side Menu */
+
+@media (max-width: 700px) {
+    #mobileMenuBox {
+        height: 80px;
+        background-color: #2A3647;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .linkAlign {
+        height: 76px;
+        width: 80px;
+        padding: 0px;
+        border-radius: 16px;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .linkAlign img {
+        height: 24px;
+    }
+
+    .activ_bg img {
+        filter: brightness(2);
+    }
+
+    .linkAlign a {
+        font-family: Open Sans, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .hiddenMenuPos {
+        right: 32px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    #mobileMenuBox {
+        gap: 0;
+    }
+
+    .linkAlign {
+        width: 76px;
+}
+
+.linkAlign img {
+    height: 24px;
+    width: 24px;
+}
+
+.menuLink {
+    font-size: var(--fontSizeVerySmall);
+}
+}

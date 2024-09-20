@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/board_page/style_board.css">
+    <link rel="stylesheet" href="./assets/css/board_page/board_responsive.css">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" href="./assets/css/add_task_page/add_task.css">
+    <link rel="stylesheet" href="./assets/css/board_page/add_task_from_board.css">
+    <link rel="stylesheet" href="./assets/css/board_page/edit_task.css">
+    <link rel="stylesheet" href="./assets/css/contacts_page/contacts.css">
+    <script src="./script.js" defer></script>
+    <script src="./js/add_task.js" defer></script>
+    <script src="./js/add_task_fields.js" defer></script>
+    <script src="./js/add_task_HTML.js" defer></script>
+    <script src="./js/render_contact_card.js" defer></script>
+    <script src="./js/register.js" defer></script>
+    <script src="./js/render_summary.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+    <script src="./js/board.js" defer></script>
+    <script src="./js/board_HTML.js" defer></script>
+    <script id="DragDropTouch" src="./js/drag_drop_touch.js"></script>
+</head>
+
+<body onload="loadData()">
+    <header w3-include-html="assets/templates/header_template.html"></header>
+
+    <aside id="sideMenu" w3-include-html="assets/templates/side_menu_template.html"></aside>
+
+    <div id="taskCard"></div>
+
+
+    <section class="boardHeaderContainer">
+        <div class="boardHeader">
+            <div class="boardHeaderMobile">
+                <h1>Board</h1>
+                <div class="">
+                    <button class="addTaskDesktopMobile" onclick="addTaskBtn('toDo')">
+                        <img src="assets/img/menu_icons/add.svg" alt="" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="boardHeaderSearch">
+                <div class="inputWithImg">
+                    <input id="findTask" type="text" placeholder="Find Task" />
+                    <div class="findTaskImg" onclick="searchTask()"><img src="assets/img/menu_icons/search.png"
+                            alt="" /></div>
+                </div>
+
+                <div class="addTaskDesktopButton">
+                    <button class="" onclick="addTaskBtn('toDo')">
+                        <b>Add task</b>
+                        <img src="assets/img/menu_icons/add.svg" alt="" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="boardContent">
+        <div class="sectionDragArea">
+            <div class="headerDragArea">
+                <h2>To do</h2>
+                <img onclick="addTaskBtn('toDo')" class="addTaskToSection addTaskDesktop"
+                    src="assets/img/menu_icons/plus_button.svg" alt="Add Task to to do" />
+            </div>
+            <div id="toDo" class="dragArea" ondrop="moveTo('toDo'); removeHighlight('toDo')"
+                ondragleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">
+            </div>
+        </div>
+
+        <div class="sectionDragArea">
+            <div class="headerDragArea">
+                <h2>In pogress</h2>
+                <img onclick="addTaskBtn('inProgress')" class="addTaskToSection addTaskDesktop"
+                    src="assets/img/menu_icons/plus_button.svg" alt="Add Task to in Progress" />
+            </div>
+            <div id="inProgress" class="dragArea" ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
+                ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
+            </div>
+        </div>
+
+        <div class="sectionDragArea">
+            <div class="headerDragArea">
+                <h2>Await feedback</h2>
+
+                <img onclick="addTaskBtn('awaitFeedback')" class="addTaskToSection addTaskDesktop"
+                    src="assets/img/menu_icons/plus_button.svg" alt="Add Task to Await Feedback" />
+            </div>
+            <div id="awaitFeedback" class="dragArea" ondrop="moveTo('awaitFeedback'); removeHighlight('awaitFeedback')"
+                ondragleave="removeHighlight('awaitFeedback')"
+                ondragover="allowDrop(event); highlight('awaitFeedback')">
+            </div>
+        </div>
+
+        <div class="sectionDragArea">
+            <div class="headerDragArea">
+                <h2>Done</h2>
+            </div>
+            <div id="done" class="dragArea dragAreaDone" ondrop="moveTo('done'); removeHighlight('done')"
+                ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">
+            </div>
+        </div>
+    </section>
+
+    <div id="toastMsg" class="preventSelect"></div>
+
+    <!-- Mobile -->
+    <div id="mobileMenuBox" w3-include-html="assets/templates/mobile_side_menu.html"></div>
+
+</body>
+
+</html>

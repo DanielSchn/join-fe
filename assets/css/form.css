@@ -1,0 +1,183 @@
+input,
+textarea {
+    /* "max-width" statt "width", da sonst das Padding zur Breite addiert wird */
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--lightGray1);
+    box-sizing: border-box;
+    padding: 0 16px;
+    outline: none;
+    font-family: 'Inter';
+    font-size: var(--fontSizeNormal);
+    transition: border 100ms ease-in-out;
+}
+
+input,
+.extendedInput {
+    height: 48px;
+    padding: 0 16px;
+    transition: 100ms ease-in-out;
+}
+
+textarea {
+    padding-top: 18px;
+    height: 120px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--lightGray1);
+}
+
+.borderHover:hover {
+    border-color: #BEBEBE;
+    transition: 100ms ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+.borderHover:focus,
+.borderHover:active {
+    border-color: var(--lightBlue1);
+    transition: border 100ms ease-in-out;
+}
+
+/* Default-Resizer (Textarea) verstecken */
+.customResizeHandle::-webkit-resizer {
+    display: none;
+}
+
+/* neuer Resizer */
+.customResizeHandle {
+    background-image: url(../img/resize_handle.svg);
+    background-size: 19px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 5px) calc(100% - 4px);
+}
+
+.customDatePicker::-webkit-calendar-picker-indicator {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    background-image: url(../img/calendar_icon.svg);
+    background-size: 24px;
+    cursor: pointer;
+    transition: 75ms ease-in-out;
+}
+
+.customDatePicker::-webkit-calendar-picker-indicator:hover {
+    background-image: url(../img/calendar_icon_hover.svg);
+    transition: 75ms ease-in-out;
+}
+
+.customDatePicker::-webkit-calendar-picker-indicator:active {
+    background-image: url(../img/calendar_icon_active.svg);
+    transition: 75ms ease-in-out;
+}
+
+.extendedInput {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--lightGray1);
+}
+
+.extendedInput input {
+    flex: 1;
+    border-radius: 0;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.dropdownInput input::placeholder {
+    color: black;
+}
+
+.extendedInput button {
+    border-radius: 50%;
+    background: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    transition: 75ms ease-in-out;
+}
+
+.extendedInput button:hover {
+    box-shadow: none;
+    background: var(--lightGray4);
+    transition: 75ms ease-in-out;
+}
+
+.extendedInput button:active {
+    background: var(--lightGray2);
+    transition: 75ms ease-in-out;
+}
+
+.extendedInput button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    transition: 75ms ease-in-out;
+}
+
+.dropdownContainer {
+    position: relative;
+}
+
+.dropdownInput,
+.dropdownInput input {
+    cursor: default;
+    z-index: 3;
+}
+
+.dropdownInput img {
+    transition: 175ms ease-in-out !important;
+}
+
+.dropdownMenu {
+    cursor: default;
+    list-style-type: none;
+    background: white;
+    width: 100%;
+    border-radius: 10px;
+    position: absolute;
+    top: 12px;
+    box-shadow: var(--shadowSubtle);
+    padding: 48px 0 0 0;
+    z-index: 2;
+}
+
+.dropdownMenu li {
+    border-radius: 10px;
+    padding: 12px 16px;
+    transition: 75ms ease-in-out;
+}
+
+.dropdownMenu li:hover {
+    background: var(--lightGray4);
+    transition: 75ms ease-in-out;
+}
+
+.dropdownMenuWrapper {
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    top: 32px;
+    padding-top: 30px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: var(--shadowSubtle);
+}
+
+.dropdownMenuWrapper .dropdownMenu {
+    box-shadow: none;
+    position: initial;
+    background: none;
+    top: 0;
+    padding: 0;
+    margin-bottom: 0;
+}

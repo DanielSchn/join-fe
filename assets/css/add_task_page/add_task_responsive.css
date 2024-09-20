@@ -1,0 +1,284 @@
+@media (max-height: 1024px) {
+    :root {
+        --top: 80px;
+    }
+
+    #addTaskAssignedMenu {
+        max-height: 224px;
+    }
+}
+
+@media (max-height: 976px) {
+    :root {
+        --top: 60px;
+        --bottom: 60px;
+    }
+}
+
+@media (max-height: 952px) {
+    :root {
+        --top: 48px;
+        --bottom: 32px;
+    }
+}
+
+@media (max-width: 1920px) {
+    :root {
+        --sidePadding: 128px;
+        --absoluteContentWidth: calc(100vw - var(--menuBarWidth) - calc(var(--sidePadding) * 5 / 2));
+    }
+
+    .addTaskForm {
+        max-width: calc(100% - var(--sidePadding) * 5 / 2);
+    }
+}
+
+@media (max-width: 1440px) {
+    :root {
+        --sidePadding: 96px;
+        --absoluteContentWidth: calc(100vw - var(--menuBarWidth) - calc(var(--sidePadding) * 5 / 2));
+    }
+}
+
+@media (max-width: 1360px) {
+    :root {
+        --sidePadding: 64px;
+        --fontSizeHuge: 54px;
+        --fontSizeNormal: 18px;
+        --top: 80px;
+        --bottom: 64px;
+        --absoluteContentWidth: calc(100vw - var(--menuBarWidth) - calc(var(--sidePadding) * 2));
+    }
+
+    .addTaskForm {
+        margin: var(--top) var(--sidePadding) var(--bottom) var(--sidePadding);
+        max-width: calc(100% - var(--sidePadding) * 2);
+    }
+
+    .addTaskFormMain {
+        padding-top: 32px;
+    }
+
+    input,
+    .extendedInput {
+        height: 44px;
+    }
+
+    textarea {
+        padding-top: 16px;
+    }
+
+    .dropdownMenu {
+        padding-top: 45px;
+    }
+
+    .dropdownMenuWrapper {
+        padding-top: 25px;
+    }
+
+    #addTaskAssignedMenu {
+        max-height: 224px;
+    }
+
+    .addTaskBottom .btnPrimary,
+    .addTaskBottom .btnSecondary {
+        font-size: 20px;
+    }
+
+    #toastMsg {
+        left: calc(var(--menuBarWidth)/2 + 50vw - 156px);
+        width: 312px;
+    }
+}
+
+@media (max-height: 906px) {
+    #addTaskAssignedMenu {
+        max-height: 168px;
+    }    
+}
+
+@media (max-height: 848px) {
+    .addTaskFormMain {
+        padding-top: 32px;
+    }
+
+    textarea {
+        height: 96px;
+    }
+}
+
+@media (max-width: 1150px) {
+    :root {
+        --sidePadding: 40px;
+        --fontSizeNormal: 16px;
+        --top: 48px;
+        --bottom: 32px;
+    }
+
+    .addTaskFormMain {
+        gap: calc(var(--sidePadding) * 2/3);
+    }
+
+    #formSeperator {
+        display: none;
+    }
+
+    #subtasksLeftMargin {
+        width: calc(var(--absoluteContentWidth) / 2 + var(--sidePadding) / 3);
+    }
+
+    #toastMsg {
+        left: calc(var(--menuBarWidth)/2 + 50vw - 148px);
+        bottom: -64px;
+        width: 296px;
+        height: 64px;
+    }
+}
+
+@media (max-width: 1050px) {
+    :root {
+        --absoluteContentWidth: calc(100vw - var(--menuBarWidth) - calc(var(--sidePadding) * 2) - var(--scrollbarWidth));
+    }
+
+    .main {
+        width: calc(var(--mainWidth) - var(--scrollbarWidth));
+    }
+
+    .addTaskFormMain {
+        flex-direction: column;
+    }
+
+    .addTaskForm {
+        height: auto;
+    }
+
+    .addTaskFormMainSideOne {
+        gap: 24px;
+    }
+
+    input,
+    .extendedInput {
+        height: 40px;
+    }
+
+    textarea {
+        padding-top: 14px;
+        height: 88px;
+        flex: none;
+    }
+
+    .dropdownMenu {
+        padding-top: 42px;
+    }
+
+    .dropdownMenuWrapper {
+        padding-top: 22px;
+    }
+
+    #addTaskAssignedMenu {
+        max-height: 224px;
+    }
+
+    #assignedIcons {
+        position: initial;
+    }
+
+    .subtasksContainer {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #subtasksLeftMargin {
+        display: none;
+    }
+
+    #subtasksList {
+        width: 100%;
+        overflow-y: visible;
+    }
+
+    .addTaskBottom .btnSecondary {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {}
+
+@media (max-width: 920px) {
+    :root {
+        --fontSizeHuge: 47px;
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        --sidePadding: 16px;
+        --bottom: 166px;
+    }
+
+    .main {
+        width: calc(100vw - var(--scrollbarWidth));
+        padding: 0;
+    }
+
+    textarea {
+        background-image: none;
+        resize: none;
+    }
+
+    .addTaskBottom {
+        position: fixed;
+        z-index: 3;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        width: inherit;
+        background: var(--lightGray2);
+        padding: var(--sidePadding);
+        align-items: center;
+    }
+
+    #mobileMenuBox {
+        z-index: 3;
+    }
+
+    #toastMsg {
+        left: calc(50vw - 148px - var(--scrollbarWidth)/2);
+    }
+}
+
+@media (max-width: 428px) {
+    :root {
+        --fontSizeSmall: 14px;
+        --sidePadding: 12px;
+    }
+
+    .addTaskPrioBtns {
+        gap: 12px;
+    }
+
+    .addTaskPrioBtns button {
+        min-width: calc((100% - 24px)/3);
+        gap: 6px;
+        padding: 14px 12px;
+        font-size: var(--fontSizeSmall);
+    }
+
+    .addTaskPrioBtns button img {
+        width: 16px;
+    }
+
+    .addTaskBottom .btnPrimary {
+        font-size: var(--fontSizeNormal);
+    }
+}
+
+@media (max-width: 352px) {
+    :root {
+        --fontSizeSmall: 12px;
+    }
+
+    #addSubtask {
+        width: calc(100% - 100px);
+    }
+}

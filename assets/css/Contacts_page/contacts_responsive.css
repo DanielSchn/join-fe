@@ -1,0 +1,695 @@
+/* responsiv */
+
+@media (max-width: 1400px) {
+    #contactTitleBar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #devider {
+        height: 3px;
+        width: 216px;
+    }
+
+    #mainContactDetails {
+        top: 380px;
+    }
+}
+
+@media (max-width: 1250px) {
+
+    .mobile-d-none {
+        display: none !important;
+    }
+
+    #contacts {
+        z-index: -1;
+        width: auto;
+        right: 0;
+    }
+
+    #editCardBg {
+        display: none;
+    }
+
+    #mainContactCard_Bg {
+        z-index: 2000;
+        position: fixed;
+        top: 96px;
+        bottom: 0;
+        left: 232px;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    #closeWindowLayer {
+        z-index: 2500;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    #closeWindowBtn {
+        display: block;
+        filter: brightness(0);
+        position: relative;
+        right: -223px;
+        height: 24px;
+        width: 24px;
+    }
+
+    .responsiveSlideIn {
+        animation: swipeInFromRight 100ms ease-in-out forwards;
+    }
+
+    #mainContactContainer {
+        z-index: 3000;
+        box-sizing: border-box;
+        margin: auto;
+        padding: 46px;
+        width: 600px;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 48px;
+        position: fixed;
+        top: 96px;
+        bottom: 0;
+        left: 232px;
+        right: 0;
+        background-color: white;
+        border-radius: 30px;
+    }
+
+    #contactTitleBar {
+        position: static;
+    }
+
+    #contactsTitle {
+        font-size: 32px;
+    }
+
+    #devider {
+        width: 124px;
+    }
+
+    #contactsSlogan {
+        font-size: 18px;
+    }
+
+    #mainContactDetails {
+        position: static;
+    }
+
+    /* Add Contact Card */
+
+    .cardBg {
+        top: 96px;
+        bottom: 0;
+        left: 232px;
+        right: 0;    
+    }
+
+    .editContactCard {
+        z-index: 3000;
+        box-sizing: border-box;
+        margin: auto;
+        width: 396px;
+        height: 760px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        top: 96px;
+        bottom: 0;
+        left: 232px;
+        right: 0;
+        background-color: white;
+        border-radius: 30px;
+    }
+
+    .leftBlueSection {
+        height: 50%;
+        width: inherit;
+        border-radius: 30px 30px 0 0;
+    }
+
+    .smallCardLogo {
+        display: none;
+    }
+
+    .addCardHeadline {
+        font-size: 47px;
+        font-weight: 700px;
+    }
+
+    .addCardSubHeadline {
+        font-size: 20px;
+     }
+
+    .cardInitials_bg {
+        position: static;
+        margin-top: -63px;
+        border: 3px solid white;
+    }
+
+    .editContactCard form {
+        margin-top: 24px;
+        width: 364px;
+        position: static;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .addContactInputContainer {
+        box-sizing: border-box;
+        height: 41px;
+        width: inherit;
+    }
+
+    .addSummit_btn {
+        height: 51px;
+        width: max-content;
+        margin-top: 0;
+    }
+
+    .closeAddCard {
+        display: block !important;
+        position: fixed;
+        top: 24px;
+        right: 16px;
+    }
+
+    /* Edit Card */
+
+    #closeEditCardWindow {
+        z-index: 2000;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 850px) {
+
+    #closeWindowBtn {
+        right: -143px;
+    }
+
+    #mainContactContainer {
+        z-index: 3000;
+        box-sizing: border-box;
+        margin: auto;
+        padding: 46px;
+        width: max-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 48px;
+        position: fixed;
+        top: 96px;
+        bottom: 0;
+        left: 232px;
+        right: 0;
+        background-color: white;
+        border-radius: 30px;
+    }
+
+    #mainContactContainer_1 {
+        gap: 24px;
+    }
+
+    .initialCircle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .userNameFontSize {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 700px) {
+    aside {
+        display: none;
+    }
+
+    #contacts {
+        z-index: -2;
+        padding: 17px 0px;
+        top: 80px;
+        bottom: 80px;
+        left: 0;
+        box-shadow: none;
+    }
+
+    #mainContactCard_Bg {
+        top: 80px;
+        left: 0;
+    }
+
+    #mainContactContainer {
+        top: 80px;
+        left: 0;
+    }
+
+    .cardBg {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .editContactCard {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 428px) {
+
+    #addContactBtnContainer {
+        display: none;
+    }
+
+    #mainContactCard_Bg, #closeWindowLayer, #closeEditCardWindow {
+        display: none;
+    }
+
+    #mainContactContainer {
+        display: none;
+    }
+
+    .myContacts {
+        width: 100%;
+    }
+
+    .alphabet {
+        width: auto;
+    }
+
+    .seperator {
+        padding: 0px 16px;
+    }
+
+    .seperator img {
+        width: 100%;
+    }
+
+    #mobileMainContactContainer {
+        z-index: -1;
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 80px;
+        margin: 0;
+        padding: 0;
+        height: auto;
+        width: 100%;
+        border-radius: 0;
+        background-color: #F6F7F8;
+    }
+
+    #backArrow {
+        display: block;
+        height: 32px;
+        width: 32px;
+        position: fixed;
+        top: 128px;
+        right: 16px;
+    }
+
+    #mobileContactTitleBar {
+        align-items: flex-start;
+        position: fixed;
+        top: 128px;
+        left: 16px;
+    }
+
+    #closeWindowBtn {
+        display: none;
+    }
+
+    #devider {
+        display: none;
+    }
+
+    #contactsTitle {
+        font-size: 47px;
+        height: 56.5px;
+    }
+
+    #devider2 {
+        display: block !important;
+        margin-top: 8px;
+        height: 3px;
+        width: 90px;
+        background-color: #29ABE2;
+        border-radius: 30px;
+    }
+
+    #contactsSlogan {
+        font-size: 20px;
+        height: 24px;
+    }
+
+    #mobileMainContactDetails {
+        position: fixed;
+        top: 280px;
+        left: 16px;
+    }
+
+    #mobileMainContactContainer_1 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .userNameFontSize {
+        font-size: 27px;
+        font-weight: 400;
+    }
+
+    .responsiveUserNameFontSize {
+        font-size: 36px !important;
+        font-weight: 700 !important;
+    }
+
+    #mobileMainContactContainer_2 {
+        height: 24px;
+    }
+
+    #settings {
+        display: none;
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100%);
+            opacity: 1;
+        }
+        to {transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutFromRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .mobileSlideInFromRight {
+        animation: swipeInFromRight 500ms ease-in-out forwards;
+    }
+
+    .mobileSlideOutToRight {
+        animation: swipeOutToRight 500ms ease-in-out forwards;
+    }
+
+    #contactOptions {
+        z-index: 2;
+        background-color: white;
+        width: 96px;
+        height: 80px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 20px 20px 0px 20px;
+        position: fixed;
+        top: 720px;
+        right: 16px;
+    }
+
+    .settingsBtn {
+        padding: 8px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #contactOptionBgLayer {
+        z-index: 1 !important;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    #mobileAddContactBtnContainer {
+        z-index: -2;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 758px;
+        right: 16px;
+    }
+
+    #mobileAddContactBtn {
+        height: 56px;
+        width: 56px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2A3647;
+        border: 1px solid #2A3647;
+        border-radius: 45px;
+        box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    #mobileSettingBtnContainer {
+        z-index: -1;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 758px;
+        right: 16px;
+    }
+
+    #mobileSettingBtn {
+        height: 56px;
+        width: 56px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2A3647;
+        border: 1px solid #2A3647;
+        border-radius: 45px;
+        box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    /* Edit Contact Card */
+
+    .cardBg {
+        display: none;
+    }
+
+    #closeEditCardWindow {
+        z-index: 2000;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .editContactCard {
+        display: none;
+    }
+
+    .mobileCardBg {
+        display: block;
+        z-index: 2000;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes slideFromBottomToTop {
+        from {
+            transform: translateY(100%);
+            opacity: 1;
+        }
+        to {transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideFromTopToBottom {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {transform: translateY(150%);
+            opacity: 1;
+        }
+    }
+
+    .slideUp {
+        animation: slideFromBottomToTop 500ms ease-in-out forwards;
+    }
+
+    .slideDown {
+        animation: slideFromTopToBottom 500ms ease-in-out forwards;
+    }
+
+    .mobileEditContactCard {
+        z-index: 3000;
+        box-sizing: border-box;
+        margin: auto 12px;
+        width: auto;
+        height: 760px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-radius: 30px;
+    }
+
+    .mobileEditContactCard form {
+        width: 90%;
+        margin: 24px 8px 0px 8px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 24px;
+        position: static;
+        top: 137px;
+        right: 48px;
+    }
+
+    .mobileEditContactCard form .addContactInputContainer {
+        box-sizing: border-box;
+        width: 100%;
+        height: 41px;
+    }
+
+    .mobileLeftBlueSection {
+        width: 100%;
+        height: 50%;
+        padding: 66px 46px;
+        border-radius: 30px 30px 0 0;
+        box-sizing: border-box;
+        background-color: #2A3647;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobileCloseAddCard {
+        display: block !important;
+        position: absolute;
+        top: 24px;
+        right: 16px;
+    }
+
+    .mobileAddCardTitle {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .headline {
+        font-size: 47px;
+        font-weight: 700;
+        color: white;
+    }
+
+    .mobileDevider3 {
+        display: block !important;
+        margin-top: 8px;
+        height: 3px;
+        width: 90px;
+        background-color: #29ABE2;
+        border-radius: 30px;
+     }
+
+     .mobileCardInitials_bg {
+        width: 120px;
+        height: 120px;
+        background-color: #FFC700;
+        border: 3px solid white;
+        border-radius: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: static;
+        margin-top: -63px;
+    }
+
+    .mobileCardIntitials {
+        color: white;
+        font-size: 47px;
+        font-weight: 500;
+     }
+
+     .mobileCloseAddContact_btn {
+        filter: invert(1);
+        cursor: pointer;
+        position: absolute;
+        top: 48px;
+        left: 1132px;
+     }
+
+     .mobileAddSummit_btn {
+        height: 51px;
+        width: fit-content;
+        margin-top: 0;
+        display: flex;
+        gap: 24px;
+    }
+
+    #mobileAddSummit_btn button {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .mobileAddContactCancel_btn {
+        background-color: white;
+        border: 1px solid #2A3647;
+    }
+
+    .mobileAddContactCreate_btn {
+        color: white;
+        font-size: 21px;
+        font-weight: 700;
+        background-color: #2A3647;
+    }
+}

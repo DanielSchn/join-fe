@@ -1,0 +1,236 @@
+@media (max-height: 905px) {
+    .sumHeadPosition {
+        top: 108px;
+    }
+
+    .dashboard {
+        top: 230px;
+    }
+
+    .greeting {
+        top: 408.5px;
+    }
+}
+
+@media (max-width: 1380px) {
+    .greeting {
+        left: 880px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .greeting {
+        display: none;
+    }
+
+    .font47pxBold500 {
+        font-size: 33px;
+        font-weight: 400;
+        margin-left: 8px;
+    }
+
+    .font64pxBold700 {
+        font-size: 50px;
+        font-weight: 500;
+        margin-left: 8px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .greeting {
+        display: none;
+    }
+}
+
+@media (max-width: 920px) {
+    .sumHead h1 {
+        font-size: 47px;
+    }
+
+    .sumHead p {
+        font-size: 20px;
+    }
+
+    .sumHeadDashVertical {
+        display: block;
+        border-top: 3px solid;
+        width: 90px;
+        margin-top: 8px;
+    }
+
+    .sumHeadDash {
+        display: none;
+    }
+
+    .sumToDo {
+        width: 186px;
+        height: 110px;
+    }
+
+    .sumToDoDone {
+        width: 186px;
+        height: 110px;
+    }
+
+    .sumUpcoming {
+        width: 396px;
+        height: 110px;
+    }
+
+    .sumTasks {
+        width: 116px;
+        height: 116px;
+    }
+
+    .font64pxBold {
+        font-size: 47px;
+    }
+
+    .font14pxBold400 {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .font16pxBold700 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .sumHead {
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard {
+        left: 16px;
+        top: 240px;
+    }
+
+    .sumHeadPosition {
+        left: 16px;
+        top: 100px;
+    }
+}
+
+@media (max-width: 420px) {
+    .sumToDoPos {
+        gap: 16px;
+        width: fit-content;
+    }
+
+    .sumTasksPos {
+        gap: 14px;
+        width: fit-content;
+    }
+
+    .sumTasks:hover {
+        scale: 1.05;
+    }
+
+    .sumToDo:hover {
+        scale: 1.05;
+    }
+
+    .sumToDoDone:hover {
+        scale: 1.05;
+    }
+
+    .sumUpcoming:hover {
+        scale: 1.05;
+    }
+
+    .sumTasks {
+        height: 90px;
+        width: 90px;
+    }
+
+    .sumUpcoming {
+        width: 298px;
+        height: 84px;
+    }
+
+    .sumToDoDone {
+        width: 141px;
+        height: 90px;
+    }
+
+    .sumToDo {
+        width: 141px;
+        height: 90px;
+    }
+    
+    .font64pxBold {
+        font-size: 40px;
+    }
+
+    .font14pxBold400 {
+        font-size: 12px;
+    }
+
+    .img69px {
+        height: 40px;
+        width: 40px;
+    }
+
+    .sumUrgentDash {
+        height: 68px;
+    }
+
+    .dashboard {
+        width: fit-content;
+        left: 11px;
+    }
+}
+
+@media (max-height: 800px) and (min-width: 421px) {
+    .sumToDo {
+        width: 186px;
+        height: 110px;
+    }
+
+    .sumToDoDone {
+        width: 186px;
+        height: 110px;
+    }
+
+    .sumUpcoming {
+        width: 396px;
+        height: 110px;
+    }
+
+    .sumTasks {
+        width: 116px;
+        height: 116px;
+    }
+
+    .font64pxBold {
+        font-size: 47px;
+    }
+
+    .font14pxBold400 {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .font16pxBold700 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .greeting {
+        left: 740px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .mobileGreetingStyle {
+        display: none;
+    }
+
+    /* #summaryBody {
+        display: block;
+    } */
+}

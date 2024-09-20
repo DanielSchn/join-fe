@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN - Sign up</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./assets/css/login_signup.css">
+    <link rel="stylesheet" href="./assets/css/login_signup_query.css">
+    <script src="./script.js" defer></script>
+    <script src="./js/add_task.js" defer></script>
+    <script src="./js/add_task_fields.js" defer></script>
+    <script src="./js/add_task_HTML.js" defer></script>
+    <script src="./js/register.js" defer></script>
+    <script src="./js/render_contact_card.js" defer></script>
+    <script src="./js/render_summary.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+</head>
+
+<body onload="initRegister()">
+    <div class="dNone signedUpOverlay">
+        <div class="successfullSignUp">You Signed Up successfully</div>
+    </div>
+    <div id="uniqueElement" class="opacity">
+        <img class="logo" src="./assets/img/logo.svg" alt="JOIN">
+        <div class="mainDivSignup">
+            <div class="signUp">
+                <a href="./index.html">
+                    <img src="./assets/img/login_signup_icons/arrow_left.svg" alt="Arrow Left" class="arrowLeft">
+                </a>
+                <div class="logInHead">
+                    <h1>Sign up</h1>
+                    <div class="loginDash"></div>
+                </div>
+                <div class="logInFormPos">
+                    <form class="logInForm" onsubmit="register(); return false;">
+                        <div class="inputContainer">
+                            <input required class="nameIcon inputLogInSignUp" type="text" placeholder="Full Name"
+                                id="signUpName">
+                        </div>
+                        <div class="inputContainer">
+                            <input required class="mailIcon inputLogInSignUp" type="email" placeholder="Email"
+                                id="signUpEmail">
+                        </div>
+                        <div class="inputContainer">
+                            <img src="./assets/img/login_signup_icons/lock.svg" alt="Lock" class="passwordIcon">
+                            <img src="./assets/img/login_signup_icons/visibility_off.svg" alt="Visibility Off"
+                                class="visibilityIcon dNone" id="visibilityOffIcon1"
+                                onclick="togglePasswordVisibility('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1')">
+                            <img src="./assets/img/login_signup_icons/visibility.svg" alt="Visibility"
+                                class="visibilityIcon dNone" id="visibilityIcon1"
+                                onclick="togglePasswordVisibility('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1')">
+                            <input required class="inputLogInSignUp" type="password" placeholder="Password"
+                                id="signUpPassword"
+                                oninput="togglePasswordIcon('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1')">
+                        </div>
+                        <div class="inputContainer">
+                            <img src="./assets/img/login_signup_icons/lock.svg" alt="Lock" class="passwordIcon">
+                            <img src="./assets/img/login_signup_icons/visibility_off.svg" alt="Visibility Off"
+                                class="visibilityIcon dNone" id="visibilityOffIcon2"
+                                onclick="togglePasswordVisibility('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2')">
+                            <img src="./assets/img/login_signup_icons/visibility.svg" alt="Visibility"
+                                class="visibilityIcon dNone" id="visibilityIcon2"
+                                onclick="togglePasswordVisibility('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2')">
+                            <input required class="inputLogInSignUp" type="password" placeholder="Confirm Password"
+                                id="signUpPasswordConfirm"
+                                oninput="togglePasswordIcon('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2')">
+                        </div>
+                        <div id="errorMessageId" class="errorMessage"></div>
+                        <div class="acceptPrivacy">
+                            <input required type="checkbox" id="checkboxSignUp">
+                            I accept the <a target="_blank" href="./privacy.html">Privacy policy</a>
+                        </div>
+                        <div class="logInBtns">
+                            <button id="registerBtn" class="signUpButton">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <footer>
+                <a target="_blank" href="./privacy.html">Privacy Policy</a>
+                <a target="_blank" href="./legal.html">Legal Notice</a>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

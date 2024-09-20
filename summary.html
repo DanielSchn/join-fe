@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOIN - Summary</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./assets/css/summary.css">
+    <link rel="stylesheet" href="./assets/css/summary_responsive.css">
+    <link rel="stylesheet" href="./assets/css/contacts_page/contacts_responsive.css">
+    <script src="./script.js" defer></script>
+    <script src="./js/add_new_contact.js"></script>
+    <script src="./js/add_task.js" defer></script>
+    <script src="./js/add_task_fields.js" defer></script>
+    <script src="./js/add_task_HTML.js" defer></script>
+    <script src="./js/register.js" defer></script>
+    <script src="./js/render_contact_card.js" defer></script>
+    <script src="./js/render_summary.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+</head>
+
+<body style="display: none;" onload="initSummary();">
+    <div id="summaryBody" class="">
+        <header w3-include-html="./assets/templates/header_template.html"></header>
+        <aside id="sideMenu" w3-include-html="./assets/templates/side_menu_template.html"></aside>
+        <div class="summary">
+            <div class="sumHeadPosition">
+                <div class="sumHead">
+                    <h1>Join 815</h1>
+                    <div class="sumHeadDash lightBlue"></div>
+                    <p>Key Metrics at a Glance</p>
+                    <div class="sumHeadDashVertical lightBlue"></div>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div class="sumToDoPos">
+                    <a href="board.html">
+                        <div class="sumToDo">
+                            <img src="./assets/img/sum_todo.svg" alt="Pencil" class="img69px">
+                            <div class="textToDo">
+                                <p id="toDoDashboard" class="font64pxBold">0</p>
+                                <p class="font14pxBold400">To-Do</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="./board.html">
+                        <div class="sumToDoDone">
+                            <img src="./assets/img/sum_done.svg" alt="Check" class="img69px">
+                            <div class="textToDo">
+                                <p id="doneTasksDashboard" class="font64pxBold">0</p>
+                                <p class="font14pxBold400">Done</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <a href="./board.html">
+                    <div class="sumUpcoming">
+                        <div class="sumLogoUrgent">
+                            <img src="./assets/img/sum_upcoming.svg" alt="Upcoming" class="img69px">
+                            <div>
+                                <p id="urgentTaskDashboard" class="font64pxBold">0</p>
+                                <p class="font16px font14pxBold400">Urgent</p>
+                            </div>
+                        </div>
+                        <div class="sumUrgentDash"></div>
+                        <div class="dateDeadline">
+                            <p id="deadlineDashboard" class="font21pxBold font16pxBold700">Date</p>
+                            <p class="font16px font14pxBold400">Upcoming Deadline</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="sumTasksPos">
+                    <a href="./board.html">
+                        <div class="sumTasks">
+                            <p id="tasksInBoardDashboard" class="font64pxBold">0</p>
+                            <p class="font14pxBold400">Tasks in<br>Board</p>
+                        </div>
+                    </a>
+                    <a href="./board.html">
+                        <div class="sumTasks">
+                            <p id="tasksInProgressDashboard" class="font64pxBold">0</p>
+                            <p class="font14pxBold400">Tasks in<br>Progress</p>
+                        </div>
+                    </a>
+                    <a href="./board.html">
+                        <div class="sumTasks">
+                            <p id="awaitFeedbackDashboard" class="font64pxBold">0</p>
+                            <p class="font14pxBold400">Awaiting<br>Feedback</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="greeting">
+                <p id="greetOnSummary" class="font47pxBold500"></p>
+                <p id="userNameSummary" class="font64pxBold700 lightBlue"></p>
+            </div>
+
+            <div id="mobileMenuBox" w3-include-html="./assets/templates/mobile_side_menu.html"></div>
+        </div>
+    </div>
+
+    <div id="mobileGreetingContainer" class="mobileGreetingStyle dNone">
+        <p id="mobileGreeting"></p>
+        <p id="mobileGreetingUserName"></p>
+    </div>
+
+</body>
+
+</html>

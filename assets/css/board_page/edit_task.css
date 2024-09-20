@@ -1,0 +1,93 @@
+.editTaskCard {
+    width: calc(100% + var(--scrollbarWidth));
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.editTaskCard .addTaskForm {
+    padding: 0;
+}
+
+.editTaskCard .addTaskFormMain {
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 0;
+}
+
+/* 1-Spalten-Layout */
+.editTaskCard #formSeperator {
+    display: none;
+}
+
+.editTaskCard #assignedIcons {
+    position: initial;
+}
+
+.editTaskCard .addTaskFormMainSideOne {
+    gap: 24px;
+}
+
+/* Anzeige Subtasks */
+.editTaskCard .subtasksContainer {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-y: visible;
+}
+
+.editTaskCard #subtasksLeftMargin {
+    display: none;
+}
+
+.editTaskCard #subtasksList {
+    width: 100%;
+}
+
+@media (max-width: 428px) {
+    :root {
+        --fontSizeNormal: 16px;
+        --fontSizeSmall: 14px;
+        --sidePadding: 12px;
+    }
+
+    .addTaskPrioBtns {
+        gap: 12px;
+    }
+
+    .addTaskPrioBtns button {
+        min-width: calc((100% - 24px)/3);
+        gap: 6px;
+        padding: 14px 12px;
+        font-size: var(--fontSizeSmall);
+    }
+
+    .addTaskPrioBtns button img {
+        width: 16px;
+    }
+
+    .addTaskBottom .btnPrimary {
+        font-size: var(--fontSizeNormal);
+    }
+
+    .editTaskCard input,
+    .editTaskCard textarea {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 352px) {
+    :root {
+        --fontSizeSmall: 12px;
+    }
+
+    #addSubtask {
+        width: calc(100% - 100px);
+    }
+
+    .editTaskCard #addTaskAssignedInputContainer {
+        padding-right: 14px;
+    }
+
+    .editTaskCard #addTaskAssignedInputContainer input {
+        width: calc(100% - 16px - 24px)
+    }
+}
