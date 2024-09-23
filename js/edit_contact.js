@@ -6,9 +6,7 @@
 function renderEditForm(index) {
     let editCard = document.getElementById('editCardOne');
     editCard.innerHTML = '';
-
     let initial = getInitials(contacts[index]['name']);
-
     editCard.innerHTML = /* html */`
         <div class="leftBlueSection">
             <img class="closeAddCard d-none" onclick="editCardWindow(false)" src="./assets/img/contacts/close.svg">
@@ -18,13 +16,10 @@ function renderEditForm(index) {
                 <div id="devider3"></div>
             </div>
         </div>
-
         <div class="cardInitials_bg" style="background-color: ${contacts[index]['color']}">
             <span class="cardIntitials">${initial}</span>
         </div>
-
         <img class="closeAddContact_btn" src="./assets/img/contacts/close.svg" onclick="editCardWindow(false)">
-
         <form id="editForm" onsubmit="editCurrentContact(${index}); return false">
             <div class="addContactInputContainer"><input id="editName" class="addContactInput" type="text" placeholder="Name"><img src="./assets/img/contacts/person.svg"></div>
             <div class="addContactInputContainer"><input id="editMail" class="addContactInput" type="email" placeholder="Email"><img src="./assets/img/contacts/mail.svg"></div>
@@ -35,7 +30,6 @@ function renderEditForm(index) {
             </div>
         </form>
     `;
-
     prefillEditForm(index);
 }
 
@@ -60,7 +54,6 @@ function prefillEditForm(index) {
 function renderMobileEditForm(index) {
     let mobileEditCard = document.getElementById('mobileEditCardOne');
     mobileEditCard.innerHTML = '';
-
     let initial = getInitials(contacts[index]['name']);
     mobileEditCard.innerHTML = /* html */`
     <div class="mobileLeftBlueSection">
@@ -84,7 +77,6 @@ function renderMobileEditForm(index) {
             </div>
         </form>
         `;
-
     prefillMobileEditForm(index);
 }
 
@@ -113,17 +105,14 @@ async function editCurrentContact(index) {
     const name = document.getElementById('editName');
     const mail = document.getElementById('editMail');
     const number = document.getElementById('editNumber');
-
     const getName = name.value;
     const firstLetter = getName.charAt(0).toUpperCase();
-
     const updatedContact = {
         'name': getName,
         'email': mail.value,
         'tel': number.value,
         'letter': firstLetter,
     };
-
     try {
         await setItem('contacts', updatedContact, contacts[index].id);
         contacts[index] = { ...contacts[index], ...updatedContact };
@@ -148,17 +137,14 @@ async function mobileEditCurrentContact(index) {
     let name = document.getElementById('editMobileName');
     let mail = document.getElementById('editMobileMail');
     let number = document.getElementById('editMobileNumber');
-
     let getName = name.value;
     let firstLetter = getName.charAt(0).toUpperCase();
-
     const updatedContact = {
         'name': getName,
         'email': mail.value,
         'tel': number.value,
         'letter': firstLetter,
     };
-
     try {
         await setItem('contacts', updatedContact, contacts[index].id);
         contacts[index] = { ...contacts[index], ...updatedContact };
@@ -172,34 +158,11 @@ async function mobileEditCurrentContact(index) {
 
 
 /**
- * this function is pushing all informations to the contacts array
- * @param {*} index - place of the current contact within the contacts array
- * @param {string} newName - new/ current name
- * @param {string} newMail - new/ current mail
- * @param {string} newNumber - new/ current number
- * @param {string} firstLetter - returns the firstletter of the current name
- */
-// function getNewContactInformation(index, newName, newMail, newNumber, firstLetter) {
-
-//     let editContact = {
-//         'name': newName,
-//         'mail': newMail,
-//         'number': newNumber,
-//         'letter': firstLetter,
-//         'color': contacts[index]['color']
-//     };
-
-//     contacts.splice(index, 1, editContact);
-// }
-
-
-/**
  * this function removes the current contact out of the contact array
  * @param {*} index - place of the current contact within the contacts array
  */
 async function deleteContact(index) {
-    const contactId = contacts[index].id; // ID des Kontakts, den du löschen möchtest
-
+    const contactId = contacts[index].id;
     try {
         await setItem('contacts', null, contactId);
         contacts.splice(index, 1);
@@ -220,7 +183,6 @@ async function deleteContact(index) {
  */
 async function refreshContactList() {
     sortContacts();
-    // await setItem('contacts', JSON.stringify(contacts));
     await loadContacts();
     renderContacts();
 }

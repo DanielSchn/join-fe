@@ -5,8 +5,6 @@ let currentTask = {};
 let message = 'Task added to board';
 
 
-// falls Add Task im Board geöffnet und Fenster auf 1-Spalten-Layout skaliert wird, Fenster schließen
-// (Add-Button leitet bei dieser Fenstergröße auf add_task.html weiter)
 window.addEventListener('resize', function () {
     if (isAddTaskFromBoard()) {
         let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
@@ -171,8 +169,8 @@ function renderAddTaskAssignedList() {
     renderActiveUserToAssignedList();
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
-        if (user.id != userId) {  // Vergleiche die tatsächliche Benutzer-ID
-            let checkbox = 'assignedContact' + user.id;  // Verwende die tatsächliche Benutzer-ID
+        if (user.id != userId) {
+            let checkbox = 'assignedContact' + user.id;
             list.innerHTML += contactAssignedHTML(user, checkbox);
         }
     }
@@ -188,7 +186,6 @@ function renderActiveUserToAssignedList() {
         const activeUser = users.find(user => {
             return user.id == userId
         });
-
         if (activeUser) {
             let checkbox = 'assignedContact' + activeUser.id;
             list.innerHTML += contactAssignedHTML(activeUser, checkbox);
@@ -266,17 +263,12 @@ async function submitTask() {
     setAddTaskDueText();
     const currentId = currentTask['id'];
     let taskData = generateTaskJSON(currentId); // Generiere das aktuelle Task-Objekt
-
     submitBtn.disabled = true;
-
     if (currentId === -1) {
-        // Wenn es sich um ein neues Task handelt, POST die Daten
-        await setItem('tasks', taskData); // Stelle sicher, dass die API erwartet, ein einzelnes Task-Objekt zu empfangen
+        await setItem('tasks', taskData);
     } else {
-        // Wenn es ein bestehendes Task ist, PATCH die Daten
-        await setItem('tasks', taskData, currentId); // Hier currentId für PATCH verwenden
+        await setItem('tasks', taskData, currentId);
     }
-
     submitBtn.disabled = false;
     showToastMsg(message);
     goToBoard();
@@ -290,11 +282,10 @@ async function submitTask() {
  */
 function generateTaskJSON(id) {
     return {
-        // id: id, // Falls benötigt
         title: addTaskTitle.value,
         description: addTaskDescription.value,
         assigned_to: currentTask['assignedTo'],
-        due: addTaskDueText.value, // Verwende das formatierte Datum von addTaskDueText
+        due: addTaskDueText.value,
         prio: PRIOS[getTaskPrioId()],
         category: categories.indexOf(addTaskCategory.value),
         subtasks: currentTask['subtasks'],

@@ -4,7 +4,6 @@
 function openAddCardOne() {
     const addNewContactBg = document.getElementById('addContactBg');
     const addNewContactBtn = document.getElementById('addCardOne');
-
     addNewContactBg.classList.remove('d-none');
     addNewContactBtn.classList.remove('d-none');
     addNewContactBtn.classList.remove('slideOut');
@@ -18,7 +17,6 @@ function openAddCardOne() {
 function closeAddCardOne() {
     const addNewContactBg = document.getElementById('addContactBg');
     const addNewContactBtn = document.getElementById('addCardOne');
-
     addNewContactBg.classList.add('d-none');
     addNewContactBtn.classList.remove('slideIn');
     addNewContactBtn.classList.add('slideOut');
@@ -46,7 +44,6 @@ function stopAnimation() {
   function hideAddContactCardOne() {
     const addNewContactBg = document.getElementById('addContactBg');
     const addNewContactBtn = document.getElementById('addCardOne');
-
     addNewContactBg.classList.add('d-none');
     addNewContactBtn.classList.add('d-none');
     addNewContactBtn.classList.remove('slideIn');
@@ -62,7 +59,6 @@ function stopAnimation() {
   function openMobileAddContactCardOne() {
     const mobileAddCardBg = document.getElementById('mobileAddCardBg');
     const mobileAddCardOne = document.getElementById('mobileAddCardOne');
-
     mobileAddCardBg.classList.remove('d-none');
     mobileAddCardOne.classList.remove('d-none');
     mobileAddCardOne.classList.remove('slideDown');
@@ -76,7 +72,6 @@ function stopAnimation() {
 function closeMobileAddContactCardOne() {
     const mobileAddCardBg = document.getElementById('mobileAddCardBg');
     const mobileAddCardOne = document.getElementById('mobileAddCardOne');
-
     mobileAddCardBg.classList.add('d-none');
     mobileAddCardOne.classList.add('slideDown');
     mobileAddCardOne.classList.remove('slideUp');
@@ -104,7 +99,6 @@ function stopMobileAnimation() {
   function hideMobileAddContactCardOne() {
     const mobileAddCardBg = document.getElementById('mobileAddCardBg');
     const mobileAddCardOne = document.getElementById('mobileAddCardOne');
-
     mobileAddCardBg.classList.add('d-none');
     mobileAddCardOne.classList.add('d-none');
     mobileAddCardOne.classList.add('slideDown');

@@ -5,8 +5,6 @@
  * @returns - HTML code
  */
 function generateTask(element, i) {
-    console.log('ELEMENT IN GENERATE', element);
-    
     return /* html */ `
     <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(tasks[${i}], ${element['id']})" class="todo">
         <div class=headerTaskCard>
@@ -61,9 +59,6 @@ function generateNoTask(status) {
  * @returns 
  */
 function generateTaskCard(task, id) {
-    console.log('GENBERATE ID', id);
-    console.log('GENBERATE ID', task);
-    
     return /* html */`    
     <div id="taskContainer" onclick="closeTask()">
         <div id="taskCard2" class="taskCard showTaskCard textOverflow" onclick="preventClosing()">
@@ -88,19 +83,15 @@ function generateTaskCard(task, id) {
                 <img src="./assets/img/prio_icons/task_prio_${task['prio']}.svg" alt="icon">
                 </div>
             </div>
-
             <div class="taskAssignedContainer">
                 <div class="taskSection">Assigned To:</div>
                 <div class="taskAssigned" id="taskAssigned${id}"></div>
             </div>
-
-
             <div class="subtasksContainerBoard">
                 <div class="taskSection">Subtasks:</div>
                 <div class="subtasks" id="subtasks"></div>
             </div>
             <div class="taskFooter">
-
                 <div onclick="deleteTask(${task.id})" class="deleteTask">
                     <img class="deleteTaskImg" src="./assets/img/delete.svg" alt="">
                     <div>Delete</div>
@@ -110,7 +101,6 @@ function generateTaskCard(task, id) {
                     <div>Edit</div>
                 </div>
             </div>
-
         </div>
     </div>`
 }

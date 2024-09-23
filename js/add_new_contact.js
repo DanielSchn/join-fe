@@ -21,7 +21,6 @@ async function saveNewContact(isDesktopForm) {
     } else {
         await mobileAddNewContact();
     }
-
     await loadContacts();
     closeAddCardOne();
     renderContacts();
@@ -37,11 +36,8 @@ async function addNewContact() {
     const contactName = document.getElementById('contactName');
     const contactEmail = document.getElementById('contactMail');
     const contactNumber = document.getElementById('contactNumber');
-
     const getName = contactName.value;
     const firstLetter = getName.charAt(0).toUpperCase();
-
-    // Erstelle den neuen Kontakt
     const newContact = {
         'name': getName,
         'mail': contactEmail.value,
@@ -49,7 +45,6 @@ async function addNewContact() {
         'letter': firstLetter,
         'color': getRandomUserIconColor()
     };
-
     try {
         const response = await setItem('contacts', newContact);
         sortContacts();
@@ -63,10 +58,8 @@ async function mobileAddNewContact() {
     const contactName = document.getElementById('contactMobileName');
     const contactEmail = document.getElementById('contactMobileMail');
     const contactNumber = document.getElementById('contactMobileNumber');
-
     let getName = contactName.value;
     let firstLetter = getName.charAt(0).toUpperCase();
-
     const newContact = {
         'name': getName,
         'mail': contactEmail.value,
@@ -74,7 +67,6 @@ async function mobileAddNewContact() {
         'letter': firstLetter,
         'color': getRandomUserIconColor()
     };
-
     try {
         const response = await setItem('contacts', newContact);
         sortContacts();
@@ -90,8 +82,6 @@ async function mobileAddNewContact() {
 async function loadContacts() {
     try {
         contacts = await getItem('contacts');
-        console.log(contacts);
-        
     } catch (e) {
         console.error('Loading error:', e);
     }
@@ -105,15 +95,12 @@ function sortContacts() {
     contacts.sort((a, b) => {
         let nameA = a.name.toLowerCase();
         let nameB = b.name.toLowerCase();
-
         if (nameA < nameB) {
             return -1;
         }
-
         if (nameA > nameB) {
             return +1;
         }
-        
         return 0;
     }) 
 }

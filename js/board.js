@@ -42,13 +42,10 @@ async function saveChanges(taskId = null) {
 function updateToDo() {
     let todo = filteredTasks.filter(t => t['status'] == 'toDo');
     let status = 'to do';
-
     document.getElementById('toDo').innerHTML = '';
-
     if (todo.length == 0) {
         document.getElementById('toDo').innerHTML = generateNoTask(status);
     } else
-
         for (let i = 0; i < todo.length; i++) {
             const element = todo[i];
             document.getElementById('toDo').innerHTML += generateTask(element, i);
@@ -63,13 +60,10 @@ function updateToDo() {
 function updateInProgress() {
     let inprogress = filteredTasks.filter(t => t['status'] == 'inProgress')
     let status = 'in progress';
-
     document.getElementById('inProgress').innerHTML = '';
-
     if (inprogress.length == 0) {
         document.getElementById('inProgress').innerHTML = generateNoTask(status);
     } else
-
         for (let i = 0; i < inprogress.length; i++) {
             const element = inprogress[i];
             document.getElementById('inProgress').innerHTML += generateTask(element);
@@ -84,20 +78,16 @@ function updateInProgress() {
 function updateAwaitFeedback() {
     let feedback = filteredTasks.filter(t => t['status'] == 'awaitFeedback');
     let status = 'await Feedback';
-
     document.getElementById('awaitFeedback').innerHTML = '';
-
     if (feedback.length == 0) {
         document.getElementById('awaitFeedback').innerHTML = generateNoTask(status);
     } else
-
         for (let i = 0; i < feedback.length; i++) {
             const element = feedback[i];
             document.getElementById('awaitFeedback').innerHTML += generateTask(element);
             generateSubtask(element);
             renderBoardAssignedIcons(element);
         }
-
 }
 
 /**
@@ -106,13 +96,10 @@ function updateAwaitFeedback() {
 function updateDone() {
     let done = filteredTasks.filter(t => t['status'] == 'done')
     let status = 'done';
-
     document.getElementById('done').innerHTML = '';
-
     if (done.length == 0) {
         document.getElementById('done').innerHTML = generateNoTask(status);
     } else
-
         for (let i = 0; i < done.length; i++) {
             const element = done[i];
             document.getElementById('done').innerHTML += generateTask(element);
@@ -128,8 +115,6 @@ function updateDone() {
  */
 function startDragging(id) {
     currentDraggedElement = id;
-    console.log('DRAGGING ID',currentDraggedElement);
-    
 }
 
 /**
@@ -139,16 +124,12 @@ function startDragging(id) {
  * @param {number} id - ID of this task in "tasks"-Array
  */
 function showTaskCard(element, id) {
-
     let taskCard = document.getElementById('taskCard');
-
     taskCard.innerHTML = generateTaskCard(element, id);
     renderCardPrio(element, id);
     renderCardSubtasks(element, id);
     renderCardAssigned(element, id);
-
     let taskContainer = document.getElementById('taskContainer');
-
     taskContainer.classList.remove('slideOut');
     taskContainer.classList.add('slideIn');
 }
@@ -170,11 +151,10 @@ function allowDrop(ev) {
  */
 function moveTo(status) {
     const taskIndex = tasks.findIndex(task => task.id === currentDraggedElement);
-
     if (taskIndex !== -1) {
-        tasks[taskIndex]['status'] = status; // Ändere den Status der gefundenen Aufgabe
-        saveChanges(tasks[taskIndex].id); // Speichere die Änderungen mit der ID
-        updateHTML(); // Aktualisiere die Anzeige
+        tasks[taskIndex]['status'] = status;
+        saveChanges(tasks[taskIndex].id);
+        updateHTML();
     } else {
         console.error('Invalid task ID:', currentDraggedElement);
     }
@@ -240,7 +220,6 @@ function statusDown(id) {
         newStatus = 'awaitFeedback';
     }
     else if (status === 'toDo') { newStatus = 'inProgress'; }
-
     tasks[id]['status'] = newStatus;
     saveChanges();
     updateHTML();
@@ -256,7 +235,6 @@ function generateSubtask(element) {
     let subtasksDiv = document.getElementById(`toDoSubtasks${element['id']}`);
     let doneSubtasksDiv = document.getElementById(`toDoSubtasksDone${element['id']}`);
     let progressbarFillerDiv = document.getElementById(`toDoSubtasksProgressFiller${element['id']}`);
-
     if (subtasks.length == 0) {
         subtasksDiv.classList.add("d-none");
     } else {
@@ -270,11 +248,8 @@ function generateSubtask(element) {
  * @param {object} element - Selected Task Object
  */
 function renderBoardAssignedIcons(element) {
-    console.log('ELEMENT ICON', element);
-    
     let assigned = element['assigned_to'];
     let assignedDiv = document.getElementById(`taskCardAssignedTo${element['id']}`);
-
     assignedDiv.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];
@@ -293,9 +268,6 @@ function renderBoardAssignedIcons(element) {
 function renderCardAssigned(element, id) {
     let assignedDiv = document.getElementById(`taskAssigned${id}`)
     let assigned = element['assigned_to'];
-    console.log('ASSIGNED', assigned);
-    
-
     assignedDiv.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];
@@ -399,7 +371,7 @@ async function showAddTaskCard(status) {
     await initAddTask(status);
     taskCard.style.display = '';
     taskCard.classList.add('slideIn');
-    changeClearBtn(); // Clear-Button durch Cancel-Button ersetzen
+    changeClearBtn();
 }
 
 /**

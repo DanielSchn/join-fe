@@ -1,6 +1,12 @@
 const STORAGE_URL = 'http://127.0.0.1:8000/api/';
 
 
+// Für das aufrufen von POST die setItem folgend aufrufen:
+// setItem('tasks', tasks)
+// Für das aufrufen von PATCH die setItem folgend aufrufen:
+// setItem('tasks', taskToUpdate, taskId)
+// Für das aufrufen von DELETE die setItem folgend aufrufen:
+// setItem('tasks',null, taskId)
 async function setItem(key, value, id = null) {
     let url = `http://127.0.0.1:8000/api/${key}/`;
     if (id) {
@@ -14,22 +20,16 @@ async function setItem(key, value, id = null) {
             },
             body: value ? JSON.stringify(value) : null
         });
-
-        // Überprüfen, ob die Antwort im richtigen Format vorliegt
         if (!response.ok) {
             const errorText = await response.text();
             console.error(`Error response for ${key}:`, errorText);
             throw new Error(`Error saving data for key "${key}": ${errorText}`);
         }
-
-        // Wenn es sich um einen DELETE-Request handelt, gibt es nichts zurückzugeben
         if (value === null) {
-            return; // Erfolgreiches Löschen, keine Rückgabe notwendig
+            return;
         }
-
-        // Für andere Anfragen (POST, PATCH) die Antwort parsen
         const data = await response.json();
-        return data; // Erfolgreiche Antwort zurückgeben
+        return data;
     } catch (error) {
         console.error(`Error in setItem for key "${key}":`, error);
         throw error;

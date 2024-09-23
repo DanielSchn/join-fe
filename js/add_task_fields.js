@@ -3,8 +3,6 @@
  * @param {element} checkbox - ID/Element der Checkbox ('assignedContact' + jeweilige User-ID)
  */
 function toggleAssigned(userId) {
-    console.log('TOGGLE ASSIGNED', userId);
-    
     const checkboxElement = document.getElementById(`assignedContact${userId}`);
     if (checkboxElement) {
         toggleAssignedArray(userId);

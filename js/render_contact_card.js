@@ -16,7 +16,6 @@ function openContactCardWindow() {
     const contactContainer = document.getElementById('mainContactDetails');
     const responsiveBackgroundSetup = document.getElementById('responsivContactCardBg');
     const mainContactContainer = document.getElementById('mainContactContainer');
-
     contactContainer.classList.add('slideIn');
     contactContainer.classList.remove('d-none');
     responsiveBackgroundSetup.classList.remove('d-none');
@@ -31,7 +30,6 @@ function openContactCardWindow() {
 function openMobileContactCardWindow() {
     const mainContactContainer = document.getElementById('mobileMainContactContainer');
     const setting_btn = document.getElementById('contactOptions');
-
     mainContactContainer.classList.remove('d-none');
     setting_btn.classList.add('d-none');
 }
@@ -53,7 +51,6 @@ function closeContactCardWindow() {
   const contactContainer = document.getElementById('mainContactDetails');
   const responsiveBackgroundSetup = document.getElementById('responsivContactCardBg');
   const mainContactContainer = document.getElementById('mainContactContainer');
-
   contactContainer.classList.add('slideIn');
   contactContainer.classList.add('d-none');
   responsiveBackgroundSetup.classList.add('d-none');
@@ -68,7 +65,6 @@ function closeContactCardWindow() {
 function closeMobileContactCardWindow() {
   const mainContactContainer = document.getElementById('mobileMainContactContainer');
   const setting_btn = document.getElementById('contactOptions');
-
   mainContactContainer.classList.add('d-none');
   setting_btn.classList.add('d-none');
 }
@@ -84,7 +80,6 @@ function editContactInformation(index) {
  * Opens and Closes the Window for editing the Conatct informations (Desktop and Mobiledevices)
  */
 function editCardWindow(isGoingToOpen, index) {
-
     if(isGoingToOpen === true) {
         openEditCard();
         openMobileEditCard();
@@ -106,7 +101,6 @@ function editCardWindow(isGoingToOpen, index) {
 function showResponsiveEditCardWindow() {
   const contact = document.getElementById('mainContactDetails');
   const responsiveBackgroundSetup = document.getElementById('responsivContactCardBg');
-
   contact.classList.remove('d-none');
   responsiveBackgroundSetup.classList.remove('d-none');
 }
@@ -119,7 +113,6 @@ function showSettings() {
   const setting_btn = document.getElementById('contactOptions');
   const setting_bg_layer = document.getElementById('contactOptionBgLayer');
   const mobileSettingsBtnContainer = document.getElementById('mobileSettingBtnContainer');
-
   setting_btn.classList.remove('d-none');
   setting_btn.classList.remove('mobileSlideOutToRight');
   setting_btn.classList.add('mobileSlideInFromRight');
@@ -134,7 +127,6 @@ function showSettings() {
 function hideSettings() {
   const setting_btn = document.getElementById('contactOptions');
   const setting_bg_layer = document.getElementById('contactOptionBgLayer');
-
   setting_btn.classList.remove('mobileSlideInFromRight');
   setting_btn.classList.add('mobileSlideOutToRight');
   setting_bg_layer.classList.add('d-none');
@@ -150,7 +142,6 @@ function toggleEditCard() {
   const editCardBg = document.getElementById('editCardBg');
   const mainContactCard = document.getElementById('mainContactContainer');
   const closeWindowLayer = document.getElementById('closeWindowLayer');
-
   closeEditCardWindow.classList.toggle('d-none');
   addContactCard.classList.toggle('slideIn');
   addContactCard.classList.toggle('slideOut');
@@ -175,7 +166,6 @@ function openEditCard() {
 function closeEditCard() {
     const mainContactCard = document.getElementById('mainContactContainer');
     const contactContainer = document.getElementById('mainContactDetails');
-
     mainContactCard.classList.remove('responsiveSlideIn');
     contactContainer.classList.remove('slideIn');
     stopEditCardAnimation();
@@ -205,7 +195,6 @@ function hideEditContactCardOne() {
   const addContactCard = document.getElementById('editCardOne');
   const mainContactCard = document.getElementById('mainContactContainer');
   const contactContainer = document.getElementById('mainContactDetails');
-    
   addContact_bg.classList.add('d-none');
   addContactCard.classList.remove('slideIn');
   addContactCard.classList.add('slideOut');
@@ -223,7 +212,6 @@ function hideEditContactCardOne() {
 function openMobileEditCard() {
   const mobileAddCardBg = document.getElementById('mobileEditCardBg');
   const mobileAddCardOne = document.getElementById('mobileEditCardOne');
-
   mobileAddCardBg.classList.remove('d-none');
   mobileAddCardOne.classList.remove('d-none');
   mobileAddCardOne.classList.remove('slideDown');
@@ -237,7 +225,6 @@ function openMobileEditCard() {
 function closeMobileEditCard() {
   const mobileAddCardBg = document.getElementById('mobileEditCardBg');
   const mobileAddCardOne = document.getElementById('mobileEditCardOne');
-
   mobileAddCardBg.classList.add('d-none');
   mobileAddCardOne.classList.remove('slideUp');
   mobileAddCardOne.classList.add('slideDown');
@@ -266,7 +253,6 @@ function stopMobileEditCardAnimation() {
 function hideMobileEditContactCardOne() {
   const mobileAddCardBg = document.getElementById('mobileEditCardBg');
   const mobileAddCardOne = document.getElementById('mobileEditCardOne');
-
   mobileAddCardBg.classList.add('d-none');
   mobileAddCardOne.classList.add('slideDown');
   mobileAddCardOne.classList.remove('slideUp');

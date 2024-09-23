@@ -46,9 +46,7 @@ function contactCardHTML(contact, i) {
 function renderContactCradInformation(index) {
     const contactDetails = document.getElementById('mainContactDetails');
     contactDetails.innerHTML = '';
-
     let intitial = getInitials(contacts[index]['name']);
-
     contactDetails.innerHTML = /* html */`
         <div id="mainContactContainer_1">
             <div class="initialCircle" style="background: ${contacts[index]['color']}">
@@ -66,11 +64,9 @@ function renderContactCradInformation(index) {
                 </div>
             </div>
         </div>
-
         <div id="mainContactContainer_2">
             Contact Information
         </div>
-
         <div id="mainContactContainer_3">
             <div id="mailContainer">
                 <span class="contactDataTitle">Mail</span>
@@ -92,14 +88,11 @@ function renderContactCradInformation(index) {
 function renderMobileContactCradInformation(index) {
     const contactDetails = document.getElementById('mobileMainContactDetails');
     contactDetails.innerHTML = '';
-
     let intitial = getInitials(contacts[index]['name']);
-
     contactDetails.innerHTML = /* html */`
         <div id="backArrowContainer" onclick="hideContactCard()">
             <img id="backArrow" src="./assets/img/contacts/arrow-left-line.svg">
         </div>
-
         <div id="mobileContactTitleBar">
             <div id="closeWindowBtn" onclick="hideContactCard()">
                 <img src="./assets/img/contacts/close.svg">
@@ -109,7 +102,6 @@ function renderMobileContactCradInformation(index) {
             <div id="contactsSlogan">Better with a Team</div>
             <div id="devider2" class="d-none"></div>
         </div>
-
         <div id="mobileMainContactDetails">
             <div id="mobileMainContactContainer_1">
                 <div class="initialCircle" style="background: ${contacts[index]['color']}">
@@ -119,11 +111,9 @@ function renderMobileContactCradInformation(index) {
                     <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contacts[index]['name']}</div>
                 </div>
             </div>
-
         <div id="mainContactContainer_2">
             Contact Information
         </div>
-
         <div id="mainContactContainer_3">
             <div id="mailContainer">
                 <span class="contactDataTitle">Mail</span>
@@ -135,11 +125,9 @@ function renderMobileContactCradInformation(index) {
             </div>
         </div>
         </div>
-
         <div id="mobileSettingBtnContainer" onclick="showSettings(${index})">
             <button id="mobileSettingBtn"><img src="./assets/img/contacts/more_vert.svg"></button>
         </div>
-
         <div id="contactOptions" class="d-none">
             <div id="mobileEdit" class="settingsBtn" onclick="editCardWindow(true, ${index})">
                 <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
@@ -148,7 +136,6 @@ function renderMobileContactCradInformation(index) {
                 <img id="remove_img" src="./assets/img/contacts/delete_bin.svg"><span>Delete</span>
             </div>
         </div>
-
         <div id="contactOptionBgLayer" class="d-none" onclick="hideSettings()">
         </div>
     `;
