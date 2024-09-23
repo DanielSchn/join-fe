@@ -51,7 +51,7 @@ async function initAddTask(status) {
 function initCurrentTask() {
     currentTask = {
         id: -1,
-        assignedTo: [],
+        assigned_to: [],
         subtasks: [],
         status: ''
     }
@@ -92,7 +92,7 @@ async function editTask(id) {
  */
 function setCurrentTaskEdit(task) {
     currentTask['id'] = task['id'];
-    currentTask['assignedTo'] = task['assignedTo'];
+    currentTask['assigned_to'] = task['assigned_to'];
     currentTask['subtasks'] = task['subtasks'];
 }
 
@@ -208,7 +208,7 @@ function renderActiveUserToAssignedList() {
  * (Bearbeitungsmodus:) Vorauswahl zugeordneter Kontakte im Dropdown-Menü
  */
 function precheckAssignedList() {
-    const assigned = currentTask['assignedTo'];
+    const assigned = currentTask['assigned_to'];
     for (let i = 0; i < users.length; i++) {
         if (assigned.includes(i)) {
             let checkboxId = 'assignedContact' + i;
@@ -223,7 +223,7 @@ function precheckAssignedList() {
  * assigned-Icons rendern
  */
 function renderAddTaskAssignedIcons() {
-    const assigned = currentTask['assignedTo'];
+    const assigned = currentTask['assigned_to'];
     assignedIcons.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];

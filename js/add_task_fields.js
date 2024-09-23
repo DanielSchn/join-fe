@@ -3,6 +3,8 @@
  * @param {element} checkbox - ID/Element der Checkbox ('assignedContact' + jeweilige User-ID)
  */
 function toggleAssigned(userId) {
+    console.log('TOGGLE ASSIGNED', userId);
+    
     const checkboxElement = document.getElementById(`assignedContact${userId}`);
     if (checkboxElement) {
         toggleAssignedArray(userId);
@@ -31,13 +33,13 @@ function toggleAssignedStyle(checkbox) {
  * @param {number} id - Kontakt-ID aus assignedTo-Array
  */
 function toggleAssignedArray(id) {
-    let assigned = currentTask['assignedTo'];
+    let assigned = currentTask['assigned_to'];
     if (assigned.includes(id)) {
         assigned = assigned.filter(assignedId => assignedId !== id);
     } else {
         assigned.push(id);
     }
-    currentTask['assignedTo'] = assigned;
+    currentTask['assigned_to'] = assigned;
 }
 
 

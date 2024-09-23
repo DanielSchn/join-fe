@@ -4,10 +4,11 @@
  * @param {number} element - Task ID
  * @returns - HTML code
  */
-function generateTask(element) {
-    const subtasks = element['subtasks'] || []; // Setze subtasks auf ein leeres Array, wenn es null ist
+function generateTask(element, i) {
+    console.log('ELEMENT IN GENERATE', element);
+    
     return /* html */ `
-    <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(tasks[${element['id']}], ${element['id']})" class="todo">
+    <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(tasks[${i}], ${element['id']})" class="todo">
         <div class=headerTaskCard>
             <div class="toDoCategory${element['category']}"> ${categories[element['category']]} </div>
             <div class=changeStatusMobile> 
@@ -21,13 +22,13 @@ function generateTask(element) {
         </div>
         <div class="toDoSubtasks" id="toDoSubtasks${element['id']}">
             <div class="toDoSubtasksProgress">
-                <div class="toDoSubtasksProgressFiller" id="toDoSubtasksProgressFiller${element['id']}">
+                <div class="toDoSubtasksProgressFiller" id= "toDoSubtasksProgressFiller${element['id']}">
                 </div>
             </div>
             <div class="toDoSubtasksCount">
                 <div id="toDoSubtasksDone${element["id"]}">  
                 </div>
-                /${subtasks.length} Subtask
+                /${element['subtasks'].length} Subtask
             </div>
         </div>
         <div class="toDoBottom">
@@ -36,7 +37,7 @@ function generateTask(element) {
                 <img src="./assets/img/prio_icons/task_prio_${element['prio']}.svg" alt="icon">
             </div>
         </div>
-    </div>`;
+    </div>`
 }
 
 /**
@@ -60,11 +61,8 @@ function generateNoTask(status) {
  * @returns 
  */
 function generateTaskCard(task, id) {
-    if (!task) {
-        console.error('Task is undefined or null:', task);
-        return ''; // Rückgabe eines leeren Strings oder eine Fehlermeldung
-    }
-
+    console.log('GENBERATE ID', id);
+    
     return /* html */`    
     <div id="taskContainer" onclick="closeTask()">
         <div id="taskCard2" class="taskCard showTaskCard textOverflow" onclick="preventClosing()">
@@ -82,7 +80,7 @@ function generateTaskCard(task, id) {
               <div class="taskSection">Due date:</div>
               <div id="taskDate${id}">${task["due"]}</div>
             </div>
-            <div class="taskPrio">
+            <div class="taskPrio" id="">
                 <div class="taskSection">Priority:</div>
                 <div class="taskPrioText" id="taskPrio${id}">${task["prio"]}</div>
                 <div class="taskPrioIcon" >
@@ -95,11 +93,13 @@ function generateTaskCard(task, id) {
                 <div class="taskAssigned" id="taskAssigned${id}"></div>
             </div>
 
+
             <div class="subtasksContainerBoard">
                 <div class="taskSection">Subtasks:</div>
                 <div class="subtasks" id="subtasks"></div>
             </div>
             <div class="taskFooter">
+
                 <div onclick="deleteTask(${id})" class="deleteTask">
                     <img class="deleteTaskImg" src="./assets/img/delete.svg" alt="">
                     <div>Delete</div>
@@ -109,8 +109,9 @@ function generateTaskCard(task, id) {
                     <div>Edit</div>
                 </div>
             </div>
+
         </div>
-    </div>`;
+    </div>`
 }
 
 /**

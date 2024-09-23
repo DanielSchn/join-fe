@@ -26,7 +26,7 @@ async function updateHTML() {
  * Saves Changes of tasks-Array in remote storage
  */
 async function saveChanges() {
-    await setItem('tasks', tasks);
+    await setItem('tasks', JSON.stringify(tasks));
     filteredTasks = tasks;
 }
 
@@ -45,7 +45,7 @@ function updateToDo() {
 
         for (let i = 0; i < todo.length; i++) {
             const element = todo[i];
-            document.getElementById('toDo').innerHTML += generateTask(element);
+            document.getElementById('toDo').innerHTML += generateTask(element, i);
             generateSubtask(element);
             renderBoardAssignedIcons(element);
         }
@@ -238,12 +238,12 @@ function statusDown(id) {
  * @param {object} element - Selected Task Object
  */
 function generateSubtask(element) {
-    let subtasks = element['subtasks'] || []; // Setze subtasks auf ein leeres Array, wenn es null ist
+    let subtasks = element['subtasks'];
     let subtasksDiv = document.getElementById(`toDoSubtasks${element['id']}`);
     let doneSubtasksDiv = document.getElementById(`toDoSubtasksDone${element['id']}`);
     let progressbarFillerDiv = document.getElementById(`toDoSubtasksProgressFiller${element['id']}`);
 
-    if (subtasks.length === 0) {
+    if (subtasks.length == 0) {
         subtasksDiv.classList.add("d-none");
     } else {
         updateProgressBar(subtasks, doneSubtasksDiv, progressbarFillerDiv);
@@ -256,14 +256,15 @@ function generateSubtask(element) {
  * @param {object} element - Selected Task Object
  */
 function renderBoardAssignedIcons(element) {
-    let assigned = element['assignedTo'] || []; // Setze assigned auf ein leeres Array, wenn es undefined ist
+    console.log('ELEMENT ICON', element);
+    
+    let assigned = element['assigned_to'];
     let assignedDiv = document.getElementById(`taskCardAssignedTo${element['id']}`);
 
     assignedDiv.innerHTML = '';
-    
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];
-        if (assigned.includes(contact.id)) { // Angenommen, contact.id ist der Schlüssel
+        if (assigned.includes(contact.id)) {
             assignedDiv.innerHTML += contactAssignedIconHTML(contact);
         }
     }
@@ -277,12 +278,14 @@ function renderBoardAssignedIcons(element) {
  */
 function renderCardAssigned(element, id) {
     let assignedDiv = document.getElementById(`taskAssigned${id}`)
-    let assigned = element['assignedTo'];
+    let assigned = element['assigned_to'];
+    console.log('ASSIGNED', assigned);
+    
 
     assignedDiv.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];
-        if (assigned.includes(i)) {
+        if (assigned.includes(contact.id)) {
             assignedDiv.innerHTML += taskCardAssignedHTML(contact, id);
         }
     }
@@ -336,13 +339,8 @@ function preventClosing() {
  * @param {number} id - id of task
  */
 function renderCardPrio(task, id) {
-    if (!task || !task["prio"]) {
-        console.error('Task is undefined or does not have a priority:', task);
-        return; // Beende die Funktion, wenn task oder prio nicht definiert ist
-    }
-
-    let prio = task["prio"];
-    let result = prio.charAt(0).toUpperCase() + prio.slice(1);
+    prio = task["prio"];
+    result = prio.charAt(0).toUpperCase() + prio.slice(1);
     document.getElementById(`taskPrio${id}`).innerHTML = `${result}`;
 }
 
