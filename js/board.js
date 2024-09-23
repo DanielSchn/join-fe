@@ -25,9 +25,15 @@ async function updateHTML() {
 /**
  * Saves Changes of tasks-Array in remote storage
  */
-async function saveChanges() {
-    await setItem('tasks', JSON.stringify(tasks));
-    filteredTasks = tasks;
+async function saveChanges(taskId = null) {
+    if (taskId !== null) {
+        const taskToUpdate = tasks.find(task => task.id === taskId);
+        if (taskToUpdate) {
+            await setItem('tasks', taskToUpdate, taskId); // PATCH-Befehl
+        }
+    } else {
+        await setItem('tasks', tasks); // POST-Befehl, um alle Aufgaben zu speichern
+    }
 }
 
 /**
@@ -122,6 +128,8 @@ function updateDone() {
  */
 function startDragging(id) {
     currentDraggedElement = id;
+    console.log('DRAGGING ID',currentDraggedElement);
+    
 }
 
 /**
@@ -161,9 +169,15 @@ function allowDrop(ev) {
  * @param {string} status - Status of Task
  */
 function moveTo(status) {
-    tasks[currentDraggedElement]['status'] = status;
-    saveChanges();
-    updateHTML();
+    const taskIndex = tasks.findIndex(task => task.id === currentDraggedElement);
+
+    if (taskIndex !== -1) {
+        tasks[taskIndex]['status'] = status; // Ändere den Status der gefundenen Aufgabe
+        saveChanges(tasks[taskIndex].id); // Speichere die Änderungen mit der ID
+        updateHTML(); // Aktualisiere die Anzeige
+    } else {
+        console.error('Invalid task ID:', currentDraggedElement);
+    }
 }
 
 /**

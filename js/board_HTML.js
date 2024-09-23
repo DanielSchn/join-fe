@@ -62,6 +62,7 @@ function generateNoTask(status) {
  */
 function generateTaskCard(task, id) {
     console.log('GENBERATE ID', id);
+    console.log('GENBERATE ID', task);
     
     return /* html */`    
     <div id="taskContainer" onclick="closeTask()">
@@ -100,7 +101,7 @@ function generateTaskCard(task, id) {
             </div>
             <div class="taskFooter">
 
-                <div onclick="deleteTask(${id})" class="deleteTask">
+                <div onclick="deleteTask(${task.id})" class="deleteTask">
                     <img class="deleteTaskImg" src="./assets/img/delete.svg" alt="">
                     <div>Delete</div>
                 </div>

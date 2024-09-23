@@ -74,7 +74,7 @@ function styleWebkit() {
  * @param {number} id - Laufindex des Tasks im globalen tasks-Array
  */
 async function editTask(id) {
-    let task = tasks[id];
+    let task = tasks.find(element => element.id === id);
     await showEditTaskCard(task['status']);
     setCurrentTaskEdit(task);
     renderAddTaskForm();
@@ -102,12 +102,7 @@ function setCurrentTaskEdit(task) {
  * @param {number} id - ID des Tasks im tasks-Array 
  */
 async function deleteTask(id) {
-    tasks.splice(id, 1);
-    for (let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
-        task['id'] = i;
-    }
-    await setItem('tasks', JSON.stringify(tasks));
+    await setItem('tasks', null, id);
     showToastMsg('Task deleted');
     goToBoard();
 }
