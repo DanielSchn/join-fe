@@ -31,13 +31,13 @@ function toggleAssignedStyle(checkbox) {
  * @param {number} id - Kontakt-ID aus assignedTo-Array
  */
 function toggleAssignedArray(id) {
-    let assigned = currentTask['assigned_to'];
-    if (assigned.includes(id)) {
-        assigned = assigned.filter(assignedId => assignedId !== id);
+    console.log('Before toggle:', assignedToUser);
+    if (assignedToUser.includes(id)) {
+        assignedToUser = assignedToUser.filter(assignedId => assignedId !== id);
     } else {
-        assigned.push(id);
+        assignedToUser.push(id);
     }
-    currentTask['assigned_to'] = assigned;
+    currentTask['assigned_to'] = assignedToUser;
 }
 
 

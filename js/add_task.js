@@ -2,6 +2,7 @@ const PRIOS = [null, 'urgent', 'medium', 'low'];
 
 let submitOnEnter = true;
 let currentTask = {};
+let assignedToUser = [];
 let message = 'Task added to board';
 
 
@@ -262,10 +263,13 @@ function resetTaskForm() {
 async function submitTask() {
     setAddTaskDueText();
     const currentId = currentTask['id'];
-    let taskData = generateTaskJSON(currentId); // Generiere das aktuelle Task-Objekt
+    let taskData = generateTaskJSON(currentId);
     submitBtn.disabled = true;
-    if (currentId === -1) {
-        await setItem('tasks', taskData);
+    if (!currentId || currentId === -1) {
+        const createdTask = await setItem('tasks', taskData);
+        if (createdTask && createdTask.id) {
+            currentTask['id'] = createdTask.id;
+        }
     } else {
         await setItem('tasks', taskData, currentId);
     }
@@ -273,6 +277,7 @@ async function submitTask() {
     showToastMsg(message);
     goToBoard();
 }
+
 
 
 /**
@@ -284,7 +289,7 @@ function generateTaskJSON(id) {
     return {
         title: addTaskTitle.value,
         description: addTaskDescription.value,
-        assigned_to: currentTask['assignedTo'],
+        assigned_to: assignedToUser,
         due: addTaskDueText.value,
         prio: PRIOS[getTaskPrioId()],
         category: categories.indexOf(addTaskCategory.value),
