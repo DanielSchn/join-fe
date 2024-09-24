@@ -66,7 +66,7 @@ function updateInProgress() {
     } else
         for (let i = 0; i < inprogress.length; i++) {
             const element = inprogress[i];
-            document.getElementById('inProgress').innerHTML += generateTask(element);
+            document.getElementById('inProgress').innerHTML += generateTask(element, i);
             generateSubtask(element);
             renderBoardAssignedIcons(element);
         }
@@ -84,7 +84,7 @@ function updateAwaitFeedback() {
     } else
         for (let i = 0; i < feedback.length; i++) {
             const element = feedback[i];
-            document.getElementById('awaitFeedback').innerHTML += generateTask(element);
+            document.getElementById('awaitFeedback').innerHTML += generateTask(element, i);
             generateSubtask(element);
             renderBoardAssignedIcons(element);
         }
@@ -102,7 +102,7 @@ function updateDone() {
     } else
         for (let i = 0; i < done.length; i++) {
             const element = done[i];
-            document.getElementById('done').innerHTML += generateTask(element);
+            document.getElementById('done').innerHTML += generateTask(element, i);
             generateSubtask(element);
             renderBoardAssignedIcons(element);
         }
