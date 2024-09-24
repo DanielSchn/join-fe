@@ -90,6 +90,8 @@ async function editTask(id) {
  * @param {JSON} task - Task-JSON aus Tasks-Array 
  */
 function setCurrentTaskEdit(task) {
+    console.log('SETCURRENTTASK', task['assigned_to']);
+    
     currentTask['id'] = task['id'];
     currentTask['assigned_to'] = task['assigned_to'];
     currentTask['subtasks'] = task['subtasks'];
@@ -126,7 +128,7 @@ function prefillForm(task) {
     addTaskDescription.value = task['description'];
     precheckAssignedList();
     addTaskDueText.value = task['due'];
-    addTaskDue.value = transformDate(task['due']);
+    addTaskDue.value = task['due'];
     stylePrioBtn(prio, prio);
     addTaskCategory.value = categories[task['category']];
 }

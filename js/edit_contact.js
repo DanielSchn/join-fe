@@ -4,9 +4,14 @@
  * @param {*} index - place of the current contact within the contacts array
  */
 function renderEditForm(index) {
+    console.log('RENDER EDIT FORM', index);
+    
     let editCard = document.getElementById('editCardOne');
     editCard.innerHTML = '';
-    let initial = getInitials(contacts[index]['name']);
+    let contactName = contacts.find(contact => contact.id === index);
+    console.log('CONTACTNAME', contactName.name);
+    
+    let initial = getInitials(contactName.name);
     editCard.innerHTML = /* html */`
         <div class="leftBlueSection">
             <img class="closeAddCard d-none" onclick="editCardWindow(false)" src="./assets/img/contacts/close.svg">
@@ -16,7 +21,7 @@ function renderEditForm(index) {
                 <div id="devider3"></div>
             </div>
         </div>
-        <div class="cardInitials_bg" style="background-color: ${contacts[index]['color']}">
+        <div class="cardInitials_bg" style="background-color: ${contactName.color}">
             <span class="cardIntitials">${initial}</span>
         </div>
         <img class="closeAddContact_btn" src="./assets/img/contacts/close.svg" onclick="editCardWindow(false)">
@@ -39,7 +44,7 @@ function renderEditForm(index) {
  * @param {*} index - place of the current contact within the contacts array
  */
 function prefillEditForm(index) {
-    const contact = contacts[index];
+    const contact = contacts.find(contact => contact.id === index);
     editName.value = contact['name'];
     editMail.value = contact['mail'];
     editNumber.value = contact['number'];
@@ -54,7 +59,8 @@ function prefillEditForm(index) {
 function renderMobileEditForm(index) {
     let mobileEditCard = document.getElementById('mobileEditCardOne');
     mobileEditCard.innerHTML = '';
-    let initial = getInitials(contacts[index]['name']);
+    let contactName = contacts.find(contact => contact.id === index);
+    let initial = getInitials(contactName.name);
     mobileEditCard.innerHTML = /* html */`
     <div class="mobileLeftBlueSection">
             <img class="mobileCloseAddCard d-none" onclick="editCardWindow(false)" src="./assets/img/contacts/close.svg">
@@ -63,7 +69,7 @@ function renderMobileEditForm(index) {
                 <div class="mobileDevider3"></div>
             </div>
         </div>
-        <div class="mobileCardInitials_bg" style="background-color: ${contacts[index]['color']}">
+        <div class="mobileCardInitials_bg" style="background-color: ${contactName.color}">
             <span class="mobileCardIntitials">${initial}</span>
         </div>
         <img class="mobileCloseAddContact_btn" src="./assets/img/contacts/close.svg" onclick="editCardWindow(false)">
@@ -86,7 +92,7 @@ function renderMobileEditForm(index) {
  * @param {*} index - place of the current contact within the contacts array
  */
 function prefillMobileEditForm(index) {
-    const contact = contacts[index];
+    const contact = contacts.find(contact => contact.id === index);
     editMobileName.value = contact['name'];
     editMobileMail.value = contact['mail'];
     editMobileNumber.value = contact['number'];
@@ -109,12 +115,12 @@ async function editCurrentContact(index) {
     const firstLetter = getName.charAt(0).toUpperCase();
     const updatedContact = {
         'name': getName,
-        'email': mail.value,
-        'tel': number.value,
+        'mail': mail.value,
+        'number': number.value,
         'letter': firstLetter,
     };
     try {
-        await setItem('contacts', updatedContact, contacts[index].id);
+        await setItem('contacts', updatedContact, index);
         contacts[index] = { ...contacts[index], ...updatedContact };
         refreshContactList();
         editCardWindow(false);
@@ -162,7 +168,9 @@ async function mobileEditCurrentContact(index) {
  * @param {*} index - place of the current contact within the contacts array
  */
 async function deleteContact(index) {
-    const contactId = contacts[index].id;
+    console.log('DELETE ID', index);
+    
+    const contactId = index;
     try {
         await setItem('contacts', null, contactId);
         contacts.splice(index, 1);

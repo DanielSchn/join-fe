@@ -27,7 +27,7 @@ function contactCardHTML(contact, i) {
     let initials = getInitials(contact['name']);
     return /* html */`
         <div class="myContacts">
-            <div class="contactCard" onclick="showContactCard(${i})">
+            <div class="contactCard" onclick="showContactCard(${contact.id})">
                 <div class="contactInitials" style="background: ${contact['color']}">
                     <span id="user_name">${initials}</span>
                 </div>
@@ -44,21 +44,24 @@ function contactCardHTML(contact, i) {
  * @param {*} index - place of the current contact within the contacts array
  */
 function renderContactCradInformation(index) {
+    console.log('CRADINFOR', index);
+    
     const contactDetails = document.getElementById('mainContactDetails');
     contactDetails.innerHTML = '';
-    let intitial = getInitials(contacts[index]['name']);
+    let contact = contacts.find(contact => contact.id === index);
+    let intitial = getInitials(contact.name);
     contactDetails.innerHTML = /* html */`
         <div id="mainContactContainer_1">
-            <div class="initialCircle" style="background: ${contacts[index]['color']}">
+            <div class="initialCircle" style="background: ${contact['color']}">
                 <span id="user_initials_0" class="userNameFontSize">${intitial}</span>
             </div>
             <div id="contactSetup">
-                <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contacts[index]['name']}</div>
+                <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contact['name']}</div>
                 <div id="settings">
-                    <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${index})">
+                    <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${contact['id']})">
                         <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
                     </div>
-                    <div id="remove" class="settingsBtn" onclick="deleteContact(${index})">
+                    <div id="remove" class="settingsBtn" onclick="deleteContact(${contact['id']})">
                         <img id="remove_img" src="./assets/img/contacts/delete_bin.svg"><span>Delete</span>
                     </div>
                 </div>
@@ -70,11 +73,11 @@ function renderContactCradInformation(index) {
         <div id="mainContactContainer_3">
             <div id="mailContainer">
                 <span class="contactDataTitle">Mail</span>
-                <span class="contactData link">${contacts[index]['mail']}</span>
+                <span class="contactData link">${contact['mail']}</span>
             </div>
             <div id="phoneContainer">
                 <span class="contactDataTitle">Phone</span>
-                <span class="contactData">${contacts[index]['number']}</span>
+                <span class="contactData">${contact['number']}</span>
             </div>
         </div>
     `;
@@ -88,7 +91,8 @@ function renderContactCradInformation(index) {
 function renderMobileContactCradInformation(index) {
     const contactDetails = document.getElementById('mobileMainContactDetails');
     contactDetails.innerHTML = '';
-    let intitial = getInitials(contacts[index]['name']);
+    let contact = contacts.find(contact => contact.id === index);
+    let intitial = getInitials(contact['name']);
     contactDetails.innerHTML = /* html */`
         <div id="backArrowContainer" onclick="hideContactCard()">
             <img id="backArrow" src="./assets/img/contacts/arrow-left-line.svg">
@@ -104,11 +108,11 @@ function renderMobileContactCradInformation(index) {
         </div>
         <div id="mobileMainContactDetails">
             <div id="mobileMainContactContainer_1">
-                <div class="initialCircle" style="background: ${contacts[index]['color']}">
+                <div class="initialCircle" style="background: ${contact['color']}">
                     <span id="user_initials_0" class="userNameFontSize">${intitial}</span>
                 </div>
                 <div id="contactSetup">
-                    <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contacts[index]['name']}</div>
+                    <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contact['name']}</div>
                 </div>
             </div>
         <div id="mainContactContainer_2">
@@ -117,11 +121,11 @@ function renderMobileContactCradInformation(index) {
         <div id="mainContactContainer_3">
             <div id="mailContainer">
                 <span class="contactDataTitle">Mail</span>
-                <span class="contactData link">${contacts[index]['mail']}</span>
+                <span class="contactData link">${contact['mail']}</span>
             </div>
             <div id="phoneContainer">
                 <span class="contactDataTitle">Phone</span>
-                <span class="contactData">${contacts[index]['number']}</span>
+                <span class="contactData">${contact['number']}</span>
             </div>
         </div>
         </div>

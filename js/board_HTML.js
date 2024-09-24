@@ -96,14 +96,16 @@ function generateTaskCard(task, id) {
                     <img class="deleteTaskImg" src="./assets/img/delete.svg" alt="">
                     <div>Delete</div>
                 </div>
-                <div class="taskFooterSeparator"></div>
-                <div onclick="editTask(${id})" class="editTask"> <img class="editTaskImg" src="./assets/img/edit.svg">
-                    <div>Edit</div>
-                </div>
+                
+                
             </div>
         </div>
     </div>`
 }
+
+/* <div class="taskFooterSeparator"></div><div onclick="editTask(${id})" class="editTask"> <img class="editTaskImg" src="./assets/img/edit.svg">
+                    <div>Edit</div>
+                </div> */
 
 /**
  * Generates HTML for Task Card Assigned section
@@ -137,13 +139,7 @@ function renderCardSubtasks(task, id) {
         for (let i = 0; i < task.subtasks.length; i++) {
             subtasks.innerHTML += `
             <div class="taskCardSubtask">
-              <input
-                id="checkboxSubtask${i}"
-                type="checkbox"
-                onclick="updateSubtask(${id}, ${i})"
-                ${task.subtasks[i]['status'] === "done" ? "checked" : ""} 
-              />
-              <p onclick="updateSubtask(${id}, ${i})">${task.subtasks[i]['title']}</p>
+              <li>${task.subtasks[i]['title']}</li>
             </div>`
         }
 }
