@@ -4,13 +4,9 @@
  * @param {*} index - place of the current contact within the contacts array
  */
 function renderEditForm(index) {
-    console.log('RENDER EDIT FORM', index);
-    
     let editCard = document.getElementById('editCardOne');
     editCard.innerHTML = '';
     let contactName = contacts.find(contact => contact.id === index);
-    console.log('CONTACTNAME', contactName.name);
-    
     let initial = getInitials(contactName.name);
     editCard.innerHTML = /* html */`
         <div class="leftBlueSection">
@@ -168,8 +164,6 @@ async function mobileEditCurrentContact(index) {
  * @param {*} index - place of the current contact within the contacts array
  */
 async function deleteContact(index) {
-    console.log('DELETE ID', index);
-    
     const contactId = index;
     try {
         await setItem('contacts', null, contactId);

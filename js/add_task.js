@@ -90,8 +90,6 @@ async function editTask(id) {
  * @param {JSON} task - Task-JSON aus Tasks-Array 
  */
 function setCurrentTaskEdit(task) {
-    console.log('SETCURRENTTASK', task['assigned_to']);
-    
     currentTask['id'] = task['id'];
     currentTask['assigned_to'] = task['assigned_to'];
     currentTask['subtasks'] = task['subtasks'];

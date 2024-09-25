@@ -31,7 +31,6 @@ function toggleAssignedStyle(checkbox) {
  * @param {number} id - Kontakt-ID aus assignedTo-Array
  */
 function toggleAssignedArray(id) {
-    console.log('Before toggle:', assignedToUser);
     if (assignedToUser.includes(id)) {
         assignedToUser = assignedToUser.filter(assignedId => assignedId !== id);
     } else {

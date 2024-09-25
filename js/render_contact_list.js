@@ -44,8 +44,6 @@ function contactCardHTML(contact, i) {
  * @param {*} index - place of the current contact within the contacts array
  */
 function renderContactCradInformation(index) {
-    console.log('CRADINFOR', index);
-    
     const contactDetails = document.getElementById('mainContactDetails');
     contactDetails.innerHTML = '';
     let contact = contacts.find(contact => contact.id === index);

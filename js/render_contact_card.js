@@ -80,8 +80,6 @@ function closeMobileContactCardWindow() {
  * Opens and Closes the Window for editing the Conatct informations (Desktop and Mobiledevices)
  */
 function editCardWindow(isGoingToOpen, index) {
-  console.log('EDITCARDWINDOW', index);
-  
     if(isGoingToOpen === true) {
         openEditCard();
         openMobileEditCard();
