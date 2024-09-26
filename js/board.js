@@ -123,7 +123,12 @@ function startDragging(id) {
  * @param {object} element - one task-object in "tasks"-Array
  * @param {number} id - ID of this task in "tasks"-Array
  */
-function showTaskCard(element, id) {
+function showTaskCard(id) {
+    const element = tasks.find(task => task.id === id);
+    if (!element) {
+        console.error(`Task with ID ${id} not found.`);
+        return;
+    }
     let taskCard = document.getElementById('taskCard');
     taskCard.innerHTML = generateTaskCard(element, id);
     renderCardPrio(element, id);

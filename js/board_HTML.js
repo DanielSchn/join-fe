@@ -5,8 +5,11 @@
  * @returns - HTML code
  */
 function generateTask(element, i) {
+
+    console.log('TASK I', tasks[i]);
+    
     return /* html */ `
-    <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(tasks[${i}], ${element['id']})" class="todo">
+    <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(${element['id']})" class="todo">
         <div class=headerTaskCard>
             <div class="toDoCategory${element['category']}"> ${categories[element['category']]} </div>
             <div class=changeStatusMobile> 
