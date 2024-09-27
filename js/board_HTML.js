@@ -4,10 +4,7 @@
  * @param {number} element - Task ID
  * @returns - HTML code
  */
-function generateTask(element, i) {
-
-    console.log('TASK I', tasks[i]);
-    
+function generateTask(element, i) {   
     return /* html */ `
     <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="showTaskCard(${element['id']})" class="todo">
         <div class=headerTaskCard>
@@ -99,16 +96,15 @@ function generateTaskCard(task, id) {
                     <img class="deleteTaskImg" src="./assets/img/delete.svg" alt="">
                     <div>Delete</div>
                 </div>
-                
-                
+                <div class="taskFooterSeparator"></div>
+                <div onclick="editTask(${task.id})" class="editTask"> <img class="editTaskImg" src="./assets/img/edit.svg">
+                    <div>Edit</div>
+                </div>
             </div>
         </div>
     </div>`
 }
 
-/* <div class="taskFooterSeparator"></div><div onclick="editTask(${id})" class="editTask"> <img class="editTaskImg" src="./assets/img/edit.svg">
-                    <div>Edit</div>
-                </div> */
 
 /**
  * Generates HTML for Task Card Assigned section
