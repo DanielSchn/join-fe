@@ -82,7 +82,6 @@ function collectDataForRegistration() {
         name: signUpName.value,
         email: signUpEmail.value,
         password: signUpPassword.value,
-        repeated_password: signUpPasswordConfirm.value,
         initials: setInitialsAtRegistration(),
         color: getRandomUserIconColor()
     };
