@@ -9,6 +9,9 @@ let guests = [
     },
 ];
 
+let firstName = "";
+let lastName = "";
+
 
 /**
  * init function
@@ -39,14 +42,14 @@ async function loadUsers() {
 function setInitialsAtRegistration() {
     let loadedUserName = signUpName.value;
     return getInitials(loadedUserName);
-  }
+}
 
 
-  function getInitials(name) {
+function getInitials(name) {
     const nameParts = name.split(' ');
     const capitalized = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
     return capitalized;
-  }
+}
 
 
 /**
@@ -54,20 +57,18 @@ function setInitialsAtRegistration() {
  */
 async function register() {
     registerBtn.disabled = true;
-    const isEmailRegistered = users.some(u => u.email === signUpEmail.value);
-    if (isEmailRegistered) {
-        document.getElementById('errorMessageId').innerHTML = 'This email is already registered!';
-    } else {
-        const newUser = collectDataForRegistration();
-        try {
-            const createdUser = await setItem('users', newUser);
-            users.push(createdUser);
-            resetForm();
-            showOverlaySignedUp();
-        } catch (error) {
-            console.error("Registration failed:", error);
-            document.getElementById('errorMessageId').innerHTML = 'Registration failed. Please try again.';
-        }
+    await extractNames();
+    const newUser = collectDataForRegistration();
+    console.log('newUser', newUser);
+    
+    try {
+        const createdUser = await registerUser(newUser);
+        users.push(createdUser);
+        resetForm();
+        showOverlaySignedUp();
+    } catch (error) {
+        console.error("Registration failed:", error);
+        document.getElementById('errorMessageId').innerHTML = 'Registration failed. Please try again.';
     }
 }
 
@@ -79,13 +80,22 @@ async function register() {
  */
 function collectDataForRegistration() {
     return {
-        name: signUpName.value,
-        email: signUpEmail.value,
+        first_name: firstName,
+        last_name: lastName,
+        username: firstName.toLowerCase(),
+        email: signUpEmail.value.trim(),
         password: signUpPassword.value,
         repeated_password: signUpPasswordConfirm.value,
         initials: setInitialsAtRegistration(),
         color: getRandomUserIconColor()
     };
+}
+
+
+async function extractNames() {
+    let parts = signUpName.value.trim().split(/\s+/);
+    firstName = parts[0] || '';
+    lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 }
 
 

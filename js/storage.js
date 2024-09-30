@@ -53,3 +53,21 @@ async function getItem(key) {
         throw error;
     }
 }
+
+
+async function registerUser(params) {
+    try {
+        const response = await fetch(STORAGE_URL + 'registration/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params)
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error in setItem:`, error);
+        throw error;
+    }
+}
