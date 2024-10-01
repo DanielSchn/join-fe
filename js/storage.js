@@ -57,7 +57,7 @@ async function getItem(key) {
 
 async function registerUser(params) {
     try {
-        const response = await fetch(STORAGE_URL + 'registration/', {
+        const response = await fetch(STORAGE_URL + 'auth/registration/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,6 +68,26 @@ async function registerUser(params) {
         return data;
     } catch (error) {
         console.error(`Error in setItem:`, error);
+        throw error;
+    }
+}
+
+
+async function loginUser(email, password) {
+    console.log('LOGIN FUNCTION STORAGE', email, password);
+    
+    try {
+        const response = await fetch(STORAGE_URL + 'auth/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({email: email, password: password})
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error in login user:`, error);
         throw error;
     }
 }

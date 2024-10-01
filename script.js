@@ -273,19 +273,24 @@ function logout() {
 /**
  * Login function and go to summary page when login User and password are match
  */
-function login() {
+async function login() {
   let email = document.getElementById('email');
   let password = document.getElementById('signUpPassword');
-  let user = users.find(u => u.email == email.value && u.password == password.value) || guests.find(u => u.email == email.value && u.password == password.value);
-  if (user) {
-    const token = generateToken(user);
-    localStorage.setItem("token", token);
-    window.setTimeout(function () {
-      redirectToSummaryPage(user);
-    }, 500);
-  } else {
-    document.getElementById('userNotFound').style.display = 'block';
-  }
+  const data = await loginUser(email.value, password.value);
+  console.log(data);
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("username", data.username);
+  localStorage.setItem("firstName", data.first_name);
+  localStorage.setItem("lastName", data.last_name);
+  localStorage.setItem("userId", data.id);
+
+
+
+    
+    // window.setTimeout(function () {
+    //   redirectToSummaryPage(user);
+    // }, 500);
+
 }
 
 
@@ -306,16 +311,16 @@ function redirectToSummaryPage(user) {
  * @param {array} userId - The User Info Array with Name, Email and password.
  * @returns 
  */
-function generateToken(userId) {
-  const expiresIn = 43200;
-  const expirationTime = Date.now() + expiresIn * 1000;
-  const tokenPayload = {
-    userId: userId,
-    exp: expirationTime / 1000
-  };
-  const token = btoa(JSON.stringify(tokenPayload));
-  return token;
-}
+// function generateToken(userId) {
+//   const expiresIn = 43200;
+//   const expirationTime = Date.now() + expiresIn * 1000;
+//   const tokenPayload = {
+//     userId: userId,
+//     exp: expirationTime / 1000
+//   };
+//   const token = btoa(JSON.stringify(tokenPayload));
+//   return token;
+// }
 
 
 /**
@@ -325,30 +330,30 @@ function generateToken(userId) {
  * @param {value} token - The generated token from the localStorage 
  * @returns 
  */
-function verifyToken(token) {
-  try {
-    const decodedToken = JSON.parse(atob(token));
-    return decodedToken.exp * 1000 > Date.now();
-  } catch (error) {
-    return false;
-  }
-}
+// function verifyToken(token) {
+//   try {
+//     const decodedToken = JSON.parse(atob(token));
+//     return decodedToken.exp * 1000 > Date.now();
+//   } catch (error) {
+//     return false;
+//   }
+// }
 
 
 /**
  * Event Listener at DOM Content Loaded. Will check and verify the login token in the local Storage.
  * The Privacy Policy and Legal Notice can be open without login
  */
-document.addEventListener("DOMContentLoaded", function () {
-  const excludedPages = ["legal.html", "privacy.html", "signup.html"];
-  const currentUrl = window.location.href;
-  if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
-      let token = localStorage.getItem("token");
-      if (!token || !verifyToken(token)) {
-          window.location.href = "index.html";
-      }
-  }
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   const excludedPages = ["legal.html", "privacy.html", "signup.html"];
+//   const currentUrl = window.location.href;
+//   if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
+//       let token = localStorage.getItem("token");
+//       if (!token || !verifyToken(token)) {
+//           window.location.href = "index.html";
+//       }
+//   }
+// });
 
 
 /**
