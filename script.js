@@ -222,7 +222,7 @@ function toggleCheckbox(checkbox) {
  * Renderfunction for the Username Logo in Header
  */
 function renderLogo() {
-  let loadedUserName = localStorage.getItem('userName');
+  let loadedUserName = localStorage.getItem('firstName');
   const nameParts = loadedUserName.split(' ');
   const capitalized = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
   document.getElementById('use_name').innerHTML = capitalized;
@@ -279,7 +279,7 @@ async function login() {
   const data = await loginUser(email.value, password.value);
   console.log(data);
   localStorage.setItem("token", data.token);
-  localStorage.setItem("username", data.username);
+  localStorage.setItem("userName", data.username);
   localStorage.setItem("firstName", data.first_name);
   localStorage.setItem("lastName", data.last_name);
   localStorage.setItem("userId", data.id);
@@ -287,9 +287,10 @@ async function login() {
 
 
     
-    // window.setTimeout(function () {
-    //   redirectToSummaryPage(user);
-    // }, 500);
+    window.setTimeout(function () {
+      // redirectToSummaryPage(user);
+      window.location.href = "summary.html";
+    }, 500);
 
 }
 
