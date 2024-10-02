@@ -125,16 +125,12 @@ function renderAddTaskForm() {
  */
 function prefillForm(task) {
     const prio = PRIOS.indexOf(task['prio']);
-    
-    // Fülle die Eingabefelder mit den Werten aus dem Task-Objekt
     addTaskTitle.value = task['title'];
     addTaskDescription.value = task['description'];
     addTaskDueText.value = task['due'];
     addTaskDue.value = task['due'];
     stylePrioBtn(prio, prio);
     addTaskCategory.value = categories[task['category']];
-    
-    // Füge die Zuweisungen (assigned_to) in das Formular ein
     precheckAssignedList(task['assigned_to']);
 }
 
@@ -210,18 +206,14 @@ function renderActiveUserToAssignedList() {
  * (Bearbeitungsmodus:) Vorauswahl zugeordneter Kontakte im Dropdown-Menü
  */
 function precheckAssignedList(assigned) {
-    // Lege eine Überprüfung für die Checkboxen der zugewiesenen Benutzer fest
     for (let i = 0; i < users.length; i++) {
-        let checkboxId = 'assignedContact' + users[i].id; // Angenommen, die Checkbox-IDs basieren auf user.id
+        let checkboxId = 'assignedContact' + users[i].id;
         let checkbox = document.getElementById(checkboxId);
-
-        // Überprüfe, ob die `users[i].id` in `assigned` enthalten ist
         if (assigned.includes(users[i].id)) {
-            // Wenn der Benutzer zugewiesen ist, toggle die Checkbox und den Stil
-            checkbox.checked = true; // Markiere die Checkbox
-            toggleAssignedStyle(checkbox); // Optional, um den Stil zu ändern
+            checkbox.checked = true;
+            toggleAssignedStyle(checkbox);
         } else {
-            checkbox.checked = false; // Wenn nicht zugewiesen, stelle sicher, dass die Checkbox nicht markiert ist
+            checkbox.checked = false;
         }
     }
 }

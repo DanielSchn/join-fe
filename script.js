@@ -309,54 +309,19 @@ function redirectToSummaryPage(user) {
 
 
 /**
- * Generate Token for login validation. BTOA Base64 will create an ASCII string for encode.
- * Will use an expiration time in 12h. Will be enough for a working day.
- * @param {array} userId - The User Info Array with Name, Email and password.
- * @returns 
- */
-// function generateToken(userId) {
-//   const expiresIn = 43200;
-//   const expirationTime = Date.now() + expiresIn * 1000;
-//   const tokenPayload = {
-//     userId: userId,
-//     exp: expirationTime / 1000
-//   };
-//   const token = btoa(JSON.stringify(tokenPayload));
-//   return token;
-// }
-
-
-/**
- * Verify the generated token when load another Page from the Website Project.
- * ATOB decode the token.
- * UNIX Timestamp.
- * @param {value} token - The generated token from the localStorage 
- * @returns 
- */
-// function verifyToken(token) {
-//   try {
-//     const decodedToken = JSON.parse(atob(token));
-//     return decodedToken.exp * 1000 > Date.now();
-//   } catch (error) {
-//     return false;
-//   }
-// }
-
-
-/**
  * Event Listener at DOM Content Loaded. Will check and verify the login token in the local Storage.
  * The Privacy Policy and Legal Notice can be open without login
  */
-// document.addEventListener("DOMContentLoaded", function () {
-//   const excludedPages = ["legal.html", "privacy.html", "signup.html"];
-//   const currentUrl = window.location.href;
-//   if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
-//       let token = localStorage.getItem("token");
-//       if (!token || !verifyToken(token)) {
-//           window.location.href = "index.html";
-//       }
-//   }
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const excludedPages = ["legal.html", "privacy.html", "signup.html"];
+  const currentUrl = window.location.href;
+  if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
+      let token = localStorage.getItem("token");
+      if (!token) {
+          window.location.href = "index.html";
+      }
+  }
+});
 
 
 /**

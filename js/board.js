@@ -30,10 +30,10 @@ async function saveChanges(taskId = null) {
         const taskToUpdate = tasks.find(task => task.id === taskId);
         if (taskToUpdate) {
             const token = localStorage.getItem('token');
-            await setItem('tasks', taskToUpdate, taskId, token); // PATCH-Befehl
+            await setItem('tasks', taskToUpdate, taskId, token);
         }
     } else {
-        await setItem('tasks', tasks); // POST-Befehl, um alle Aufgaben zu speichern
+        await setItem('tasks', tasks);
     }
 }
 
@@ -321,7 +321,6 @@ function closeTask() {
  */
 function preventClosing() {
     prevent = true;
-    // per Bubbling wird anschließend closeTask() aufgerufen und setzt im selben Klick wieder prevent = false
 }
 
 /**
