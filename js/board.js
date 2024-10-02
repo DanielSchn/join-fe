@@ -29,7 +29,8 @@ async function saveChanges(taskId = null) {
     if (taskId !== null) {
         const taskToUpdate = tasks.find(task => task.id === taskId);
         if (taskToUpdate) {
-            await setItem('tasks', taskToUpdate, taskId); // PATCH-Befehl
+            const token = localStorage.getItem('token');
+            await setItem('tasks', taskToUpdate, taskId, token); // PATCH-Befehl
         }
     } else {
         await setItem('tasks', tasks); // POST-Befehl, um alle Aufgaben zu speichern

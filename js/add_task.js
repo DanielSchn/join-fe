@@ -187,6 +187,8 @@ function renderActiveUserToAssignedList() {
         const activeUser = users.find(user => {
             return user.id == userId
         });
+        console.log('ACTIVEUSER', activeUser);
+        
         if (activeUser) {
             let checkbox = 'assignedContact' + activeUser.id;
             list.innerHTML += contactAssignedHTML(activeUser, checkbox);
@@ -266,7 +268,8 @@ async function submitTask() {
     let taskData = generateTaskJSON(currentId);
     submitBtn.disabled = true;
     if (!currentId || currentId === -1) {
-        const createdTask = await setItem('tasks', taskData);
+        const token = localStorage.getItem('token');
+        const createdTask = await setItem('tasks', taskData, null, token);
         if (createdTask && createdTask.id) {
             currentTask['id'] = createdTask.id;
         }

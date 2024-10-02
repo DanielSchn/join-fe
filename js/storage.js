@@ -7,17 +7,21 @@ const STORAGE_URL = 'http://127.0.0.1:8000/api/';
 // setItem('tasks', taskToUpdate, taskId)
 // Für das aufrufen von DELETE die setItem folgend aufrufen:
 // setItem('tasks',null, taskId)
-async function setItem(key, value, id = null) {
+async function setItem(key, value, id = null, token = null) {
     let url = `http://127.0.0.1:8000/api/${key}/`;
     if (id) {
         url += `${id}/`
     }
     try {
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        if (token) {
+            headers['Authorization'] = `Token ${token}`
+        }
         const response = await fetch(url, {
             method: id ? (value === null ? 'DELETE' : 'PATCH') : 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: headers,
             body: value ? JSON.stringify(value) : null
         });
         if (!response.ok) {

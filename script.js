@@ -264,8 +264,10 @@ function bodyClick(event) {
  */
 function logout() {
   localStorage.removeItem('token');
-  localStorage.removeItem('userName');
+  localStorage.removeItem('firstName');
   localStorage.removeItem('userId');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('lastName');
   window.location.href = 'index.html';
 }
 

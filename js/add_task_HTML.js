@@ -11,7 +11,7 @@ function contactAssignedHTML(contact) {
     <li onclick="event.stopPropagation(); toggleAssigned(${contact.id})">
         ${contactAssignedIconHTML(contact)}
         <div class="contactDetails">
-            <div>${contact.name}`;
+            <div>${contact.first_name + ' ' + contact.last_name}`;
     if (contact.id == userId) {
         html += ' (You)';
     }
@@ -31,10 +31,13 @@ function contactAssignedHTML(contact) {
  * @returns HTML-String
  */
 function contactAssignedIconHTML(contact) {
+    const profile = profiles.find(profile => profile.user === contact.id);
+    const color = profile ? profile.color : '#000';
+    const initials = profile ? profile.initials : '?';
     return /* html */`
-        <div class="contactInitials" style="background: ${contact['color']}">
-            <span>${contact['initials']}</span>
-        </div>    
+        <div class="contactInitials" style="background: ${color}">
+            <span>${initials}</span>
+        </div>
     `;
 }
 

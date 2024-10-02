@@ -27,7 +27,11 @@ async function initRegister() {
  */
 async function loadUsers() {
     try {
-        users = await getItem('users');
+        profiles = await getItem('auth/profiles');
+        loadedUsers = await getItem('auth/user');
+        const profileUserIds = profiles.map(profile => profile.user);
+        const filteredUsers = loadedUsers.filter(user => profileUserIds.includes(user.id));
+        users = filteredUsers;
     } catch (e) {
         console.error('Loading error:', e);
     }
