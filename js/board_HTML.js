@@ -113,12 +113,14 @@ function generateTaskCard(task, id) {
  * @returns - HTML code
  */
 function taskCardAssignedHTML(contact) {
+    console.log('CONTACT', contact);
+    
     let html = '';
     html += `
     <div class="d-flex">
         ${contactAssignedIconHTML(contact)}
         <div class="contactDetails">
-            <div>${contact['name']}     
+            <div>${contact['first_name'] + ' ' + contact['last_name']}     
     </div>`
     return html;
 }

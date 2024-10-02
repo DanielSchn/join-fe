@@ -116,9 +116,10 @@ async function editCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        await setItem('contacts', updatedContact, index);
+        const token = localStorage.getItem('token');
+        await setItem('contacts', updatedContact, index, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
-        refreshContactList();
+        await refreshContactList();
         editCardWindow(false);
         showContactCard(index);
     } catch (error) {
@@ -148,7 +149,8 @@ async function mobileEditCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        await setItem('contacts', updatedContact, contacts[index].id);
+        const token = localStorage.getItem('token');
+        await setItem('contacts', updatedContact, contacts[index].id, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
         refreshContactList();
         editCardWindow(false);

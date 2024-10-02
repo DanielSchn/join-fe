@@ -385,14 +385,14 @@ async function showAddTaskCard(status) {
  * 
  * @param {string} status - status of task
  */
-async function showEditTaskCard(status) {
+async function showEditTaskCard(status, assignedTo) {
     addTask = document.getElementById('taskCard2');
     addTask.innerHTML = '';
     addTask.innerHTML += generateEditTaskHeader();
     addTask.innerHTML += generateAddTaskTemplateInner();
     taskCard = document.getElementById('addTaskCard');
     taskCard.classList.add('editTaskCard');
-    await initAddTask(status);
+    await initAddTask(status, assignedTo);
     taskCard.style.display = '';
     hideClearBtn();
 }

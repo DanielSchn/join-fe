@@ -46,7 +46,8 @@ async function addNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const response = await setItem('contacts', newContact);
+        const token = localStorage.getItem('token');
+        const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
         console.error('Error adding contact:', error);
@@ -68,7 +69,8 @@ async function mobileAddNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const response = await setItem('contacts', newContact);
+        const token = localStorage.getItem('token');
+        const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
         console.error('Error adding contact:', error);

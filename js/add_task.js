@@ -30,8 +30,8 @@ function isAddTaskFromBoard() {
  * Initialisierung (bei Onload, Body)
  * @param {string} status - Bearbeitungsstatus des Tasks
  */
-async function initAddTask(status) {
-    initCurrentTask();
+async function initAddTask(status, assignedTo) {
+    await initCurrentTask(assignedTo);
     await init();
     styleWebkit();
     submitBtn.disabled = true;
@@ -47,13 +47,16 @@ async function initAddTask(status) {
 /**
  * Initialisierung des globalen "currentTask"-JSONs zum Zwischenspeichern
  */
-function initCurrentTask() {
+async function initCurrentTask(assignedTo) {
+    
+    
     currentTask = {
         id: -1,
-        assigned_to: [],
+        assigned_to: assignedTo,
         subtasks: [],
         status: ''
     }
+    console.log('INITcurrentTASK', currentTask);
 }
 
 
@@ -74,7 +77,7 @@ function styleWebkit() {
  */
 async function editTask(id) {
     let task = tasks.find(element => element.id === id);
-    await showEditTaskCard(task['status']);
+    await showEditTaskCard(task['status'], task['assigned_to']);
     setCurrentTaskEdit(task);
     renderAddTaskForm();
     togglePrioTransition();
@@ -122,13 +125,17 @@ function renderAddTaskForm() {
  */
 function prefillForm(task) {
     const prio = PRIOS.indexOf(task['prio']);
+    
+    // Fülle die Eingabefelder mit den Werten aus dem Task-Objekt
     addTaskTitle.value = task['title'];
     addTaskDescription.value = task['description'];
-    precheckAssignedList();
     addTaskDueText.value = task['due'];
     addTaskDue.value = task['due'];
     stylePrioBtn(prio, prio);
     addTaskCategory.value = categories[task['category']];
+    
+    // Füge die Zuweisungen (assigned_to) in das Formular ein
+    precheckAssignedList(task['assigned_to']);
 }
 
 
@@ -202,13 +209,19 @@ function renderActiveUserToAssignedList() {
 /**
  * (Bearbeitungsmodus:) Vorauswahl zugeordneter Kontakte im Dropdown-Menü
  */
-function precheckAssignedList() {
-    const assigned = currentTask['assigned_to'];
+function precheckAssignedList(assigned) {
+    // Lege eine Überprüfung für die Checkboxen der zugewiesenen Benutzer fest
     for (let i = 0; i < users.length; i++) {
-        if (assigned.includes(i)) {
-            let checkboxId = 'assignedContact' + i;
-            let checkbox = document.getElementById(checkboxId);
-            toggleAssignedStyle(checkbox);
+        let checkboxId = 'assignedContact' + users[i].id; // Angenommen, die Checkbox-IDs basieren auf user.id
+        let checkbox = document.getElementById(checkboxId);
+
+        // Überprüfe, ob die `users[i].id` in `assigned` enthalten ist
+        if (assigned.includes(users[i].id)) {
+            // Wenn der Benutzer zugewiesen ist, toggle die Checkbox und den Stil
+            checkbox.checked = true; // Markiere die Checkbox
+            toggleAssignedStyle(checkbox); // Optional, um den Stil zu ändern
+        } else {
+            checkbox.checked = false; // Wenn nicht zugewiesen, stelle sicher, dass die Checkbox nicht markiert ist
         }
     }
 }
@@ -222,7 +235,7 @@ function renderAddTaskAssignedIcons() {
     assignedIcons.innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let contact = users[i];
-        if (assigned.includes(i)) {
+        if (assigned.includes(contact.id)) {
             assignedIcons.innerHTML += contactAssignedIconHTML(contact);
         }
     }
@@ -263,18 +276,19 @@ function resetTaskForm() {
  * Task hinzufügen und zum Board weiterleiten
  */
 async function submitTask() {
+    const token = localStorage.getItem('token');
     setAddTaskDueText();
     const currentId = currentTask['id'];
-    let taskData = generateTaskJSON(currentId);
     submitBtn.disabled = true;
     if (!currentId || currentId === -1) {
-        const token = localStorage.getItem('token');
+        let taskData = generateTaskJSON(true);
         const createdTask = await setItem('tasks', taskData, null, token);
         if (createdTask && createdTask.id) {
             currentTask['id'] = createdTask.id;
         }
     } else {
-        await setItem('tasks', taskData, currentId);
+        let taskData = generateTaskJSON(false);
+        await setItem('tasks', taskData, currentId, token);
     }
     submitBtn.disabled = false;
     showToastMsg(message);
@@ -282,24 +296,37 @@ async function submitTask() {
 }
 
 
-
 /**
  * JSON-String für neuen oder bearbeiteten Task erzeugen
  * @param {number} id - ID des Tasks im tasks-Array 
  * @returns Task-JSON im Format des tasks-Arrays
  */
-function generateTaskJSON(id) {
-    return {
-        title: addTaskTitle.value,
-        description: addTaskDescription.value,
-        assigned_to: assignedToUser,
-        due: addTaskDueText.value,
-        prio: PRIOS[getTaskPrioId()],
-        category: categories.indexOf(addTaskCategory.value),
-        subtasks: currentTask['subtasks'],
-        timestamp: getTimestamp(),
-        status: currentTask['status']
-    };
+function generateTaskJSON(newTask) {
+    if (newTask) {
+        return {
+            title: addTaskTitle.value,
+            description: addTaskDescription.value,
+            assigned_to: assignedToUser,
+            due: addTaskDueText.value,
+            prio: PRIOS[getTaskPrioId()],
+            category: categories.indexOf(addTaskCategory.value),
+            subtasks: currentTask['subtasks'],
+            timestamp: getTimestamp(),
+            status: currentTask['status']
+        };
+    } else {
+        return {
+            title: addTaskTitle.value,
+            description: addTaskDescription.value,
+            due: addTaskDueText.value,
+            prio: PRIOS[getTaskPrioId()],
+            category: categories.indexOf(addTaskCategory.value),
+            subtasks: currentTask['subtasks'],
+            timestamp: getTimestamp(),
+            status: currentTask['status']
+        };
+    }
+
 }
 
 
