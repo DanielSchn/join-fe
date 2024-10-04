@@ -279,32 +279,18 @@ async function login() {
   let email = document.getElementById('email');
   let password = document.getElementById('signUpPassword');
   const data = await loginUser(email.value, password.value);
-  console.log(data);
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("userName", data.username);
-  localStorage.setItem("firstName", data.first_name);
-  localStorage.setItem("lastName", data.last_name);
-  localStorage.setItem("userId", data.id);
-
-
-
-    
+  if (data.error == 'Invalid email or password') {
+    document.getElementById('userNotFound').style.display = 'block';
+  } else {
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userName", data.username);
+    localStorage.setItem("firstName", data.first_name);
+    localStorage.setItem("lastName", data.last_name);
+    localStorage.setItem("userId", data.id);
     window.setTimeout(function () {
-      // redirectToSummaryPage(user);
       window.location.href = "summary.html";
     }, 500);
-
-}
-
-
-/**
- * Go to summary Page after successfull login
- * @param {string} user - User Info for rendering some Userspecific HTML Data
- */
-function redirectToSummaryPage(user) {
-  localStorage.setItem('userName', user.name);
-  localStorage.setItem('userId', user.id);
-  window.location.href = "summary.html";
+  }
 }
 
 
@@ -316,10 +302,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const excludedPages = ["legal.html", "privacy.html", "signup.html"];
   const currentUrl = window.location.href;
   if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
-      let token = localStorage.getItem("token");
-      if (!token) {
-          window.location.href = "index.html";
-      }
+    let token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "index.html";
+    }
   }
 });
 
@@ -380,5 +366,5 @@ function hideSideMenuBox() {
 
 
 function closeWindow() {
-    close();
+  close();
 }

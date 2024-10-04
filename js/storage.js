@@ -8,7 +8,7 @@ const STORAGE_URL = 'http://127.0.0.1:8000/api/';
 // Für das aufrufen von DELETE die setItem folgend aufrufen:
 // setItem('tasks',null, taskId)
 async function setItem(key, value, id = null, token = null) {
-    let url = `http://127.0.0.1:8000/api/${key}/`;
+    let url = `${STORAGE_URL + key}/`;
     if (id) {
         url += `${id}/`
     }
@@ -42,7 +42,7 @@ async function setItem(key, value, id = null, token = null) {
 
 
 async function getItem(key) {
-    const url = `http://127.0.0.1:8000/api/${key}/`;
+    const url = `${STORAGE_URL + key}/`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -78,15 +78,13 @@ async function registerUser(params) {
 
 
 async function loginUser(email, password) {
-    console.log('LOGIN FUNCTION STORAGE', email, password);
-    
     try {
         const response = await fetch(STORAGE_URL + 'auth/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({email: email, password: password})
+            body: JSON.stringify({ email: email, password: password })
         });
         const data = await response.json();
         return data;

@@ -63,8 +63,6 @@ async function register() {
     registerBtn.disabled = true;
     await extractNames();
     const newUser = collectDataForRegistration();
-    console.log('newUser', newUser);
-    
     try {
         const createdUser = await registerUser(newUser);
         users.push(createdUser);

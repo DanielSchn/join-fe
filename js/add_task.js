@@ -48,15 +48,12 @@ async function initAddTask(status, assignedTo) {
  * Initialisierung des globalen "currentTask"-JSONs zum Zwischenspeichern
  */
 async function initCurrentTask(assignedTo) {
-    
-    
     currentTask = {
         id: -1,
         assigned_to: assignedTo,
         subtasks: [],
         status: ''
     }
-    console.log('INITcurrentTASK', currentTask);
 }
 
 
@@ -190,8 +187,6 @@ function renderActiveUserToAssignedList() {
         const activeUser = users.find(user => {
             return user.id == userId
         });
-        console.log('ACTIVEUSER', activeUser);
-        
         if (activeUser) {
             let checkbox = 'assignedContact' + activeUser.id;
             list.innerHTML += contactAssignedHTML(activeUser, checkbox);
