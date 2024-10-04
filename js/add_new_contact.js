@@ -8,6 +8,7 @@ async function initContacts() {
     await init();
     await loadContacts();
     renderContacts();
+    renderProfile();
 }
 
 
@@ -121,5 +122,23 @@ function renderContacts() {
         }
         let letterContainer = document.getElementById(contact['letter']);
         letterContainer.innerHTML += contactCardHTML(contact, i);
+    }
+}
+
+
+async function renderProfile() {
+    let profileContainer = document.getElementById('myProfileContainer');
+    profileContainer.innerHTML = '';
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        console.error('User ID not found in local storage');
+        return;
+    }
+    try {
+        let response = await getItem(`auth/user/${userId}`);
+        let userData = response;
+        profileContainer.innerHTML = profileCardHTML(userData, 0);
+    } catch (error) {
+        console.error('Error fetching user data:', error);
     }
 }

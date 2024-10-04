@@ -1,11 +1,17 @@
 /**
  * Opens the Conatct Overview Windows (Desktop and Mobiledevices)
  */
-function showContactCard(index) {
+function showContactCard(index, profile=null) {
   openContactCardWindow();
   openMobileContactCardWindow();
-  renderContactCradInformation(index);
-  renderMobileContactCradInformation(index);
+  if (profile == 'profile') {
+    renderUserCardInformation(index);
+  } else {
+    renderContactCradInformation(index);
+    renderMobileContactCradInformation(index);
+  }
+  
+
 }
 
 
@@ -79,13 +85,18 @@ function closeMobileContactCardWindow() {
 /**
  * Opens and Closes the Window for editing the Conatct informations (Desktop and Mobiledevices)
  */
-function editCardWindow(isGoingToOpen, index) {
+function editCardWindow(isGoingToOpen, index, profile=null) {
     if(isGoingToOpen === true) {
         openEditCard();
         openMobileEditCard();
         toggleEditCard();
-        renderEditForm(index);
-        renderMobileEditForm(index);
+        if (profile == 'profile'){
+          renderUserEditForm(index);
+        } else {
+          renderEditForm(index);
+          renderMobileEditForm(index);
+        }
+        
     } else {
         closeEditCard();
         closeMobileEditCard();

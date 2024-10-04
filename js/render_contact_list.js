@@ -39,6 +39,25 @@ function contactCardHTML(contact, i) {
         </div>`;
 }
 
+
+function profileCardHTML(contact, i) {
+    const buildName = contact['first_name'] + ' ' + contact['last_name'];
+    let initials = getInitials(buildName);
+    return /* html */`
+        <div class="myContacts">
+            <div class="contactCard" onclick="showContactCard(${contact.id}, 'profile')">
+                <div class="contactInitials" style="background: ${contact['color']}">
+                    <span id="user_name">${initials}</span>
+                </div>
+                <div class="contactDetails">
+                    <div><span id="name" class="contactName">${contact['first_name'] + ' ' + contact['last_name']}</span></div>
+                    <div><span id="mail" class="mailColor">${contact['email']}</span></div>
+                </div>
+            </div>
+        </div>`;
+}
+
+
 /**
  * This function generates the container the intire information window for a single contact 
  * @param {*} index - place of the current contact within the contacts array
@@ -79,6 +98,50 @@ function renderContactCradInformation(index) {
             </div>
         </div>
     `;
+}
+
+
+async function renderUserCardInformation(index) {
+    const contactDetails = document.getElementById('mainContactDetails');
+    contactDetails.innerHTML = '';
+    try {
+        let response = await getItem(`auth/user/${index}`);
+        console.log('RESPONSE', response);
+        
+        if (!response) {
+            throw new Error(`Failed to fetch user data: ${response.statusText}`);
+        }
+        let userData = response;
+        const buildName = userData.first_name + ' ' + userData.last_name;
+        let initial = getInitials(buildName);
+        contactDetails.innerHTML = /* html */`
+            <div id="mainContactContainer_1">
+                <div class="initialCircle" style="background: ${userData['color']}">
+                    <span id="user_initials_0" class="userNameFontSize">${initial}</span>
+                </div>
+                <div id="contactSetup">
+                    <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${userData['first_name'] + ' ' + userData['last_name']}</div>
+                    <div id="settings">
+                        <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${userData['id']}, 'profile')">
+                            <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mainContactContainer_2">
+                Contact Information
+            </div>
+            <div id="mainContactContainer_3">
+                <div id="mailContainer">
+                    <span class="contactDataTitle">Mail</span>
+                    <span class="contactData link">${userData['email']}</span>
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        contactDetails.innerHTML = `<p>Error loading user details. Please try again later.</p>`;
+    }
 }
 
 
