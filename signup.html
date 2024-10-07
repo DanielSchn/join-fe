@@ -38,11 +38,11 @@
                     <form class="logInForm" onsubmit="register(); return false;">
                         <div class="inputContainer">
                             <input required class="nameIcon inputLogInSignUp" type="text" placeholder="Full Name"
-                                id="signUpName">
+                                id="signUpName" oninput="checkFormFilled();">
                         </div>
                         <div class="inputContainer">
                             <input required class="mailIcon inputLogInSignUp" type="email" placeholder="Email"
-                                id="signUpEmail">
+                                id="signUpEmail" oninput="checkFormFilled();">
                         </div>
                         <div class="inputContainer">
                             <img src="./assets/img/login_signup_icons/lock.svg" alt="Lock" class="passwordIcon">
@@ -54,7 +54,7 @@
                                 onclick="togglePasswordVisibility('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1')">
                             <input required class="inputLogInSignUp" type="password" placeholder="Password"
                                 id="signUpPassword"
-                                oninput="togglePasswordIcon('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1')">
+                                oninput="togglePasswordIcon('signUpPassword', 'visibilityIcon1', 'visibilityOffIcon1'); checkFormFilled();">
                         </div>
                         <div class="inputContainer">
                             <img src="./assets/img/login_signup_icons/lock.svg" alt="Lock" class="passwordIcon">
@@ -66,15 +66,15 @@
                                 onclick="togglePasswordVisibility('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2')">
                             <input required class="inputLogInSignUp" type="password" placeholder="Confirm Password"
                                 id="signUpPasswordConfirm"
-                                oninput="togglePasswordIcon('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2')">
+                                oninput="togglePasswordIcon('signUpPasswordConfirm', 'visibilityIcon2', 'visibilityOffIcon2'); checkFormFilled();">
                         </div>
                         <div id="errorMessageId" class="errorMessage"></div>
                         <div class="acceptPrivacy">
-                            <input required type="checkbox" id="checkboxSignUp">
+                            <input required type="checkbox" id="checkboxSignUp" oninput="checkFormFilled();">
                             I accept the <a target="_blank" href="./privacy.html">DSGVO</a>
                         </div>
                         <div class="logInBtns">
-                            <button id="registerBtn" class="signUpButton">Sign up</button>
+                            <button id="registerBtn" class="signUpButton" disabled>Sign up</button>
                         </div>
                     </form>
                 </div>

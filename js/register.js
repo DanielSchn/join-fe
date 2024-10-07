@@ -9,8 +9,17 @@ let guests = [
     },
 ];
 
+
 let firstName = "";
 let lastName = "";
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname.endsWith('signup.html')) {
+        const registerBtn = document.getElementById('registerBtn');
+        setTimeout(() => {
+            registerBtn.disabled = true;
+        }, 1000);
+    }
+});
 
 
 /**
@@ -71,6 +80,21 @@ async function register() {
     } catch (error) {
         console.error("Registration failed:", error);
         document.getElementById('errorMessageId').innerHTML = 'Registration failed. Please try again.';
+    }
+}
+
+
+function checkFormFilled() {
+    const name = document.getElementById('signUpName').value.trim();
+    const email = document.getElementById('signUpEmail').value.trim();
+    const password = document.getElementById('signUpPassword').value.trim();
+    const confirmPassword = document.getElementById('signUpPasswordConfirm').value.trim();
+    const checkbox = document.getElementById('checkboxSignUp').checked;
+    const registerBtn = document.getElementById('registerBtn');
+    if (name && email && password && confirmPassword && checkbox) {
+        registerBtn.disabled = false;
+    } else {
+        registerBtn.disabled = true;
     }
 }
 
