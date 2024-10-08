@@ -77,6 +77,7 @@ function renderContactCradInformation(index) {
                 <div id="settings">
                     <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${contact['id']})">
                         <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
+                        <div id="onlyGuest"></div>
                     </div>
                     <div id="remove" class="settingsBtn" onclick="deleteContact(${contact['id']})">
                         <img id="remove_img" src="./assets/img/contacts/delete_bin.svg"><span>Delete</span>
@@ -123,8 +124,11 @@ async function renderUserCardInformation(index) {
                     <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${userData['first_name'] + ' ' + userData['last_name']}</div>
                     <div id="settings">
                         <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${userData['id']}, 'profile')">
-                            <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
+                            <div>
+                            <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span id="edit_span">Edit</span>
+                            </div>
                         </div>
+                        <div id="onlyGuest"></div>
                     </div>
                 </div>
             </div>
@@ -137,6 +141,72 @@ async function renderUserCardInformation(index) {
                     <span class="contactData link">${userData['email']}</span>
                 </div>
             </div>
+        `;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        contactDetails.innerHTML = `<p>Error loading user details. Please try again later.</p>`;
+    }
+}
+
+
+async function renderMobileUserCardInformation(index) {
+    const contactDetails = document.getElementById('mobileMainContactDetails');
+    contactDetails.innerHTML = '';
+    
+    try {
+        let response = await getItem(`auth/user/${index}`);
+        console.log('RESPONSE', response);
+        
+        if (!response) {
+            throw new Error(`Failed to fetch user data: ${response.statusText}`);
+        }
+
+        let userData = response;
+        const buildName = userData.first_name + ' ' + userData.last_name;
+        let initial = getInitials(buildName);
+        contactDetails.innerHTML = /* html */`
+            <div id="backArrowContainer" onclick="hideContactCard()">
+                <img id="backArrow" src="./assets/img/contacts/arrow-left-line.svg">
+            </div>
+            <div id="mobileContactTitleBar">
+                <div id="closeWindowBtn" onclick="hideContactCard()">
+                    <img src="./assets/img/contacts/close.svg">
+                </div>
+                <div id="contactsTitle">Contacts</div>
+                <div id="devider"></div>
+                <div id="contactsSlogan">Better with a Team</div>
+                <div id="devider2" class="d-none"></div>
+            </div>
+            <div id="mobileMainContactContainer_1">
+                <div class="initialCircle" style="background: ${userData['color']}">
+                    <span id="user_initials_0" class="userNameFontSize">${initial}</span>
+                </div>
+                <div id="contactSetup">
+                    <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${userData['first_name'] + ' ' + userData['last_name']}</div>
+                </div>
+            </div>
+            <div id="mainContactContainer_2">
+                Contact Information
+            </div>
+            <div id="mainContactContainer_3">
+                <div id="mailContainer">
+                    <span class="contactDataTitle">Mail</span>
+                    <span class="contactData link">${userData['email']}</span>
+                </div>
+                <div id="onlyGuestMobile"></div>
+            </div>
+            <div id="mobileSettingBtnContainer" onclick="showSettings(${userData['id']})">
+                <button id="mobileSettingBtn"><img src="./assets/img/contacts/more_vert.svg"></button>
+            </div>
+            <div id="contactOptions" class="d-none">
+                <div id="mobileEdit" class="settingsBtn" onclick="editCardWindow(true, ${userData['id']})">
+                    <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
+                </div>
+                <div id="mobileRemove" class="settingsBtn" onclick="deleteContact(${userData['id']})">
+                    <img id="remove_img" src="./assets/img/contacts/delete_bin.svg"><span>Delete</span>
+                </div>
+            </div>
+            <div id="contactOptionBgLayer" class="d-none" onclick="hideSettings()"></div>
         `;
     } catch (error) {
         console.error('Error fetching user data:', error);

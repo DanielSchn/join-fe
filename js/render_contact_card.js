@@ -1,16 +1,17 @@
 /**
  * Opens the Conatct Overview Windows (Desktop and Mobiledevices)
  */
-function showContactCard(index, profile=null) {
+function showContactCard(index, profile = null) {
   openContactCardWindow();
   openMobileContactCardWindow();
   if (profile == 'profile') {
     renderUserCardInformation(index);
+    renderMobileUserCardInformation(index);
   } else {
     renderContactCradInformation(index);
     renderMobileContactCradInformation(index);
   }
-  
+
 
 }
 
@@ -19,14 +20,14 @@ function showContactCard(index, profile=null) {
  * Opens just the Conatct Overview Windows for Desktop
  */
 function openContactCardWindow() {
-    const contactContainer = document.getElementById('mainContactDetails');
-    const responsiveBackgroundSetup = document.getElementById('responsivContactCardBg');
-    const mainContactContainer = document.getElementById('mainContactContainer');
-    contactContainer.classList.add('slideIn');
-    contactContainer.classList.remove('d-none');
-    responsiveBackgroundSetup.classList.remove('d-none');
-    mainContactContainer.classList.add('responsiveSlideIn');
-    mainContactContainer.classList.remove('mobile-d-none');
+  const contactContainer = document.getElementById('mainContactDetails');
+  const responsiveBackgroundSetup = document.getElementById('responsivContactCardBg');
+  const mainContactContainer = document.getElementById('mainContactContainer');
+  contactContainer.classList.add('slideIn');
+  contactContainer.classList.remove('d-none');
+  responsiveBackgroundSetup.classList.remove('d-none');
+  mainContactContainer.classList.add('responsiveSlideIn');
+  mainContactContainer.classList.remove('mobile-d-none');
 }
 
 
@@ -34,10 +35,10 @@ function openContactCardWindow() {
  * Opens just the Conatct Overview Windows for Mobiledevices
  */
 function openMobileContactCardWindow() {
-    const mainContactContainer = document.getElementById('mobileMainContactContainer');
-    const setting_btn = document.getElementById('contactOptions');
-    mainContactContainer.classList.remove('d-none');
-    setting_btn.classList.add('d-none');
+  const mainContactContainer = document.getElementById('mobileMainContactContainer');
+  const setting_btn = document.getElementById('contactOptions');
+  mainContactContainer.classList.remove('d-none');
+  setting_btn.classList.add('d-none');
 }
 
 
@@ -85,24 +86,31 @@ function closeMobileContactCardWindow() {
 /**
  * Opens and Closes the Window for editing the Conatct informations (Desktop and Mobiledevices)
  */
-function editCardWindow(isGoingToOpen, index, profile=null) {
-    if(isGoingToOpen === true) {
-        openEditCard();
-        openMobileEditCard();
-        toggleEditCard();
-        if (profile == 'profile'){
-          renderUserEditForm(index);
-        } else {
-          renderEditForm(index);
-          renderMobileEditForm(index);
-        }
-        
+function editCardWindow(isGoingToOpen, index, profile = null) {
+  const userName = document.getElementById('user_name_0').innerHTML;
+  if (userName === 'Guest User') {
+    const failure = document.getElementById('onlyGuest');
+    failure.innerHTML = 'Not allowed, you are in Guest Mode!'
+    const failureMobile = document.getElementById('onlyGuestMobile');
+    failureMobile.innerHTML = 'Not allowed, you are in Guest Mode!'
+  } else {
+    if (isGoingToOpen === true) {
+      openEditCard();
+      openMobileEditCard();
+      toggleEditCard();
+      if (profile == 'profile') {
+        renderUserEditForm(index);
+      } else {
+        renderEditForm(index);
+        renderMobileEditForm(index);
+      }
     } else {
-        closeEditCard();
-        closeMobileEditCard();
-        toggleEditCard();
-        showResponsiveEditCardWindow();
+      closeEditCard();
+      closeMobileEditCard();
+      toggleEditCard();
+      showResponsiveEditCardWindow();
     }
+  }
 }
 
 
@@ -166,8 +174,8 @@ function toggleEditCard() {
  * Just opens the edit card window
  */
 function openEditCard() {
-    const editCard = document.getElementById('editCardOne');
-    editCard.classList.remove('d-none');
+  const editCard = document.getElementById('editCardOne');
+  editCard.classList.remove('d-none');
 }
 
 
@@ -175,11 +183,11 @@ function openEditCard() {
  * Removes the slide-in animation of the contact card 
  */
 function closeEditCard() {
-    const mainContactCard = document.getElementById('mainContactContainer');
-    const contactContainer = document.getElementById('mainContactDetails');
-    mainContactCard.classList.remove('responsiveSlideIn');
-    contactContainer.classList.remove('slideIn');
-    stopEditCardAnimation();
+  const mainContactCard = document.getElementById('mainContactContainer');
+  const contactContainer = document.getElementById('mainContactDetails');
+  mainContactCard.classList.remove('responsiveSlideIn');
+  contactContainer.classList.remove('slideIn');
+  stopEditCardAnimation();
 }
 
 

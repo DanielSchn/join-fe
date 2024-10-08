@@ -202,6 +202,7 @@
 #settings {
     display: flex;
     gap: 16px;
+    flex-direction: column;
 }
 
 #settings div {
@@ -212,7 +213,8 @@
 }
 
 #edit {
-    width: 62px;
+    /* width: 62px; */
+    flex-direction: column;
 }
 
 #remove {
@@ -242,7 +244,8 @@
     color: #29ABE2;
 }
 
-#edit:hover {
+#edit_img:hover,
+#edit_span:hover {
     cursor: pointer;
 }
 
@@ -514,4 +517,13 @@ form button {
 
 .mobileEditContactCard {
     display: none;
+}
+
+#onlyGuest,
+#onlyGuestMobile {
+    font-size: 16px;
+    color: red;
+    text-wrap: nowrap;
+    height: 20px;
+    width: 275px;
 }

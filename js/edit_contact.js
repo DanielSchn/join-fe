@@ -265,18 +265,25 @@ async function mobileEditCurrentContact(index) {
  */
 async function deleteContact(index) {
     const contactId = index;
-    try {
-        await setItem('contacts', null, contactId);
-        contacts.splice(index, 1);
-        refreshContactList();
-        let contactDetails = document.getElementById('mainContactDetails');
-        contactDetails.innerHTML = '';
-        let mobileContactDetails = document.getElementById('mobileMainContactDetails');
-        mobileContactDetails.innerHTML = '';
-        hideContactCard();
-    } catch (error) {
-        console.error('Error deleting contact:', error);
+    const guestUser = document.getElementById('user_name_0').innerHTML;
+    if (guestUser === 'Guest User') {
+        const failureMobile = document.getElementById('onlyGuestMobile');
+        failureMobile.innerHTML = 'Not allowed, you are in Guest Mode!'
+    } else {
+        try {
+            await setItem('contacts', null, contactId);
+            contacts.splice(index, 1);
+            refreshContactList();
+            let contactDetails = document.getElementById('mainContactDetails');
+            contactDetails.innerHTML = '';
+            let mobileContactDetails = document.getElementById('mobileMainContactDetails');
+            mobileContactDetails.innerHTML = '';
+            hideContactCard();
+        } catch (error) {
+            console.error('Error deleting contact:', error);
+        }
     }
+
 }
 
 
