@@ -18,6 +18,12 @@
   justify-content: space-between;
 }
 
+.listSubtask {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .boardHeader h1 {
   font-size: 61px;
   font-weight: 700;

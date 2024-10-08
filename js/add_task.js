@@ -101,7 +101,8 @@ function setCurrentTaskEdit(task) {
  * @param {number} id - ID des Tasks im tasks-Array 
  */
 async function deleteTask(id) {
-    await setItem('tasks', null, id);
+    const token = localStorage.getItem('token');
+    await setItem('tasks', null, id, token);
     showToastMsg('Task deleted');
     goToBoard();
 }

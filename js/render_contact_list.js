@@ -106,8 +106,6 @@ async function renderUserCardInformation(index) {
     contactDetails.innerHTML = '';
     try {
         let response = await getItem(`auth/user/${index}`);
-        console.log('RESPONSE', response);
-        
         if (!response) {
             throw new Error(`Failed to fetch user data: ${response.statusText}`);
         }
@@ -153,9 +151,7 @@ async function renderMobileUserCardInformation(index) {
     contactDetails.innerHTML = '';
     
     try {
-        let response = await getItem(`auth/user/${index}`);
-        console.log('RESPONSE', response);
-        
+        let response = await getItem(`auth/user/${index}`);        
         if (!response) {
             throw new Error(`Failed to fetch user data: ${response.statusText}`);
         }

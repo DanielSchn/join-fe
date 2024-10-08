@@ -37,6 +37,12 @@ async function saveChanges(taskId = null) {
     }
 }
 
+
+async function saveSubtask(taskId, value) {
+    const token = localStorage.getItem('token');
+    await setItem('tasks', value, taskId, token);
+}
+
 /**
  * Finds all tasks in "tasks"-Array with status = 'toDo' and calls functions to render these tasks
  */
@@ -189,22 +195,23 @@ function removeHighlight(id) {
  *  
  * @param {number} id - ID of current Task
  */
-function statusUp(id) {
-    let newStatus
-    let status = tasks[id]['status'];
-    if (status === 'toDo') {
+function statusUp(taskId) {
+    let newStatus;
+    let task = tasks.find(element => element.id === taskId);    
+    if (task.status === 'toDo') {
         newStatus = 'toDo';
     }
-    else if (status === 'inProgress') {
+    else if (task.status === 'inProgress') {
         newStatus = 'toDo';
     }
-    else if (status === 'awaitFeedback') {
+    else if (task.status === 'awaitFeedback') {
         newStatus = 'inProgress';
     }
-    else if (status === 'done') { newStatus = 'awaitFeedback' }
-
-    tasks[id]['status'] = newStatus;
-    saveChanges();
+    else if (task.status === 'done') { 
+        newStatus = 'awaitFeedback' 
+    };
+    task['status'] = newStatus;
+    saveChanges(task.id);
     updateHTML();
 }
 
@@ -213,21 +220,23 @@ function statusUp(id) {
  *  
  * @param {number} id - ID of current Task
  */
-function statusDown(id) {
-    let newStatus
-    let status = tasks[id]['status'];
-    if (status === 'done') {
+function statusDown(taskId) {
+    let newStatus;
+    let task = tasks.find(element => element.id === taskId);
+    if (task.status === 'done') {
         newStatus = 'done';
     }
-    else if (status === 'awaitFeedback') {
+    else if (task.status === 'awaitFeedback') {
         newStatus = 'done';
     }
-    else if (status === 'inProgress') {
+    else if (task.status === 'inProgress') {
         newStatus = 'awaitFeedback';
     }
-    else if (status === 'toDo') { newStatus = 'inProgress'; }
-    tasks[id]['status'] = newStatus;
-    saveChanges();
+    else if (task.status === 'toDo') { 
+        newStatus = 'inProgress'; 
+    }
+    task['status'] = newStatus;
+    saveChanges(task.id);
     updateHTML();
 }
 
@@ -341,15 +350,19 @@ function renderCardPrio(task, id) {
  * @param {number} id - id of task
  * @param {number} i - index of subtask
  */
-function updateSubtask(id, i) {
-    if (tasks[id].subtasks[i].status == 'toDo') {
-        tasks[id].subtasks[i].status = 'done';
-    }
-    else {
-        tasks[id].subtasks[i].status = 'toDo';
-    }
-    renderCardSubtasks(tasks[id], id);
-    saveChanges();
+async function updateSubtask(taskId, taskTitle) {
+    const task = tasks.find(t => t.id === taskId);
+    const subtask = task.subtasks.find(st => st.title === taskTitle);
+    subtask.status = (subtask.status === 'toDo') ? 'done' : 'toDo';
+    const updatedSubtasks = task.subtasks.map(st => ({
+        title: st.title,
+        status: st.status
+    }));
+    const dataToSend = {
+        subtasks: updatedSubtasks
+    };
+    await saveSubtask(taskId, dataToSend);
+    renderCardSubtasks(task, taskId);
 }
 
 /**

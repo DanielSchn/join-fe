@@ -138,7 +138,10 @@ function renderCardSubtasks(task, id) {
         for (let i = 0; i < task.subtasks.length; i++) {
             subtasks.innerHTML += `
             <div class="taskCardSubtask">
-              <li>${task.subtasks[i]['title']}</li>
+                <li class="listSubtask">
+                    <input id="checkboxSubtask${i}" type="checkbox" onclick="updateSubtask(${task.id}, '${task.subtasks[i].title}')" ${task.subtasks[i]['status'] === "done" ? "checked" : ""}/>
+                    <p>${task.subtasks[i]['title']}</p>
+                </li>
             </div>`
         }
 }
