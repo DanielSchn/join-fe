@@ -271,7 +271,8 @@ async function deleteContact(index) {
         failureMobile.innerHTML = 'Not allowed, you are in Guest Mode!'
     } else {
         try {
-            await setItem('contacts', null, contactId);
+            const token = localStorage.getItem('token');
+            await setItem('contacts', null, contactId, token);
             contacts.splice(index, 1);
             refreshContactList();
             let contactDetails = document.getElementById('mainContactDetails');

@@ -199,29 +199,30 @@
     gap: 8px;
 }
 
-#settings {
+#settings,
+#settingsUser {
     display: flex;
     gap: 16px;
+}
+
+#settingsUser {
     flex-direction: column;
 }
 
-#settings div {
+#settings div,
+#settingsUser div {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-#edit {
-    /* width: 62px; */
-    flex-direction: column;
-}
-
 #remove {
     width: 81px;
 }
 
-#settings span {
+#settings span,
+#settingsUser span {
     font-size: 16px;
     color: #2A3647;
 }

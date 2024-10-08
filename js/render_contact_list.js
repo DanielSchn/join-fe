@@ -76,8 +76,7 @@ function renderContactCradInformation(index) {
                 <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${contact['name']}</div>
                 <div id="settings">
                     <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${contact['id']})">
-                        <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span>Edit</span>
-                        <div id="onlyGuest"></div>
+                        <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span id="edit_span">Edit</span>
                     </div>
                     <div id="remove" class="settingsBtn" onclick="deleteContact(${contact['id']})">
                         <img id="remove_img" src="./assets/img/contacts/delete_bin.svg"><span>Delete</span>
@@ -122,7 +121,7 @@ async function renderUserCardInformation(index) {
                 </div>
                 <div id="contactSetup">
                     <div id="user_name_0" class="userNameFontSize responsiveUserNameFontSize">${userData['first_name'] + ' ' + userData['last_name']}</div>
-                    <div id="settings">
+                    <div id="settingsUser">
                         <div id="edit" class="settingsBtn" onclick="editCardWindow(true, ${userData['id']}, 'profile')">
                             <div>
                             <img id="edit_img" src="./assets/img/contacts/edit_pen.svg"><span id="edit_span">Edit</span>
