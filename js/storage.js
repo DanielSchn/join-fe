@@ -1,12 +1,29 @@
 const STORAGE_URL = 'http://127.0.0.1:8000/api/';
 
 
-// Für das aufrufen von POST die setItem folgend aufrufen:
-// setItem('tasks', tasks)
-// Für das aufrufen von PATCH die setItem folgend aufrufen:
-// setItem('tasks', taskToUpdate, taskId)
-// Für das aufrufen von DELETE die setItem folgend aufrufen:
-// setItem('tasks',null, taskId)
+/**
+ * Sends a request to the specified storage URL to create, update, or delete items.
+ *
+ * This function handles the sending of data using HTTP methods POST, PATCH, and DELETE 
+ * depending on the provided parameters. It constructs the URL based on the specified 
+ * key and optional item ID, and sends the appropriate request with the necessary headers.
+ * 
+ * @example
+ * // Create a new task
+ * setItem('tasks', { title: 'New Task', description: 'Task description' }, null, token)
+ *     .then(data => console.log('Task created:', data))
+ *     .catch(error => console.error('Error creating task:', error));
+ *
+ * // Update an existing task
+ * setItem('tasks', { title: 'Updated Task' }, '12345', token)
+ *     .then(data => console.log('Task updated:', data))
+ *     .catch(error => console.error('Error updating task:', error));
+ *
+ * // Delete a task
+ * setItem('tasks', null, '12345', token)
+ *     .then(() => console.log('Task deleted successfully'))
+ *     .catch(error => console.error('Error deleting task:', error));
+ */
 async function setItem(key, value, id = null, token = null) {
     let url = `${STORAGE_URL + key}/`;
     if (id) {
@@ -41,6 +58,18 @@ async function setItem(key, value, id = null, token = null) {
 }
 
 
+/**
+ * Fetches data from the storage system using the specified key.
+ *
+ * This function constructs the URL based on the provided key and sends a GET 
+ * request to retrieve the corresponding data. If the data is found, it is returned; 
+ * otherwise, an error is thrown.
+ * @example
+ * // Fetch user data by key
+ * getItem('auth/user/12345')
+ *     .then(userData => console.log('User data retrieved:', userData))
+ *     .catch(error => console.error('Error fetching user data:', error));
+ */
 async function getItem(key) {
     const url = `${STORAGE_URL + key}/`;
     try {
@@ -59,6 +88,26 @@ async function getItem(key) {
 }
 
 
+/**
+ * Registers a new user by sending the provided parameters to the registration endpoint.
+ *
+ * This function sends a POST request to the specified storage URL to create a new user account 
+ * with the provided details. The request body must be a JSON string containing the user's registration 
+ * data. If the registration is successful, the response data is returned.
+ * @example
+ * // Register a new user
+ * registerUser({
+ *     name: 'John Doe',
+ *     email: 'john.doe@example.com',
+ *     password: 'securepassword123'
+ * })
+ * .then(response => {
+ *     console.log('Registration successful:', response);
+ * })
+ * .catch(error => {
+ *     console.error('Registration failed:', error);
+ * });
+ */
 async function registerUser(params) {
     try {
         const response = await fetch(STORAGE_URL + 'auth/registration/', {
@@ -77,6 +126,22 @@ async function registerUser(params) {
 }
 
 
+/**
+ * Logs in a user by sending their email and password to the authentication endpoint.
+ *
+ * This function sends a POST request to the specified storage URL to authenticate the user
+ * with the provided email and password. If the login is successful, the response data, which
+ * may include authentication tokens or user details, is returned.
+ * @example
+ * // Attempt to log in a user
+ * loginUser('john.doe@example.com', 'securepassword123')
+ * .then(response => {
+ *     console.log('Login successful:', response);
+ * })
+ * .catch(error => {
+ *     console.error('Login failed:', error);
+ * });
+ */
 async function loginUser(email, password) {
     try {
         const response = await fetch(STORAGE_URL + 'auth/login/', {

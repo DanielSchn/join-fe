@@ -417,98 +417,98 @@ function closeWindow() {
 }
 
 
-/**
- * Renders the header section of the page.
- * - Updates the inner HTML of the element with the ID 'headerRender' to include the header layout.
- * - The header consists of a logo, a title, user information, and a help link.
- * - Includes a hidden menu with links to the legal notice, privacy policy, and logout functionality.
- */
-async function renderHeader() {
-  document.getElementById('headerRender').innerHTML =
-  /*html*/`
-  <div>
-    <div class="headerStyle">
-        <img id="mobileLogo" src="./assets/img/menu_icons/capa_3.svg">
-        <div id="headerName">Kanban Project Management Tool</div>
-        <div id="smalInterface">
-            <div id="help">
-                <a href="help.html"><img src="./assets/img/menu_icons/help.svg"></a>
-            </div>
-            <div id="user" onclick="showHiddenMenu();">
-                <span id="use_name"></span>
-            </div>
-        </div>
-    </div>
-    <div class="hiddenMenuPos">
-        <div id="hiddenMenu" class="hiddenMenuText" style="display: none;">
-            <a onclick="hideHiddenMenu();" href="./legal.html" target="_blank">Legal Notice</a>
-            <a onclick="hideHiddenMenu();" href="./privacy.html" target="_blank">Privacy Policy</a>
-            <a onclick="logout();">Log out</a>
-        </div>
-    </div>
-  </div>
-  `;
-}
+// /**
+//  * Renders the header section of the page.
+//  * - Updates the inner HTML of the element with the ID 'headerRender' to include the header layout.
+//  * - The header consists of a logo, a title, user information, and a help link.
+//  * - Includes a hidden menu with links to the legal notice, privacy policy, and logout functionality.
+//  */
+// async function renderHeader() {
+//   document.getElementById('headerRender').innerHTML =
+//   /*html*/`
+//   <div>
+//     <div class="headerStyle">
+//         <img id="mobileLogo" src="./assets/img/menu_icons/capa_3.svg">
+//         <div id="headerName">Kanban Project Management Tool</div>
+//         <div id="smalInterface">
+//             <div id="help">
+//                 <a href="help.html"><img src="./assets/img/menu_icons/help.svg"></a>
+//             </div>
+//             <div id="user" onclick="showHiddenMenu();">
+//                 <span id="use_name"></span>
+//             </div>
+//         </div>
+//     </div>
+//     <div class="hiddenMenuPos">
+//         <div id="hiddenMenu" class="hiddenMenuText" style="display: none;">
+//             <a onclick="hideHiddenMenu();" href="./legal.html" target="_blank">Legal Notice</a>
+//             <a onclick="hideHiddenMenu();" href="./privacy.html" target="_blank">Privacy Policy</a>
+//             <a onclick="logout();">Log out</a>
+//         </div>
+//     </div>
+//   </div>
+//   `;
+// }
 
-/**
- * Renders the side menu of the application.
- * - Updates the inner HTML of the element with the ID 'sideMenu' to include the side menu layout.
- * - The side menu consists of a logo, navigation links for various pages (Summary, Add Task, Board, Contacts),
- *   and links to the Privacy Policy and Legal Notice.
- */
-async function renderSidemenu() {
-  document.getElementById('sideMenu').innerHTML =
-  /*html*/`
-<div id="logo">
-    <img src="./assets/img/menu_icons/white_logo.svg">
-</div>
-<div id="menuBox">
-    <a href="./summary.html"><div id="sideSummary" class="linkAlign menuHover"><img id="sideImgSummary" class="" src="./assets/img/menu_icons/summary.svg"><p id="linkSummary" class="menuLink">Summary</p></div></a>
-    <a href="./add_task.html"><div id="sideAddTask" class="linkAlign menuHover"><img id="sideImgAddTask" class="" src="./assets/img/menu_icons/add_task.svg"><p id="linkAddTask" class="menuLink">Add Task</p></div></a>
-    <a href="./board.html"><div id="sideBoard" class="linkAlign menuHover"><img id="sideImgBoard" class="" src="./assets/img/menu_icons/board.svg"><p id="linkBoard" class="menuLink">Board</p></div></a>
-    <a href="./contacts.html"><div id="sideContacts" class="linkAlign menuHover"><img id="sideImgContacts" class="" src="./assets/img/menu_icons/contacts.svg"><p id="linkContacts" class="menuLink">Contacts</p></div></a>
-</div>
-<div id="infos">
-    <a target="_blank" href="./privacy.html">Privacy Policy</a>
-    <a target="_blank" href="./legal.html">Legal Notice</a>
-</div>
-  `;
-}
+// /**
+//  * Renders the side menu of the application.
+//  * - Updates the inner HTML of the element with the ID 'sideMenu' to include the side menu layout.
+//  * - The side menu consists of a logo, navigation links for various pages (Summary, Add Task, Board, Contacts),
+//  *   and links to the Privacy Policy and Legal Notice.
+//  */
+// async function renderSidemenu() {
+//   document.getElementById('sideMenu').innerHTML =
+//   /*html*/`
+// <div id="logo">
+//     <img src="./assets/img/menu_icons/white_logo.svg">
+// </div>
+// <div id="menuBox">
+//     <a href="./summary.html"><div id="sideSummary" class="linkAlign menuHover"><img id="sideImgSummary" class="" src="./assets/img/menu_icons/summary.svg"><p id="linkSummary" class="menuLink">Summary</p></div></a>
+//     <a href="./add_task.html"><div id="sideAddTask" class="linkAlign menuHover"><img id="sideImgAddTask" class="" src="./assets/img/menu_icons/add_task.svg"><p id="linkAddTask" class="menuLink">Add Task</p></div></a>
+//     <a href="./board.html"><div id="sideBoard" class="linkAlign menuHover"><img id="sideImgBoard" class="" src="./assets/img/menu_icons/board.svg"><p id="linkBoard" class="menuLink">Board</p></div></a>
+//     <a href="./contacts.html"><div id="sideContacts" class="linkAlign menuHover"><img id="sideImgContacts" class="" src="./assets/img/menu_icons/contacts.svg"><p id="linkContacts" class="menuLink">Contacts</p></div></a>
+// </div>
+// <div id="infos">
+//     <a target="_blank" href="./privacy.html">Privacy Policy</a>
+//     <a target="_blank" href="./legal.html">Legal Notice</a>
+// </div>
+//   `;
+// }
 
-/**
- * Renders the mobile side menu of the application.
- * - Updates the inner HTML of the element with the ID 'mobileMenuBox' to include the mobile side menu layout.
- * - The mobile side menu consists of navigation links for various pages (Summary, Add Task, Board, Contacts),
- *   with corresponding icons for each link.
- */
-async function mobileSideMenu() {
-  document.getElementById('mobileMenuBox').innerHTML =
-  /*html*/`
-    <div id="mobileSideMenuBox">
-    <a href="./summary.html">
-        <div id="sideSummaryMobile" class="linkAlign menuHover"><img id="sideImgSummaryMobile" class=""
-                src="./assets/img/menu_icons/summary.svg">
-            <p id="linkSummaryMobile" class="menuLink">Summary</p>
-        </div>
-    </a>
-    <a href="./add_task.html">
-        <div id="sideAddTaskMobile" class="linkAlign menuHover"><img id="sideImgAddTaskMobile" class=""
-                src="./assets/img/menu_icons/add_task.svg">
-            <p id="linkAddTaskMobile" class="menuLink">Add Task</p>
-        </div>
-    </a>
-    <a href="./board.html">
-        <div id="sideBoardMobile" class="linkAlign menuHover"><img id="sideImgBoardMobile" class=""
-                src="./assets/img/menu_icons/board.svg">
-            <p id="linkBoardMobile" class="menuLink">Board</p>
-        </div>
-    </a>
-    <a href="./contacts.html">
-        <div id="sideContactsMobile" class="linkAlign menuHover"><img id="sideImgContactsMobile" class=""
-                src="./assets/img/menu_icons/contacts.svg">
-            <p id="linkContactsMobile" class="menuLink">Contacts</p>
-        </div>
-    </a>
-</div>
-  `;
-}
+// /**
+//  * Renders the mobile side menu of the application.
+//  * - Updates the inner HTML of the element with the ID 'mobileMenuBox' to include the mobile side menu layout.
+//  * - The mobile side menu consists of navigation links for various pages (Summary, Add Task, Board, Contacts),
+//  *   with corresponding icons for each link.
+//  */
+// async function mobileSideMenu() {
+//   document.getElementById('mobileMenuBox').innerHTML =
+//   /*html*/`
+//     <div id="mobileSideMenuBox">
+//     <a href="./summary.html">
+//         <div id="sideSummaryMobile" class="linkAlign menuHover"><img id="sideImgSummaryMobile" class=""
+//                 src="./assets/img/menu_icons/summary.svg">
+//             <p id="linkSummaryMobile" class="menuLink">Summary</p>
+//         </div>
+//     </a>
+//     <a href="./add_task.html">
+//         <div id="sideAddTaskMobile" class="linkAlign menuHover"><img id="sideImgAddTaskMobile" class=""
+//                 src="./assets/img/menu_icons/add_task.svg">
+//             <p id="linkAddTaskMobile" class="menuLink">Add Task</p>
+//         </div>
+//     </a>
+//     <a href="./board.html">
+//         <div id="sideBoardMobile" class="linkAlign menuHover"><img id="sideImgBoardMobile" class=""
+//                 src="./assets/img/menu_icons/board.svg">
+//             <p id="linkBoardMobile" class="menuLink">Board</p>
+//         </div>
+//     </a>
+//     <a href="./contacts.html">
+//         <div id="sideContactsMobile" class="linkAlign menuHover"><img id="sideImgContactsMobile" class=""
+//                 src="./assets/img/menu_icons/contacts.svg">
+//             <p id="linkContactsMobile" class="menuLink">Contacts</p>
+//         </div>
+//     </a>
+// </div>
+//   `;
+// }

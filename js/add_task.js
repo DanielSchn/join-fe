@@ -1,5 +1,4 @@
 const PRIOS = [null, 'urgent', 'medium', 'low'];
-
 let submitOnEnter = true;
 let currentTask = {};
 let assignedToUser = [];

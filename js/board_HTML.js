@@ -38,6 +38,7 @@ function generateTask(element, i) {
     </div>`
 }
 
+
 /**
  * Generates HTML for empty Columns
  * 
@@ -50,6 +51,7 @@ function generateNoTask(status) {
                 <div class="noTask">No tasks ${status}</div>
             </div>`
 }
+
 
 /**
  * Generates HTML for Task Card
@@ -123,6 +125,7 @@ function taskCardAssignedHTML(contact) {
     return html;
 }
 
+
 /**
  * Renders Subtask section on Task Card
  * 
@@ -145,6 +148,7 @@ function renderCardSubtasks(task, id) {
             </div>`
         }
 }
+
 
 /**
  * Generates HTML of add task template

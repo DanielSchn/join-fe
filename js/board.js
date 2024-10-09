@@ -12,6 +12,7 @@ async function loadData() {
     updateHTML();
 }
 
+
 /**
  * Updates the rendered HTML 
  */
@@ -21,6 +22,7 @@ async function updateHTML() {
     updateAwaitFeedback();
     updateDone();
 }
+
 
 /**
  * Saves Changes of tasks-Array in remote storage
@@ -38,10 +40,17 @@ async function saveChanges(taskId = null) {
 }
 
 
+/**
+ * Saves a subtask to a specific task in the backend.
+ * 
+ * This function sends a request to update a task by its `taskId` with the provided subtask data (`value`).
+ * The function retrieves the user's authentication token from local storage and uses it in the request.
+ */
 async function saveSubtask(taskId, value) {
     const token = localStorage.getItem('token');
     await setItem('tasks', value, taskId, token);
 }
+
 
 /**
  * Finds all tasks in "tasks"-Array with status = 'toDo' and calls functions to render these tasks
@@ -61,6 +70,7 @@ function updateToDo() {
         }
 }
 
+
 /**
  * Finds all tasks in "tasks"-Array with status = 'inProgress' and calls functions to render these tasks
  */
@@ -78,6 +88,7 @@ function updateInProgress() {
             renderBoardAssignedIcons(element);
         }
 }
+
 
 /**
  * Finds all tasks in "tasks"-Array with status = 'awaitFeedback' and calls functions to render these tasks
@@ -97,6 +108,7 @@ function updateAwaitFeedback() {
         }
 }
 
+
 /**
  * Finds all tasks in "tasks"-Array with status = 'done' and calls functions to render these tasks
  */
@@ -115,6 +127,7 @@ function updateDone() {
         }
 }
 
+
 /**
  * Saves id of the Element that should be dragged
  * 
@@ -123,6 +136,7 @@ function updateDone() {
 function startDragging(id) {
     currentDraggedElement = id;
 }
+
 
 /**
  * Renders the Task Card
@@ -156,6 +170,7 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
 /**
  * This function changes the status of a Task when dropped in new column
  * 
@@ -172,6 +187,7 @@ function moveTo(status) {
     }
 }
 
+
 /**
  * Highlights the column if task is dragged over
  * 
@@ -181,6 +197,7 @@ function highlight(id) {
     document.getElementById(id).classList.add('dragAreaHighlight');
 }
 
+
 /**
  * Removes the highlight when task is not longer dragged over the column
  * 
@@ -189,6 +206,7 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
+
 
 /**
  * Moves task to previous column
@@ -215,6 +233,7 @@ function statusUp(taskId) {
     updateHTML();
 }
 
+
 /**
  * Moves task to next column
  *  
@@ -240,6 +259,7 @@ function statusDown(taskId) {
     updateHTML();
 }
 
+
 /**
  * Generates the subtask section of a task
  * 
@@ -256,6 +276,7 @@ function generateSubtask(element) {
         updateProgressBar(subtasks, doneSubtasksDiv, progressbarFillerDiv);
     }
 }
+
 
 /**
  * Renders Icons for assigned Users of a task in board view
@@ -274,6 +295,7 @@ function renderBoardAssignedIcons(element) {
     }
 }
 
+
 /**
  * Renders assigned Users of a task in task card view
  * 
@@ -291,6 +313,7 @@ function renderCardAssigned(element, id) {
         }
     }
 }
+
 
 /**
  * Updates the subtask-progress in board view
@@ -312,6 +335,7 @@ function updateProgressBar(subtasks, doneSubtasksDiv, progressbarFillerDiv) {
     progressbarFillerDiv.style.width = `${fillWidth}px`;
 }
 
+
 /**
  * Task-Karte entfernen
  */
@@ -325,12 +349,14 @@ function closeTask() {
     prevent = false;
 }
 
+
 /**
  * verhindern, dass Task-Karte entfernt wird
  */
 function preventClosing() {
     prevent = true;
 }
+
 
 /**
  * Renders Prio of a task after turning the first letter to a capital
@@ -343,6 +369,7 @@ function renderCardPrio(task, id) {
     result = prio.charAt(0).toUpperCase() + prio.slice(1);
     document.getElementById(`taskPrio${id}`).innerHTML = `${result}`;
 }
+
 
 /**
  * updates subtasks in tasks-array after checking/unchecking box
@@ -365,6 +392,7 @@ async function updateSubtask(taskId, taskTitle) {
     renderCardSubtasks(task, taskId);
 }
 
+
 /**
  * Opens add task view
  * 
@@ -377,6 +405,7 @@ async function addTaskBtn(status) {
         window.location.href = './add_task.html';
     }
 }
+
 
 /**
  * Add Task-Overlay aufrufen
@@ -391,6 +420,7 @@ async function showAddTaskCard(status) {
     taskCard.classList.add('slideIn');
     changeClearBtn();
 }
+
 
 /**
  * Renders edit task card
@@ -409,6 +439,7 @@ async function showEditTaskCard(status, assignedTo) {
     hideClearBtn();
 }
 
+
 /**
  * Filters all tasks live depending on user input
  */
@@ -425,6 +456,7 @@ function searchTask() {
     updateHTML();
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     updateHTML();
     let searchInput = document.getElementById('findTask');
@@ -432,4 +464,3 @@ document.addEventListener("DOMContentLoaded", function () {
         searchTask();
     });
 });
-

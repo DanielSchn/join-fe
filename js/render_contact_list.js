@@ -40,6 +40,14 @@ function contactCardHTML(contact, i) {
 }
 
 
+/**
+ * Generates HTML for a contact card.
+ *
+ * This function takes a contact object and its index, constructs the contact's name,
+ * initials, and email, and returns an HTML string representing a contact card.
+ * The card includes a clickable element that triggers the `showContactCard` function 
+ * with the contact's ID and a profile type.
+ */
 function profileCardHTML(contact, i) {
     const buildName = contact['first_name'] + ' ' + contact['last_name'];
     let initials = getInitials(buildName);
@@ -101,6 +109,13 @@ function renderContactCradInformation(index) {
 }
 
 
+/**
+ * Renders user card information based on the provided index.
+ *
+ * This function fetches user data using the provided index, constructs the HTML for 
+ * displaying the user's contact details including their initials, name, email, and 
+ * an edit button. If the data retrieval fails, it displays an error message.
+ */
 async function renderUserCardInformation(index) {
     const contactDetails = document.getElementById('mainContactDetails');
     contactDetails.innerHTML = '';
@@ -146,16 +161,21 @@ async function renderUserCardInformation(index) {
 }
 
 
+/**
+ * Renders mobile user card information based on the provided index.
+ *
+ * This function fetches user data using the provided index and constructs the HTML for 
+ * displaying the user's contact details including their initials, name, email, and 
+ * settings options. If the data retrieval fails, it displays an error message.
+ */
 async function renderMobileUserCardInformation(index) {
     const contactDetails = document.getElementById('mobileMainContactDetails');
     contactDetails.innerHTML = '';
-    
     try {
         let response = await getItem(`auth/user/${index}`);        
         if (!response) {
             throw new Error(`Failed to fetch user data: ${response.statusText}`);
         }
-
         let userData = response;
         const buildName = userData.first_name + ' ' + userData.last_name;
         let initial = getInitials(buildName);

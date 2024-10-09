@@ -46,6 +46,7 @@ function prefillEditForm(index) {
     editNumber.value = contact['number'];
 }
 
+
 /**
  * Rendert das Bearbeitungsformular für Benutzer, basierend auf den Daten aus der API.
  * @param {number} index - ID des Benutzers, der bearbeitet werden soll.
@@ -92,8 +93,6 @@ async function renderUserEditForm(index) {
                 </div>
             </form>
         `;
-
-        // Das Formular mit den Daten aus der API vorbefüllen
         prefillUserEditForm(userData);
     } catch (error) {
         console.error('Error fetching user data:', error);
@@ -284,7 +283,6 @@ async function deleteContact(index) {
             console.error('Error deleting contact:', error);
         }
     }
-
 }
 
 

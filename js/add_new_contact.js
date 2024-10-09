@@ -56,6 +56,11 @@ async function addNewContact() {
 }
 
 
+/**
+ * This function is pulling all informations out of the "add new contact" form
+ * It pushes the information into the contact array
+ * Loads the new contact array into the remote storage
+ */
 async function mobileAddNewContact() {
     const contactName = document.getElementById('contactMobileName');
     const contactEmail = document.getElementById('contactMobileMail');
@@ -126,6 +131,14 @@ function renderContacts() {
 }
 
 
+/**
+ * Renders the user profile in the specified container.
+ * - Clears the existing content of the 'myProfileContainer' element.
+ * - Retrieves the user ID from local storage and checks if it exists.
+ * - If the user ID is found, it fetches the user data from the server using the `getItem` function.
+ * - If the fetch is successful, it updates the profile container with the user's profile information using the `profileCardHTML` function.
+ * - Handles errors by logging them to the console if the user ID is not found or if the data fetching fails.
+ */
 async function renderProfile() {
     let profileContainer = document.getElementById('myProfileContainer');
     profileContainer.innerHTML = '';

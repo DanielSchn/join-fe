@@ -13,7 +13,6 @@ function toggleAssigned(userId) {
 }
 
 
-
 /**
  * 
  * @param {element} checkbox - ID/Element der Checkbox 

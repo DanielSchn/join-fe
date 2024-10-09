@@ -8,10 +8,16 @@ let guests = [
         'color': '#FF3D00',
     },
 ];
-
-
 let firstName = "";
 let lastName = "";
+
+
+/**
+ * Disables the registration button on the signup page after a short delay.
+ * 
+ * This function is triggered when the DOM content is fully loaded. If the current page is `signup.html`,
+ * it targets the registration button (`registerBtn`) and disables it after a delay of 1 second.
+ */
 document.addEventListener("DOMContentLoaded", function () {
     if (window.location.pathname.endsWith('signup.html')) {
         const registerBtn = document.getElementById('registerBtn');
@@ -58,6 +64,12 @@ function setInitialsAtRegistration() {
 }
 
 
+/**
+ * Extracts the initials from a given name.
+ *
+ * This function takes a full name as input, splits it into its constituent parts (using space as a delimiter),
+ * and returns the initials of the name in uppercase.
+ */
 function getInitials(name) {
     const nameParts = name.split(' ');
     const capitalized = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
@@ -84,6 +96,14 @@ async function register() {
 }
 
 
+/**
+ * Checks if the signup form is filled correctly and enables or disables the registration button accordingly.
+ *
+ * This function retrieves the values from the signup form fields (name, email, password, 
+ * confirm password) and checks if they are filled out. It also checks if the checkbox is checked. 
+ * If all required fields are filled and the checkbox is checked, the registration button is enabled; 
+ * otherwise, it is disabled.
+ */
 function checkFormFilled() {
     const name = document.getElementById('signUpName').value.trim();
     const email = document.getElementById('signUpEmail').value.trim();
@@ -118,6 +138,16 @@ function collectDataForRegistration() {
 }
 
 
+/**
+ * Extracts the first and last names from a full name input.
+ *
+ * This function takes the value from the `signUpName` input field, trims any leading or trailing whitespace,
+ * and splits the name into parts based on whitespace. The first part is considered the first name, 
+ * and the remaining parts are combined to form the last name.
+ *
+ * The first name will be an empty string if no name is provided, and the last name will be an empty string 
+ * if only a first name is provided.
+ */
 async function extractNames() {
     let parts = signUpName.value.trim().split(/\s+/);
     firstName = parts[0] || '';
@@ -125,6 +155,13 @@ async function extractNames() {
 }
 
 
+/**
+ * Generates a random color for a user icon.
+ *
+ * This function selects a random color from the predefined `userIconColor` array.
+ * It utilizes the Math.random() method to generate a random index and returns 
+ * the color at that index from the array.
+ */
 function getRandomUserIconColor() {
     return userIconColor[Math.floor(Math.random() * userIconColor.length)];
 }
