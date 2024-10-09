@@ -29,32 +29,24 @@ let userIconColor = [
   "#BF59F2"
 ];
 
-
+/**
+ * Initializes the application by performing several asynchronous operations.
+ * - Includes HTML templates into the document.
+ * - Hides the side menu box.
+ * - Loads the list of users and tasks from the server.
+ * - Renders the application logo.
+ * - Highlights the currently active site in the navigation.
+ */
 async function init() {
-  await includeHTML();
+  // await includeHTML();
+  await renderHeader();
+  await renderSidemenu();
+  await mobileSideMenu();
   hideSideMenuBox();
   await loadUsers();
   await loadTasks();
   renderLogo();
   showActiveSite();
-}
-
-
-/**
- * Function to include template html files
- */
-async function includeHTML() {
-  let includeElements = document.querySelectorAll('[w3-include-html]');
-  for (let i = 0; i < includeElements.length; i++) {
-    const element = includeElements[i];
-    file = element.getAttribute("w3-include-html");
-    let resp = await fetch(file);
-    if (resp.ok) {
-      element.innerHTML = await resp.text();
-    } else {
-      element.innerHTML = 'Page not found';
-    }
-  }
 }
 
 
@@ -88,6 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/**
+ * Asynchronously loads tasks from a storage or server.
+ * Retrieves the tasks using a `getItem` function and assigns them to a global `tasks` variable.
+ * If an error occurs during the loading process, it is logged to the console.
+ */
 async function loadTasks() {
   try {
     tasks = await getItem('tasks');
@@ -98,8 +95,9 @@ async function loadTasks() {
 
 
 /**
- * aktuellen Timestamp ausgeben
- * @returns Timestamp als Zahl
+ * Returns the current timestamp in milliseconds.
+ * Creates a new `Date` object and retrieves the number of milliseconds
+ * elapsed since January 1, 1970, 00:00:00 UTC.
  */
 function getTimestamp() {
   const currentDate = new Date();
@@ -108,7 +106,10 @@ function getTimestamp() {
 
 
 /**
- * Dropdown-Menü ein-/ausblenden
+ * Toggles the visibility of a dropdown menu based on its current state.
+ * If the dropdown menu is currently hidden, it first unfocuses all active elements, 
+ * then displays the specified menu. If the menu is visible, it hides it.
+ * 
  * @param {string} id - ID des Dropdown-Menüs (muss zu umgebenden IDs passen) 
  */
 function toggleDropdown(id) {
@@ -123,7 +124,11 @@ function toggleDropdown(id) {
 
 
 /**
- * aktuellen Fokus aufheben
+ * Unfocuses all active elements and hides any visible dropdown menus.
+ * - Unfocuses default form elements by blurring the currently active element.
+ * - Hides all dropdown menus by iterating through elements with the class `.dropdownMenu`.
+ * - If the "Add Task" form is present, it calls specific functions to unfocus 
+ *   subtask elements and due date inputs within that form.
  */
 function unfocusAll() {
   const dropdownMenus = document.querySelectorAll('.dropdownMenu'); // alle Elemente der Klasse .dropdownMenu
@@ -141,7 +146,13 @@ function unfocusAll() {
 
 
 /**
- * Dropdown-Menü anzeigen
+ * Displays a dropdown menu and highlights its associated input container.
+ * - Sets the border color of the container element to a light blue color.
+ * - Shows the dropdown menu by resetting its display style.
+ * - Attaches an event listener to detect clicks outside the menu, 
+ *   hiding the dropdown and removing the listener when such a click occurs.
+ * - Toggles the dropdown icon to indicate that the menu is open.
+ * 
  * @param {string} id - ID des Dropdown-Menüs (muss zu umgebenden IDs passen) 
  */
 function showDropdown(id) {
@@ -158,7 +169,11 @@ function showDropdown(id) {
 
 
 /**
- * Dropdown-Menü verbergen
+ * Hides a dropdown menu and resets the border color of its associated input container.
+ * - If the container element exists, it hides the dropdown menu by setting its display style to 'none'.
+ * - Resets the container's border color to its default state.
+ * - Toggles the dropdown icon to indicate that the menu is closed.
+ * 
  * @param {string} id - ID des Dropdown-Menüs (muss zu umgebenden IDs passen) 
  */
 function hideDropdown(id) {
@@ -173,7 +188,10 @@ function hideDropdown(id) {
 
 
 /**
- * beim Dropdown-Menü Icon (Pfeilspitze) rotieren
+ * Toggles the dropdown icon's orientation based on the dropdown's visibility state.
+ * - Rotates the icon by 180 degrees if the dropdown menu is shown.
+ * - Resets the icon's rotation if the dropdown menu is hidden.
+ * 
  * @param {string} id - ID des Dropdown-Menüs (muss zu umgebenden IDs passen) 
  * @param {boolean} show - signalisiert, ob Menü gezeigt (true) oder verborgen (false) wird
  */
@@ -188,7 +206,10 @@ function toggleDropdownIcon(id, show) {
 
 
 /**
- * bestimmt automatisch, welche Option im Dropdown-Menü geklickt wurde und weist dem Input-Feld den entsprechenden Wert zu
+ * Handles the click event on a dropdown menu item.
+ * - Retrieves the text content of the clicked menu item and sets it as the value of the associated input field.
+ * - Determines the relevant input field by extracting the parent menu's ID and mapping it to the corresponding input element.
+ * 
  * @param {event} e - bei Funktionsaufruf 'event' als Parameter eintragen 
  */
 function handleDropdownMenuClick(e) {
@@ -202,7 +223,11 @@ function handleDropdownMenuClick(e) {
 
 
 /**
- * individuellen Checkbox-Haken togglen
+ * Toggles the checked state of a checkbox represented by an image.
+ * - Updates the `src` attribute of the checkbox image based on its current state.
+ * - Changes the `alt` text to reflect whether the checkbox is checked or unchecked.
+ * - Toggles the 'checked' class on the checkbox element.
+ * 
  * @param {element} checkbox 
  */
 function toggleCheckbox(checkbox) {
@@ -219,7 +244,10 @@ function toggleCheckbox(checkbox) {
 
 
 /**
- * Renderfunction for the Username Logo in Header
+ * Renders the user's logo by retrieving and displaying the user's first name.
+ * - Retrieves the user's first name from local storage and splits it into parts.
+ * - Capitalizes the first letter of each part and concatenates them.
+ * - Updates the inner HTML of the element with the ID 'use_name' to display the capitalized name.
  */
 function renderLogo() {
   let loadedUserName = localStorage.getItem('firstName');
@@ -230,8 +258,8 @@ function renderLogo() {
 
 
 /**
- * Function to show the hidden menu behind the Userlogo in the Header.
- * The style attribute for display will change to 'flex'
+ * Displays the hidden menu by setting its display style to 'flex'.
+ * This function makes the menu element with the ID 'hiddenMenu' visible.
  */
 function showHiddenMenu() {
   let menu = document.getElementById('hiddenMenu');
@@ -240,8 +268,8 @@ function showHiddenMenu() {
 
 
 /**
- * Function to hide the hidden menu.
- * The style attribute for display will change to 'none'
+ * Hides the hidden menu by setting its display style to 'none'.
+ * This function makes the menu element with the ID 'hiddenMenu' invisible.
  */
 function hideHiddenMenu() {
   let menu = document.getElementById('hiddenMenu');
@@ -260,7 +288,9 @@ function bodyClick(event) {
 
 
 /**
- * Logout function. This will delete all information in the local Storage
+ * Handles click events on the document body.
+ * If the click occurs outside the 'hiddenMenu' and the 'user' element, 
+ * it hides the hidden menu.
  */
 function logout() {
   localStorage.removeItem('token');
@@ -273,7 +303,12 @@ function logout() {
 
 
 /**
- * Login function and go to summary page when login User and password are match
+* Handles the user login process by validating the provided email and password.
+ * - Retrieves the email and password values from the input fields.
+ * - Calls the `loginUser` function to authenticate the user with the provided credentials.
+ * - If the login fails (invalid email or password), it displays an error message.
+ * - If successful, it stores the user's information and token in local storage.
+ * - Redirects the user to the summary page after a brief delay.
  */
 async function login() {
   let email = document.getElementById('email');
@@ -295,8 +330,11 @@ async function login() {
 
 
 /**
- * Event Listener at DOM Content Loaded. Will check and verify the login token in the local Storage.
- * The Privacy Policy and Legal Notice can be open without login
+ * Redirects users to the login page if they are not on an excluded page 
+ * and do not have a valid authentication token.
+ * - Listens for the DOMContentLoaded event to ensure the DOM is fully loaded before executing.
+ * - Checks the current URL to determine if it matches the excluded pages or the login page.
+ * - If the token is not found in local storage, it redirects the user to the 'index.html' login page.
  */
 document.addEventListener("DOMContentLoaded", function () {
   const excludedPages = ["legal.html", "privacy.html", "signup.html"];
@@ -311,8 +349,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- * This function will highlight the actual loaded page in the side menu.
- * With the window.location.pathname value, it will check which page is actually loaded.
+ * Updates the menu styles based on the current page path.
+ * - If the current page matches the specified `pagePath`, it modifies the menu link and side elements.
+ * - Removes the 'menuLink' class and adds the 'activMenuLink' class to the corresponding link.
+ * - Adds the 'activ_bg' class to the specified side element to indicate the active state.
+ * - Adds the 'activMenuIcon' class to the specified side image element to highlight the active menu icon.
  * 
  * @param {string} pagePath - The Page which is loaded
  * @param {string} linkId - ID for the right link in the side menu
@@ -330,8 +371,9 @@ function updateMenuForPage(pagePath, linkId, sideId, sideImgId) {
 
 
 /**
- * This function is started with the init() function and is the main property for the updateMenuForPage() function.
- * These are the function for the main side menu
+ * Updates the menu to highlight the active site based on the current page.
+ * - Calls the `updateMenuForPage` function for various pages to set the appropriate active link and styles.
+ * - Additionally invokes `showActiveSiteMobile` to manage active states in a mobile view.
  */
 function showActiveSite() {
   updateMenuForPage('/summary.html', 'linkSummary', 'sideSummary', 'sideImgSummary');
@@ -343,8 +385,9 @@ function showActiveSite() {
 
 
 /**
- * This function is started with the init() function and is the main property for the updateMenuForPage() function.
- * These are the function for the mobile side menu
+ * Updates the mobile menu to highlight the active site based on the current page.
+ * - Calls the `updateMenuForPage` function for various pages to set the appropriate active link and styles 
+ *   specifically for the mobile version of the menu.
  */
 function showActiveSiteMobile() {
   updateMenuForPage('/summary.html', 'linkSummaryMobile', 'sideSummaryMobile', 'sideImgSummaryMobile');
@@ -355,7 +398,9 @@ function showActiveSiteMobile() {
 
 
 /**
- * Hide the side menu when legal or privacy are opened
+ * Hides the side menu box if the 'uniquePrivacyOrLegal' element exists.
+ * - Sets the display style of both the main menu box and the mobile menu box to 'none', 
+ *   effectively hiding them from view.
  */
 function hideSideMenuBox() {
   if (document.getElementById('uniquePrivacyOrLegal')) {
@@ -364,7 +409,106 @@ function hideSideMenuBox() {
   }
 }
 
-
+/**
+ * Closes the current browser window.
+ */
 function closeWindow() {
   close();
+}
+
+
+/**
+ * Renders the header section of the page.
+ * - Updates the inner HTML of the element with the ID 'headerRender' to include the header layout.
+ * - The header consists of a logo, a title, user information, and a help link.
+ * - Includes a hidden menu with links to the legal notice, privacy policy, and logout functionality.
+ */
+async function renderHeader() {
+  document.getElementById('headerRender').innerHTML =
+  /*html*/`
+  <div>
+    <div class="headerStyle">
+        <img id="mobileLogo" src="./assets/img/menu_icons/capa_3.svg">
+        <div id="headerName">Kanban Project Management Tool</div>
+        <div id="smalInterface">
+            <div id="help">
+                <a href="help.html"><img src="./assets/img/menu_icons/help.svg"></a>
+            </div>
+            <div id="user" onclick="showHiddenMenu();">
+                <span id="use_name"></span>
+            </div>
+        </div>
+    </div>
+    <div class="hiddenMenuPos">
+        <div id="hiddenMenu" class="hiddenMenuText" style="display: none;">
+            <a onclick="hideHiddenMenu();" href="./legal.html" target="_blank">Legal Notice</a>
+            <a onclick="hideHiddenMenu();" href="./privacy.html" target="_blank">Privacy Policy</a>
+            <a onclick="logout();">Log out</a>
+        </div>
+    </div>
+  </div>
+  `;
+}
+
+/**
+ * Renders the side menu of the application.
+ * - Updates the inner HTML of the element with the ID 'sideMenu' to include the side menu layout.
+ * - The side menu consists of a logo, navigation links for various pages (Summary, Add Task, Board, Contacts),
+ *   and links to the Privacy Policy and Legal Notice.
+ */
+async function renderSidemenu() {
+  document.getElementById('sideMenu').innerHTML =
+  /*html*/`
+<div id="logo">
+    <img src="./assets/img/menu_icons/white_logo.svg">
+</div>
+<div id="menuBox">
+    <a href="./summary.html"><div id="sideSummary" class="linkAlign menuHover"><img id="sideImgSummary" class="" src="./assets/img/menu_icons/summary.svg"><p id="linkSummary" class="menuLink">Summary</p></div></a>
+    <a href="./add_task.html"><div id="sideAddTask" class="linkAlign menuHover"><img id="sideImgAddTask" class="" src="./assets/img/menu_icons/add_task.svg"><p id="linkAddTask" class="menuLink">Add Task</p></div></a>
+    <a href="./board.html"><div id="sideBoard" class="linkAlign menuHover"><img id="sideImgBoard" class="" src="./assets/img/menu_icons/board.svg"><p id="linkBoard" class="menuLink">Board</p></div></a>
+    <a href="./contacts.html"><div id="sideContacts" class="linkAlign menuHover"><img id="sideImgContacts" class="" src="./assets/img/menu_icons/contacts.svg"><p id="linkContacts" class="menuLink">Contacts</p></div></a>
+</div>
+<div id="infos">
+    <a target="_blank" href="./privacy.html">Privacy Policy</a>
+    <a target="_blank" href="./legal.html">Legal Notice</a>
+</div>
+  `;
+}
+
+/**
+ * Renders the mobile side menu of the application.
+ * - Updates the inner HTML of the element with the ID 'mobileMenuBox' to include the mobile side menu layout.
+ * - The mobile side menu consists of navigation links for various pages (Summary, Add Task, Board, Contacts),
+ *   with corresponding icons for each link.
+ */
+async function mobileSideMenu() {
+  document.getElementById('mobileMenuBox').innerHTML =
+  /*html*/`
+    <div id="mobileSideMenuBox">
+    <a href="./summary.html">
+        <div id="sideSummaryMobile" class="linkAlign menuHover"><img id="sideImgSummaryMobile" class=""
+                src="./assets/img/menu_icons/summary.svg">
+            <p id="linkSummaryMobile" class="menuLink">Summary</p>
+        </div>
+    </a>
+    <a href="./add_task.html">
+        <div id="sideAddTaskMobile" class="linkAlign menuHover"><img id="sideImgAddTaskMobile" class=""
+                src="./assets/img/menu_icons/add_task.svg">
+            <p id="linkAddTaskMobile" class="menuLink">Add Task</p>
+        </div>
+    </a>
+    <a href="./board.html">
+        <div id="sideBoardMobile" class="linkAlign menuHover"><img id="sideImgBoardMobile" class=""
+                src="./assets/img/menu_icons/board.svg">
+            <p id="linkBoardMobile" class="menuLink">Board</p>
+        </div>
+    </a>
+    <a href="./contacts.html">
+        <div id="sideContactsMobile" class="linkAlign menuHover"><img id="sideImgContactsMobile" class=""
+                src="./assets/img/menu_icons/contacts.svg">
+            <p id="linkContactsMobile" class="menuLink">Contacts</p>
+        </div>
+    </a>
+</div>
+  `;
 }

@@ -158,16 +158,6 @@ function generateAddTaskTemplateAll() {
     return html
 }
 
-/**
- * Generates the inner HTML of add task template
- * 
- * @returns - HTML code
- */
-function generateAddTaskTemplateInner() {
-    return /* html */ `
-        <div class="addTaskCard" onclick="preventClosing()" style="display: none" id="addTaskCard" w3-include-html="assets/templates/add_task_template.html"></div>
-    `;
-}
 
 /**
  * Generates the edit task header
