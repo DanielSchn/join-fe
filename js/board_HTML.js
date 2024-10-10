@@ -38,6 +38,7 @@ function generateTask(element, i) {
     </div>`
 }
 
+
 /**
  * Generates HTML for empty Columns
  * 
@@ -50,6 +51,7 @@ function generateNoTask(status) {
                 <div class="noTask">No tasks ${status}</div>
             </div>`
 }
+
 
 /**
  * Generates HTML for Task Card
@@ -118,10 +120,11 @@ function taskCardAssignedHTML(contact) {
     <div class="d-flex">
         ${contactAssignedIconHTML(contact)}
         <div class="contactDetails">
-            <div>${contact['name']}     
+            <div>${contact['first_name'] + ' ' + contact['last_name']}     
     </div>`
     return html;
 }
+
 
 /**
  * Renders Subtask section on Task Card
@@ -138,10 +141,14 @@ function renderCardSubtasks(task, id) {
         for (let i = 0; i < task.subtasks.length; i++) {
             subtasks.innerHTML += `
             <div class="taskCardSubtask">
-              <li>${task.subtasks[i]['title']}</li>
+                <li class="listSubtask">
+                    <input id="checkboxSubtask${i}" type="checkbox" onclick="updateSubtask(${task.id}, '${task.subtasks[i].title}')" ${task.subtasks[i]['status'] === "done" ? "checked" : ""}/>
+                    <p>${task.subtasks[i]['title']}</p>
+                </li>
             </div>`
         }
 }
+
 
 /**
  * Generates HTML of add task template
@@ -155,16 +162,6 @@ function generateAddTaskTemplateAll() {
     return html
 }
 
-/**
- * Generates the inner HTML of add task template
- * 
- * @returns - HTML code
- */
-function generateAddTaskTemplateInner() {
-    return /* html */ `
-        <div class="addTaskCard" onclick="preventClosing()" style="display: none" id="addTaskCard" w3-include-html="assets/templates/add_task_template.html"></div>
-    `;
-}
 
 /**
  * Generates the edit task header

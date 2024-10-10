@@ -8,6 +8,7 @@ async function initContacts() {
     await init();
     await loadContacts();
     renderContacts();
+    renderProfile();
 }
 
 
@@ -46,7 +47,8 @@ async function addNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const response = await setItem('contacts', newContact);
+        const token = localStorage.getItem('token');
+        const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
         console.error('Error adding contact:', error);
@@ -54,6 +56,11 @@ async function addNewContact() {
 }
 
 
+/**
+ * This function is pulling all informations out of the "add new contact" form
+ * It pushes the information into the contact array
+ * Loads the new contact array into the remote storage
+ */
 async function mobileAddNewContact() {
     const contactName = document.getElementById('contactMobileName');
     const contactEmail = document.getElementById('contactMobileMail');
@@ -68,7 +75,8 @@ async function mobileAddNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const response = await setItem('contacts', newContact);
+        const token = localStorage.getItem('token');
+        const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
         console.error('Error adding contact:', error);
@@ -119,5 +127,31 @@ function renderContacts() {
         }
         let letterContainer = document.getElementById(contact['letter']);
         letterContainer.innerHTML += contactCardHTML(contact, i);
+    }
+}
+
+
+/**
+ * Renders the user profile in the specified container.
+ * - Clears the existing content of the 'myProfileContainer' element.
+ * - Retrieves the user ID from local storage and checks if it exists.
+ * - If the user ID is found, it fetches the user data from the server using the `getItem` function.
+ * - If the fetch is successful, it updates the profile container with the user's profile information using the `profileCardHTML` function.
+ * - Handles errors by logging them to the console if the user ID is not found or if the data fetching fails.
+ */
+async function renderProfile() {
+    let profileContainer = document.getElementById('myProfileContainer');
+    profileContainer.innerHTML = '';
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        console.error('User ID not found in local storage');
+        return;
+    }
+    try {
+        let response = await getItem(`auth/user/${userId}`);
+        let userData = response;
+        profileContainer.innerHTML = profileCardHTML(userData, 0);
+    } catch (error) {
+        console.error('Error fetching user data:', error);
     }
 }

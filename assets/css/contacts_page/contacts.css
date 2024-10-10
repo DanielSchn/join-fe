@@ -37,7 +37,8 @@
     box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-#myContactsContainer {
+#myContactsContainer,
+#myProfileContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -198,27 +199,30 @@
     gap: 8px;
 }
 
-#settings {
+#settings,
+#settingsUser {
     display: flex;
     gap: 16px;
 }
 
-#settings div {
+#settingsUser {
+    flex-direction: column;
+}
+
+#settings div,
+#settingsUser div {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-#edit {
-    width: 62px;
-}
-
 #remove {
     width: 81px;
 }
 
-#settings span {
+#settings span,
+#settingsUser span {
     font-size: 16px;
     color: #2A3647;
 }
@@ -241,7 +245,8 @@
     color: #29ABE2;
 }
 
-#edit:hover {
+#edit_img:hover,
+#edit_span:hover {
     cursor: pointer;
 }
 
@@ -513,4 +518,13 @@ form button {
 
 .mobileEditContactCard {
     display: none;
+}
+
+#onlyGuest,
+#onlyGuestMobile {
+    font-size: 16px;
+    color: red;
+    text-wrap: nowrap;
+    height: 20px;
+    width: 275px;
 }

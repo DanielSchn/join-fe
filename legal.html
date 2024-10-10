@@ -19,23 +19,41 @@
     <script src="./js/render_contact_card.js" defer></script>
     <script src="./js/render_summary.js" defer></script>
     <script src="./js/storage.js" defer></script>
+    <script src="./js/render_templates.js" defer></script>
 </head>
 
 <body onload="init();">
-    <header id="uniquePrivacyOrLegal" w3-include-html="assets/templates/header_template.html"></header>
-    <aside id="sideMenu" w3-include-html="assets/templates/side_menu_template.html"></aside>
-    <div id="mobileMenuBox" w3-include-html="./assets/templates/mobile_side_menu.html"></div>
+    <header id="headerRender"></header>
+    <aside id="sideMenu"></aside>
+    <div id="mobileMenuBox"></div>
 
     <div class="mainPrivacy">
         <div class="headerPrivacy">
             <h1 class="ft-general fs-61px fw-700">Legal Notice</h1>
-            <a href="#" onclick="closeWindow(); return false;"><img src="./assets/img/arrow-left-line.svg" class="go-back" alt="back"></a>
+            <a href="#" onclick="closeWindow(); return false;"><img src="./assets/img/arrow-left-line.svg"
+                    class="go-back" alt="back"></a>
         </div>
-        <h3>Imprint</h3>
-        <ul>
-            <li>Daniel Schneider</li>
-            <p>Private learning project</p>
-        </ul>
+        
+        <h2>Angaben gemäß § 5 TMG:</h2>
+        <p><br>Daniel Schneider</p>
+        <h3>Postanschrift:</h3>
+        <p>Schöne Aussicht 6<br>65329 Hohenstein<br></p>
+        <h3>Kontakt:</h3>
+        <p>Telefon: 061209269386<br>E-Mail: student&#64;dsc-mail.de</p>
+        <p></p>
+        <p><br></p>
+        <p></p>
+        <h2>Hinweise zur Website</h2>
+        <p></p>
+        <h2>Information gemäß § 36 VSBG</h2>
+        <p>Gemäß § 36 VSBG (Verbraucherstreitbeilegungsgesetz – Gesetz über die alternative Streitbeilegung in
+          Verbrauchersachen) erklärt der Betreiber dieser Website:</p>
+        <p>Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+          teilzunehmen.</p>
+        <p></p>
+        <p><em>Das Impressum wurde mit dem <a
+              href="https://www.activemind.de/datenschutz/generatoren/impressum/">Impressums-Generator der activeMind
+              AG</a> erstellt.</em></p>
     </div>
 </body>
 

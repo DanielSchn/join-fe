@@ -6,23 +6,22 @@ function toggleAssigned(userId) {
     const checkboxElement = document.getElementById(`assignedContact${userId}`);
     if (checkboxElement) {
         toggleAssignedArray(userId);
-        toggleAssignedStyle(checkboxElement);
+        toggleAssignedStyle(checkboxElement, userId);
     } else {
         console.error(`Checkbox for user ID ${userId} not found.`);
     }
 }
 
 
-
 /**
  * 
  * @param {element} checkbox - ID/Element der Checkbox 
  */
-function toggleAssignedStyle(checkbox) {
+function toggleAssignedStyle(checkbox, userId) {
     const li = checkbox.parentNode.parentNode;
     li.classList.toggle('addTaskAssignedChecked');
     toggleCheckbox(checkbox);
-    renderAddTaskAssignedIcons();
+    renderAddTaskAssignedIcons(userId);
 }
 
 

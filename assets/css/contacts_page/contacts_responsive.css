@@ -281,6 +281,10 @@
 
 @media (max-width: 428px) {
 
+    #myProfileContainer {
+        width: 100%;
+    }
+
     #addContactBtnContainer {
         display: none;
     }
@@ -394,7 +398,8 @@
         height: 24px;
     }
 
-    #settings {
+    #settings,
+    #settingsUser {
         display: none;
     }
 

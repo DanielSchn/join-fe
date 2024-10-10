@@ -48,6 +48,103 @@ function prefillEditForm(index) {
 
 
 /**
+ * Rendert das Bearbeitungsformular für Benutzer, basierend auf den Daten aus der API.
+ * @param {number} index - ID des Benutzers, der bearbeitet werden soll.
+ */
+async function renderUserEditForm(index) {
+    let editCard = document.getElementById('editCardOne');
+    editCard.innerHTML = '';
+    try {
+        let response = await getItem(`auth/user/${index}`);
+        if (!response) {
+            throw new Error(`Failed to fetch user data: ${response.statusText}`);
+        }
+        let userData = response;
+        let initial = getInitials(`${userData.first_name + '' + userData.last_name}`);
+        editCard.innerHTML = /* html */`
+            <div class="leftBlueSection">
+                <img class="closeAddCard d-none" onclick="editCardWindow(false)" src="./assets/img/contacts/close.svg">
+                <img class="smallCardLogo" src="./assets/img/contacts/logo_card.svg">
+                <div class="cardTitle">
+                    <span class="addCardHeadline">Edit User</span>
+                    <div id="devider3"></div>
+                </div>
+            </div>
+            <div class="cardInitials_bg" style="background-color: ${userData.color}">
+                <span class="cardIntitials">${initial}</span>
+            </div>
+            <img class="closeAddContact_btn" src="./assets/img/contacts/close.svg" onclick="editCardWindow(false)">
+            <form id="editForm" onsubmit="editCurrentUser(${index}); return false">
+                <div class="addContactInputContainer">
+                    <input id="editFirstName" class="addContactInput" type="text" placeholder="First Name">
+                    <img src="./assets/img/contacts/person.svg">
+                </div>
+                <div class="addContactInputContainer">
+                    <input id="editLastName" class="addContactInput" type="text" placeholder="Last Name">
+                    <img src="./assets/img/contacts/person.svg">
+                </div>
+                <div class="addContactInputContainer">
+                    <input id="editMail" class="addContactInput" type="email" placeholder="Email">
+                    <img src="./assets/img/contacts/mail.svg">
+                </div>
+                <div class="addSummit_btn">
+                    <button class="addContactCancel_btn">Cancel<img src="./assets/img/contacts/iconoir_cancel.svg"></button>
+                    <button class="addContactCreate_btn">Save<img src="./assets/img/contacts/check.svg"></button>
+                </div>
+            </form>
+        `;
+        prefillUserEditForm(userData);
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        editCard.innerHTML = `<p>Error loading user details. Please try again later.</p>`;
+    }
+}
+
+
+/**
+ * Befüllt das Bearbeitungsformular mit den Daten aus der API.
+ * @param {Object} userData - Benutzerobjekt, das die Felder `first_name`, `last_name`, `email` und `number` enthält.
+ */
+function prefillUserEditForm(userData) {
+    document.getElementById('editFirstName').value = userData['first_name'];
+    document.getElementById('editLastName').value = userData['last_name'];
+    document.getElementById('editMail').value = userData['email'];
+}
+
+
+/**
+ * 
+ * @param {number} index - ID des bearbeiteten Benutzers.
+ */
+async function editCurrentUser(index) {
+    let firstName = document.getElementById('editFirstName').value;
+    let lastName = document.getElementById('editLastName').value;
+    let email = document.getElementById('editMail').value;
+    let id = localStorage.getItem('userId');
+    let username = localStorage.getItem('userName');
+    let token = localStorage.getItem('token');
+    const updatedUserData = {
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "id": id,
+        "username": username
+    };
+    try {
+        const response = await setItem(`auth/user`, updatedUserData, id, token);
+        console.log('User updated successfully:', response);
+        await refreshContactList();
+        editCardWindow(false);
+        showContactCard(index, `profile`);
+        renderProfile();
+    } catch {
+        console.error('Failed to update user:', error);
+    }
+    console.log(`Save edited user with ID: ${index}`);
+}
+
+
+/**
  * This function creates the etit form (mobile)
  * It shows the current contact informations
  * @param {*} index - place of the current contact within the contacts array
@@ -116,9 +213,10 @@ async function editCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        await setItem('contacts', updatedContact, index);
+        const token = localStorage.getItem('token');
+        await setItem('contacts', updatedContact, index, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
-        refreshContactList();
+        await refreshContactList();
         editCardWindow(false);
         showContactCard(index);
     } catch (error) {
@@ -148,7 +246,8 @@ async function mobileEditCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        await setItem('contacts', updatedContact, contacts[index].id);
+        const token = localStorage.getItem('token');
+        await setItem('contacts', updatedContact, contacts[index].id, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
         refreshContactList();
         editCardWindow(false);
@@ -165,17 +264,24 @@ async function mobileEditCurrentContact(index) {
  */
 async function deleteContact(index) {
     const contactId = index;
-    try {
-        await setItem('contacts', null, contactId);
-        contacts.splice(index, 1);
-        refreshContactList();
-        let contactDetails = document.getElementById('mainContactDetails');
-        contactDetails.innerHTML = '';
-        let mobileContactDetails = document.getElementById('mobileMainContactDetails');
-        mobileContactDetails.innerHTML = '';
-        hideContactCard();
-    } catch (error) {
-        console.error('Error deleting contact:', error);
+    const guestUser = document.getElementById('user_name_0').innerHTML;
+    if (guestUser === 'Guest User') {
+        const failureMobile = document.getElementById('onlyGuestMobile');
+        failureMobile.innerHTML = 'Not allowed, you are in Guest Mode!'
+    } else {
+        try {
+            const token = localStorage.getItem('token');
+            await setItem('contacts', null, contactId, token);
+            contacts.splice(index, 1);
+            refreshContactList();
+            let contactDetails = document.getElementById('mainContactDetails');
+            contactDetails.innerHTML = '';
+            let mobileContactDetails = document.getElementById('mobileMainContactDetails');
+            mobileContactDetails.innerHTML = '';
+            hideContactCard();
+        } catch (error) {
+            console.error('Error deleting contact:', error);
+        }
     }
 }
 

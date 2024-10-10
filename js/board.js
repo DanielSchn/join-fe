@@ -12,6 +12,7 @@ async function loadData() {
     updateHTML();
 }
 
+
 /**
  * Updates the rendered HTML 
  */
@@ -22,6 +23,7 @@ async function updateHTML() {
     updateDone();
 }
 
+
 /**
  * Saves Changes of tasks-Array in remote storage
  */
@@ -29,12 +31,26 @@ async function saveChanges(taskId = null) {
     if (taskId !== null) {
         const taskToUpdate = tasks.find(task => task.id === taskId);
         if (taskToUpdate) {
-            await setItem('tasks', taskToUpdate, taskId); // PATCH-Befehl
+            const token = localStorage.getItem('token');
+            await setItem('tasks', taskToUpdate, taskId, token);
         }
     } else {
-        await setItem('tasks', tasks); // POST-Befehl, um alle Aufgaben zu speichern
+        await setItem('tasks', tasks);
     }
 }
+
+
+/**
+ * Saves a subtask to a specific task in the backend.
+ * 
+ * This function sends a request to update a task by its `taskId` with the provided subtask data (`value`).
+ * The function retrieves the user's authentication token from local storage and uses it in the request.
+ */
+async function saveSubtask(taskId, value) {
+    const token = localStorage.getItem('token');
+    await setItem('tasks', value, taskId, token);
+}
+
 
 /**
  * Finds all tasks in "tasks"-Array with status = 'toDo' and calls functions to render these tasks
@@ -54,6 +70,7 @@ function updateToDo() {
         }
 }
 
+
 /**
  * Finds all tasks in "tasks"-Array with status = 'inProgress' and calls functions to render these tasks
  */
@@ -71,6 +88,7 @@ function updateInProgress() {
             renderBoardAssignedIcons(element);
         }
 }
+
 
 /**
  * Finds all tasks in "tasks"-Array with status = 'awaitFeedback' and calls functions to render these tasks
@@ -90,6 +108,7 @@ function updateAwaitFeedback() {
         }
 }
 
+
 /**
  * Finds all tasks in "tasks"-Array with status = 'done' and calls functions to render these tasks
  */
@@ -108,6 +127,7 @@ function updateDone() {
         }
 }
 
+
 /**
  * Saves id of the Element that should be dragged
  * 
@@ -116,6 +136,7 @@ function updateDone() {
 function startDragging(id) {
     currentDraggedElement = id;
 }
+
 
 /**
  * Renders the Task Card
@@ -149,6 +170,7 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
 /**
  * This function changes the status of a Task when dropped in new column
  * 
@@ -165,6 +187,7 @@ function moveTo(status) {
     }
 }
 
+
 /**
  * Highlights the column if task is dragged over
  * 
@@ -173,6 +196,7 @@ function moveTo(status) {
 function highlight(id) {
     document.getElementById(id).classList.add('dragAreaHighlight');
 }
+
 
 /**
  * Removes the highlight when task is not longer dragged over the column
@@ -183,52 +207,58 @@ function removeHighlight(id) {
     document.getElementById(id).classList.remove('dragAreaHighlight');
 }
 
+
 /**
  * Moves task to previous column
  *  
  * @param {number} id - ID of current Task
  */
-function statusUp(id) {
-    let newStatus
-    let status = tasks[id]['status'];
-    if (status === 'toDo') {
+function statusUp(taskId) {
+    let newStatus;
+    let task = tasks.find(element => element.id === taskId);    
+    if (task.status === 'toDo') {
         newStatus = 'toDo';
     }
-    else if (status === 'inProgress') {
+    else if (task.status === 'inProgress') {
         newStatus = 'toDo';
     }
-    else if (status === 'awaitFeedback') {
+    else if (task.status === 'awaitFeedback') {
         newStatus = 'inProgress';
     }
-    else if (status === 'done') { newStatus = 'awaitFeedback' }
-
-    tasks[id]['status'] = newStatus;
-    saveChanges();
+    else if (task.status === 'done') { 
+        newStatus = 'awaitFeedback' 
+    };
+    task['status'] = newStatus;
+    saveChanges(task.id);
     updateHTML();
 }
+
 
 /**
  * Moves task to next column
  *  
  * @param {number} id - ID of current Task
  */
-function statusDown(id) {
-    let newStatus
-    let status = tasks[id]['status'];
-    if (status === 'done') {
+function statusDown(taskId) {
+    let newStatus;
+    let task = tasks.find(element => element.id === taskId);
+    if (task.status === 'done') {
         newStatus = 'done';
     }
-    else if (status === 'awaitFeedback') {
+    else if (task.status === 'awaitFeedback') {
         newStatus = 'done';
     }
-    else if (status === 'inProgress') {
+    else if (task.status === 'inProgress') {
         newStatus = 'awaitFeedback';
     }
-    else if (status === 'toDo') { newStatus = 'inProgress'; }
-    tasks[id]['status'] = newStatus;
-    saveChanges();
+    else if (task.status === 'toDo') { 
+        newStatus = 'inProgress'; 
+    }
+    task['status'] = newStatus;
+    saveChanges(task.id);
     updateHTML();
 }
+
 
 /**
  * Generates the subtask section of a task
@@ -247,6 +277,7 @@ function generateSubtask(element) {
     }
 }
 
+
 /**
  * Renders Icons for assigned Users of a task in board view
  * 
@@ -263,6 +294,7 @@ function renderBoardAssignedIcons(element) {
         }
     }
 }
+
 
 /**
  * Renders assigned Users of a task in task card view
@@ -281,6 +313,7 @@ function renderCardAssigned(element, id) {
         }
     }
 }
+
 
 /**
  * Updates the subtask-progress in board view
@@ -302,6 +335,7 @@ function updateProgressBar(subtasks, doneSubtasksDiv, progressbarFillerDiv) {
     progressbarFillerDiv.style.width = `${fillWidth}px`;
 }
 
+
 /**
  * Task-Karte entfernen
  */
@@ -315,13 +349,14 @@ function closeTask() {
     prevent = false;
 }
 
+
 /**
  * verhindern, dass Task-Karte entfernt wird
  */
 function preventClosing() {
     prevent = true;
-    // per Bubbling wird anschließend closeTask() aufgerufen und setzt im selben Klick wieder prevent = false
 }
+
 
 /**
  * Renders Prio of a task after turning the first letter to a capital
@@ -335,22 +370,28 @@ function renderCardPrio(task, id) {
     document.getElementById(`taskPrio${id}`).innerHTML = `${result}`;
 }
 
+
 /**
  * updates subtasks in tasks-array after checking/unchecking box
  * 
  * @param {number} id - id of task
  * @param {number} i - index of subtask
  */
-function updateSubtask(id, i) {
-    if (tasks[id].subtasks[i].status == 'toDo') {
-        tasks[id].subtasks[i].status = 'done';
-    }
-    else {
-        tasks[id].subtasks[i].status = 'toDo';
-    }
-    renderCardSubtasks(tasks[id], id);
-    saveChanges();
+async function updateSubtask(taskId, taskTitle) {
+    const task = tasks.find(t => t.id === taskId);
+    const subtask = task.subtasks.find(st => st.title === taskTitle);
+    subtask.status = (subtask.status === 'toDo') ? 'done' : 'toDo';
+    const updatedSubtasks = task.subtasks.map(st => ({
+        title: st.title,
+        status: st.status
+    }));
+    const dataToSend = {
+        subtasks: updatedSubtasks
+    };
+    await saveSubtask(taskId, dataToSend);
+    renderCardSubtasks(task, taskId);
 }
+
 
 /**
  * Opens add task view
@@ -364,6 +405,7 @@ async function addTaskBtn(status) {
         window.location.href = './add_task.html';
     }
 }
+
 
 /**
  * Add Task-Overlay aufrufen
@@ -379,22 +421,24 @@ async function showAddTaskCard(status) {
     changeClearBtn();
 }
 
+
 /**
  * Renders edit task card
  * 
  * @param {string} status - status of task
  */
-async function showEditTaskCard(status) {
+async function showEditTaskCard(status, assignedTo) {
     addTask = document.getElementById('taskCard2');
     addTask.innerHTML = '';
     addTask.innerHTML += generateEditTaskHeader();
     addTask.innerHTML += generateAddTaskTemplateInner();
     taskCard = document.getElementById('addTaskCard');
     taskCard.classList.add('editTaskCard');
-    await initAddTask(status);
+    await initAddTask(status, assignedTo);
     taskCard.style.display = '';
     hideClearBtn();
 }
+
 
 /**
  * Filters all tasks live depending on user input
@@ -412,6 +456,7 @@ function searchTask() {
     updateHTML();
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     updateHTML();
     let searchInput = document.getElementById('findTask');
@@ -419,4 +464,3 @@ document.addEventListener("DOMContentLoaded", function () {
         searchTask();
     });
 });
-

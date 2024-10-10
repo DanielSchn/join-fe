@@ -8,6 +8,24 @@ let guests = [
         'color': '#FF3D00',
     },
 ];
+let firstName = "";
+let lastName = "";
+
+
+/**
+ * Disables the registration button on the signup page after a short delay.
+ * 
+ * This function is triggered when the DOM content is fully loaded. If the current page is `signup.html`,
+ * it targets the registration button (`registerBtn`) and disables it after a delay of 1 second.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname.endsWith('signup.html')) {
+        const registerBtn = document.getElementById('registerBtn');
+        setTimeout(() => {
+            registerBtn.disabled = true;
+        }, 1000);
+    }
+});
 
 
 /**
@@ -24,7 +42,11 @@ async function initRegister() {
  */
 async function loadUsers() {
     try {
-        users = await getItem('users');
+        profiles = await getItem('auth/profiles');
+        loadedUsers = await getItem('auth/user');
+        const profileUserIds = profiles.map(profile => profile.user);
+        const filteredUsers = loadedUsers.filter(user => profileUserIds.includes(user.id));
+        users = filteredUsers;
     } catch (e) {
         console.error('Loading error:', e);
     }
@@ -39,14 +61,20 @@ async function loadUsers() {
 function setInitialsAtRegistration() {
     let loadedUserName = signUpName.value;
     return getInitials(loadedUserName);
-  }
+}
 
 
-  function getInitials(name) {
+/**
+ * Extracts the initials from a given name.
+ *
+ * This function takes a full name as input, splits it into its constituent parts (using space as a delimiter),
+ * and returns the initials of the name in uppercase.
+ */
+function getInitials(name) {
     const nameParts = name.split(' ');
     const capitalized = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
     return capitalized;
-  }
+}
 
 
 /**
@@ -54,20 +82,39 @@ function setInitialsAtRegistration() {
  */
 async function register() {
     registerBtn.disabled = true;
-    const isEmailRegistered = users.some(u => u.email === signUpEmail.value);
-    if (isEmailRegistered) {
-        document.getElementById('errorMessageId').innerHTML = 'This email is already registered!';
+    await extractNames();
+    const newUser = collectDataForRegistration();
+    try {
+        const createdUser = await registerUser(newUser);
+        users.push(createdUser);
+        resetForm();
+        showOverlaySignedUp();
+    } catch (error) {
+        console.error("Registration failed:", error);
+        document.getElementById('errorMessageId').innerHTML = 'Registration failed. Please try again.';
+    }
+}
+
+
+/**
+ * Checks if the signup form is filled correctly and enables or disables the registration button accordingly.
+ *
+ * This function retrieves the values from the signup form fields (name, email, password, 
+ * confirm password) and checks if they are filled out. It also checks if the checkbox is checked. 
+ * If all required fields are filled and the checkbox is checked, the registration button is enabled; 
+ * otherwise, it is disabled.
+ */
+function checkFormFilled() {
+    const name = document.getElementById('signUpName').value.trim();
+    const email = document.getElementById('signUpEmail').value.trim();
+    const password = document.getElementById('signUpPassword').value.trim();
+    const confirmPassword = document.getElementById('signUpPasswordConfirm').value.trim();
+    const checkbox = document.getElementById('checkboxSignUp').checked;
+    const registerBtn = document.getElementById('registerBtn');
+    if (name && email && password && confirmPassword && checkbox) {
+        registerBtn.disabled = false;
     } else {
-        const newUser = collectDataForRegistration();
-        try {
-            const createdUser = await setItem('users', newUser);
-            users.push(createdUser);
-            resetForm();
-            showOverlaySignedUp();
-        } catch (error) {
-            console.error("Registration failed:", error);
-            document.getElementById('errorMessageId').innerHTML = 'Registration failed. Please try again.';
-        }
+        registerBtn.disabled = true;
     }
 }
 
@@ -79,8 +126,10 @@ async function register() {
  */
 function collectDataForRegistration() {
     return {
-        name: signUpName.value,
-        email: signUpEmail.value,
+        first_name: firstName,
+        last_name: lastName,
+        username: firstName.toLowerCase(),
+        email: signUpEmail.value.trim(),
         password: signUpPassword.value,
         initials: setInitialsAtRegistration(),
         color: getRandomUserIconColor()
@@ -88,6 +137,30 @@ function collectDataForRegistration() {
 }
 
 
+/**
+ * Extracts the first and last names from a full name input.
+ *
+ * This function takes the value from the `signUpName` input field, trims any leading or trailing whitespace,
+ * and splits the name into parts based on whitespace. The first part is considered the first name, 
+ * and the remaining parts are combined to form the last name.
+ *
+ * The first name will be an empty string if no name is provided, and the last name will be an empty string 
+ * if only a first name is provided.
+ */
+async function extractNames() {
+    let parts = signUpName.value.trim().split(/\s+/);
+    firstName = parts[0] || '';
+    lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
+}
+
+
+/**
+ * Generates a random color for a user icon.
+ *
+ * This function selects a random color from the predefined `userIconColor` array.
+ * It utilizes the Math.random() method to generate a random index and returns 
+ * the color at that index from the array.
+ */
 function getRandomUserIconColor() {
     return userIconColor[Math.floor(Math.random() * userIconColor.length)];
 }

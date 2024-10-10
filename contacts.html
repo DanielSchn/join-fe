@@ -22,17 +22,17 @@
     <script src="./js/edit_contact.js" defer></script>
     <script src="./js/render_summary.js" defer></script>
     <script src="./js/storage.js" defer></script>
+    <script src="./js/render_templates.js" defer></script>
 </head>
 <body onload="initContacts()">
-    <header w3-include-html="./assets/templates/header_template.html"></header>
-    <aside id="sideMenu" w3-include-html="./assets/templates/side_menu_template.html"></aside>
+    <header id="headerRender"></header>
+    <aside id="sideMenu"></aside>
 
     <!-- Contact Section -->
     <section id="contacts">
         <div id="addContactBtnContainer"><button id="addContactBtn" onclick="openAddCardOne()">Add new contact<img src="./assets/img/menu_icons/person_add.svg"></button></div>
-
-        <div id="myContactsContainer">
-        </div>
+        <div id="myProfileContainer"></div>
+        <div id="myContactsContainer"></div>
     </section>
 
     <!-- Add new Contact -->
@@ -97,7 +97,7 @@
     </div>
 
      <!-- Mobile -->
-     <div id="mobileMenuBox" w3-include-html="./assets/templates/mobile_side_menu.html"></div>
+     <div id="mobileMenuBox"></div>
 
      <div id="mobileMainContactContainer" class="d-none">
         <div id="backArrowContainer" onclick="hideContactCard()">
