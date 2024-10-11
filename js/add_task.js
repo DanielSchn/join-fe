@@ -280,9 +280,9 @@ async function submitTask() {
         let taskData = generateTaskJSON(false);
         await setItem('tasks', taskData, currentId, token);
     }
-    // submitBtn.disabled = false;
-    // showToastMsg(message);
-    // goToBoard();
+    submitBtn.disabled = false;
+    showToastMsg(message);
+    goToBoard();
 }
 
 
