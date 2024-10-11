@@ -203,6 +203,7 @@ function renderActiveUserToAssignedList() {
  * (Bearbeitungsmodus:) Vorauswahl zugeordneter Kontakte im Dropdown-Menü
  */
 function precheckAssignedList(assigned) {
+    assignedToUser = assigned;
     for (let i = 0; i < users.length; i++) {
         let checkboxId = 'assignedContact' + users[i].id;
         let checkbox = document.getElementById(checkboxId);
@@ -279,9 +280,9 @@ async function submitTask() {
         let taskData = generateTaskJSON(false);
         await setItem('tasks', taskData, currentId, token);
     }
-    submitBtn.disabled = false;
-    showToastMsg(message);
-    goToBoard();
+    // submitBtn.disabled = false;
+    // showToastMsg(message);
+    // goToBoard();
 }
 
 
@@ -308,6 +309,7 @@ function generateTaskJSON(newTask) {
             title: addTaskTitle.value,
             description: addTaskDescription.value,
             due: addTaskDueText.value,
+            assigned_to: assignedToUser,
             prio: PRIOS[getTaskPrioId()],
             category: categories.indexOf(addTaskCategory.value),
             subtasks: currentTask['subtasks'],
