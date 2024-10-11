@@ -38,7 +38,7 @@
                 <div class="logInFormPos">
                     <form class="logInForm" onsubmit="register(); return false;">
                         <div class="inputContainer">
-                            <input required class="nameIcon inputLogInSignUp" type="text" placeholder="Full Name"
+                            <input required class="nameIcon inputLogInSignUp" title="Please enter first name and last name!" pattern="^\s*\S+\s+\S+.*$" type="text" placeholder="Full Name"
                                 id="signUpName" oninput="checkFormFilled();">
                         </div>
                         <div class="inputContainer">
