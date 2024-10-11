@@ -30,6 +30,7 @@ function isAddTaskFromBoard() {
  * @param {string} status - Bearbeitungsstatus des Tasks
  */
 async function initAddTask(status, assignedTo) {
+    generateAddTaskTemplateInner();
     await renderAddTaskTemplate();
     await initCurrentTask(assignedTo);
     await init();
