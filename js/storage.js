@@ -72,8 +72,19 @@ async function setItem(key, value, id = null, token = null) {
  */
 async function getItem(key) {
     const url = `${STORAGE_URL + key}/`;
+    const token = localStorage.getItem('token');
+    const headers = token ? {
+        'Authorization': `Token ${token}`,
+        'Content-Type': 'application/json',
+    } : {
+        'Content-Type': 'application/json',
+    };
+
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: headers
+        });
         const data = await response.json();
 
         if (data) {
