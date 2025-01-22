@@ -102,8 +102,11 @@ async function renderUserEditForm(index) {
 
 
 /**
- * Befüllt das Bearbeitungsformular mit den Daten aus der API.
- * @param {Object} userData - Benutzerobjekt, das die Felder `first_name`, `last_name`, `email` und `number` enthält.
+ * Fills the edit form with user data fetched from the API.
+ * 
+ * This function populates the form fields with the provided user object, 
+ * allowing the user to edit their details such as first name, last name, and email.
+ * @param {Object} userData - The user object containing the fields `first_name`, `last_name`, and `email`.
  */
 function prefillUserEditForm(userData) {
     document.getElementById('editFirstName').value = userData['first_name'];
@@ -113,8 +116,12 @@ function prefillUserEditForm(userData) {
 
 
 /**
+ * Updates the details of the current user with the provided form input and refreshes the UI.
  * 
- * @param {number} index - ID des bearbeiteten Benutzers.
+ * This function retrieves updated user information from the edit form and sends it to the server 
+ * to update the user details. It also updates the local storage, refreshes the contact list, and 
+ * updates the user interface to reflect the changes.
+ * @param {number} index - The ID of the user being edited.
  */
 async function editCurrentUser(index) {
     let firstName = document.getElementById('editFirstName').value;
@@ -146,10 +153,12 @@ async function editCurrentUser(index) {
 
 
 /**
- * Diese Funktion ändert die gespeicherten Daten im localStorage wenn eine Usercard editiert wurde. 
- * Die Daten aus dem localStorage werden an anderen Stellen noch benötigt.
+ * Updates the stored data in localStorage when a user card has been edited.
  * 
- * @param {object} updatedUserData - Beinhaltet das Objekt mit den geupdateten Userdaten.
+ * This function modifies the `localStorage` to save the updated user details, 
+ * ensuring that the updated data can be accessed elsewhere in the application.
+ * 
+ * @param {object} updatedUserData - The object containing the updated user data.
  */
 async function setLocalStorageAfterEdit(updatedUserData) {
     localStorage.setItem('lastName', updatedUserData.last_name);
