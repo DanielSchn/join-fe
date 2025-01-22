@@ -47,7 +47,7 @@ async function addNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
@@ -75,7 +75,7 @@ async function mobileAddNewContact() {
         'color': getRandomUserIconColor()
     };
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const response = await setItem('contacts', newContact, null, token);
         sortContacts();
     } catch (error) {
@@ -142,7 +142,7 @@ function renderContacts() {
 async function renderProfile() {
     let profileContainer = document.getElementById('myProfileContainer');
     profileContainer.innerHTML = '';
-    let userId = localStorage.getItem('userId');
+    let userId = sessionStorage.getItem('userId');
     if (!userId) {
         console.error('User ID not found in local storage');
         return;

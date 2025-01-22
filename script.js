@@ -1,5 +1,5 @@
 const categories = ['Technical Task', 'User Story'];
-const userId = localStorage.getItem('userId');
+// const userId = getFromStorage('userId');
 let tasks = [];
 let userIconColor = [
   "#FDDC2F",
@@ -28,6 +28,8 @@ let userIconColor = [
   "#36B3F0",
   "#BF59F2"
 ];
+let storage;
+
 
 /**
  * Initializes the application by performing several asynchronous operations.
@@ -265,7 +267,7 @@ function toggleCheckbox(checkbox) {
  * - Updates the inner HTML of the element with the ID 'use_name' to display the capitalized name.
  */
 function renderLogo() {
-  let loadedUserName = localStorage.getItem('firstName');
+  let loadedUserName = sessionStorage.getItem('firstName');
   const nameParts = loadedUserName.split(' ');
   const capitalized = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
   document.getElementById('use_name').innerHTML = capitalized;
@@ -308,11 +310,11 @@ function bodyClick(event) {
  * it hides the hidden menu.
  */
 function logout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('firstName');
-  localStorage.removeItem('userId');
-  localStorage.removeItem('userName');
-  localStorage.removeItem('lastName');
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('firstName');
+  sessionStorage.removeItem('userId');
+  sessionStorage.removeItem('userName');
+  sessionStorage.removeItem('lastName');
   window.location.href = 'index.html';
 }
 
@@ -332,11 +334,12 @@ async function login() {
   if (data.error == 'Invalid email or password') {
     document.getElementById('userNotFound').style.display = 'block';
   } else {
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("userName", data.username);
-    localStorage.setItem("firstName", data.first_name);
-    localStorage.setItem("lastName", data.last_name);
-    localStorage.setItem("userId", data.id);
+    
+    sessionStorage.setItem("token", data.token);
+    sessionStorage.setItem("userName", data.username);
+    sessionStorage.setItem("firstName", data.first_name);
+    sessionStorage.setItem("lastName", data.last_name);
+    sessionStorage.setItem("userId", data.id);
     window.setTimeout(function () {
       window.location.href = "summary.html";
     }, 500);
@@ -355,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const excludedPages = ["legal.html", "privacy.html", "signup.html"];
   const currentUrl = window.location.href;
   if (currentUrl.indexOf("index.html") === -1 && !excludedPages.some(page => currentUrl.includes(page))) {
-    let token = localStorage.getItem("token");
+    let token = sessionStorage.getItem("token");
     if (!token) {
       window.location.href = "index.html";
     }

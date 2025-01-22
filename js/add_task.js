@@ -102,7 +102,7 @@ function setCurrentTaskEdit(task) {
  * @param {number} id - ID des Tasks im tasks-Array 
  */
 async function deleteTask(id) {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     await setItem('tasks', null, id, token);
     showToastMsg('Task deleted');
     goToBoard();
@@ -266,7 +266,7 @@ function resetTaskForm() {
  * Task hinzufügen und zum Board weiterleiten
  */
 async function submitTask() {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     setAddTaskDueText();
     const currentId = currentTask['id'];
     submitBtn.disabled = true;

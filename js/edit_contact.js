@@ -127,9 +127,9 @@ async function editCurrentUser(index) {
     let firstName = document.getElementById('editFirstName').value;
     let lastName = document.getElementById('editLastName').value;
     let email = document.getElementById('editMail').value;
-    let id = localStorage.getItem('userId');
-    let username = localStorage.getItem('userName');
-    let token = localStorage.getItem('token');
+    let id = sessionStorage.getItem('userId');
+    let username = sessionStorage.getItem('userName');
+    let token = sessionStorage.getItem('token');
     const updatedUserData = {
         "first_name": firstName,
         "last_name": lastName,
@@ -161,8 +161,8 @@ async function editCurrentUser(index) {
  * @param {object} updatedUserData - The object containing the updated user data.
  */
 async function setLocalStorageAfterEdit(updatedUserData) {
-    localStorage.setItem('lastName', updatedUserData.last_name);
-    localStorage.setItem('firstName', updatedUserData.first_name);
+    sessionStorage.setItem('lastName', updatedUserData.last_name);
+    sessionStorage.setItem('firstName', updatedUserData.first_name);
 }
 
 
@@ -235,7 +235,7 @@ async function editCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         await setItem('contacts', updatedContact, index, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
         await refreshContactList();
@@ -268,7 +268,7 @@ async function mobileEditCurrentContact(index) {
         'letter': firstLetter,
     };
     try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         await setItem('contacts', updatedContact, contacts[index].id, token);
         contacts[index] = { ...contacts[index], ...updatedContact };
         refreshContactList();
@@ -292,7 +292,7 @@ async function deleteContact(index) {
         failureMobile.innerHTML = 'Not allowed, you are in Guest Mode!'
     } else {
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             await setItem('contacts', null, contactId, token);
             contacts.splice(index, 1);
             refreshContactList();

@@ -83,8 +83,8 @@ function fillInGuest() {
  * Renderfunction for the Username at summary dashboard.
  */
 function renderUserName() {
-    const firstName = localStorage.getItem('firstName');
-    const lastName = localStorage.getItem('lastName');
+    const firstName = sessionStorage.getItem('firstName');
+    const lastName = sessionStorage.getItem('lastName');
     let loadedUserName = firstName + " " + lastName;
     if (loadedUserName === 'Guest') {
     } else {

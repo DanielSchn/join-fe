@@ -31,7 +31,7 @@ async function saveChanges(taskId = null) {
     if (taskId !== null) {
         const taskToUpdate = tasks.find(task => task.id === taskId);
         if (taskToUpdate) {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             await setItem('tasks', taskToUpdate, taskId, token);
         }
     } else {
@@ -47,7 +47,7 @@ async function saveChanges(taskId = null) {
  * The function retrieves the user's authentication token from local storage and uses it in the request.
  */
 async function saveSubtask(taskId, value) {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     await setItem('tasks', value, taskId, token);
 }
 
