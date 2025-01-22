@@ -133,6 +133,7 @@ async function editCurrentUser(index) {
     try {
         const response = await setItem(`auth/user`, updatedUserData, id, token);
         console.log('User updated successfully:', response);
+        await setLocalStorageAfterEdit(updatedUserData);
         await refreshContactList();
         editCardWindow(false);
         showContactCard(index, `profile`);
@@ -141,6 +142,18 @@ async function editCurrentUser(index) {
         console.error('Failed to update user:', error);
     }
     console.log(`Save edited user with ID: ${index}`);
+}
+
+
+/**
+ * Diese Funktion ändert die gespeicherten Daten im localStorage wenn eine Usercard editiert wurde. 
+ * Die Daten aus dem localStorage werden an anderen Stellen noch benötigt.
+ * 
+ * @param {object} updatedUserData - Beinhaltet das Objekt mit den geupdateten Userdaten.
+ */
+async function setLocalStorageAfterEdit(updatedUserData) {
+    localStorage.setItem('lastName', updatedUserData.last_name);
+    localStorage.setItem('firstName', updatedUserData.first_name);
 }
 
 

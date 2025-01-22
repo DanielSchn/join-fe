@@ -169,3 +169,45 @@ async function loginUser(email, password) {
         throw error;
     }
 }
+
+
+/**
+ * Checks the validity of an authentication token by sending it to the token verification endpoint.
+ *
+ * This function sends a GET request to the specified storage URL with the provided token
+ * in the Authorization header. If the token is valid, the function returns `true`. Otherwise, 
+ * it returns `false`. Any errors encountered during the request are logged and re-thrown.
+ * @example
+ * // Verify an authentication token
+ * checkToken('some-auth-token')
+ * .then(isValid => {
+ *     if (isValid) {
+ *         console.log('Token is valid.');
+ *     } else {
+ *         console.log('Token is invalid.');
+ *     }
+ * })
+ * .catch(error => {
+ *     console.error('Error verifying token:', error);
+ * });
+ * @param {string} token - The authentication token to be validated.
+ * @returns {Promise<boolean>} - A promise that resolves to `true` if the token is valid, or `false` if it is invalid.
+ */
+async function checkToken(token) {
+    try {
+        const response = await fetch(STORAGE_URL + 'token-check/', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        });
+        if (response.ok) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error('Error check token:', error);
+        throw error;
+    }
+}

@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 async function initRegister() {
     await loadUsers();
+    checkIfDataInLocalStorage();
 }
 
 
@@ -41,14 +42,16 @@ async function initRegister() {
  * If there are no Data we get an error log into the console
  */
 async function loadUsers() {
-    try {
-        profiles = await getItem('auth/profiles');
-        loadedUsers = await getItem('auth/user');
-        const profileUserIds = profiles.map(profile => profile.user);
-        const filteredUsers = loadedUsers.filter(user => profileUserIds.includes(user.id));
-        users = filteredUsers;
-    } catch (e) {
-        console.error('Loading error:', e);
+    if (localStorage.getItem('token') && localStorage.getItem('userId')) {
+        try {
+            profiles = await getItem('auth/profiles');
+            loadedUsers = await getItem('auth/user');
+            const profileUserIds = profiles.map(profile => profile.user);
+            const filteredUsers = loadedUsers.filter(user => profileUserIds.includes(user.id));
+            users = filteredUsers;
+        } catch (e) {
+            console.error('Loading error:', e);
+        }
     }
 }
 
@@ -266,5 +269,26 @@ function togglePasswordVisibility(inputId, visibilityIconId, visibilityOffIconId
         inputField.type = 'password';
         visibilityIcon.classList.remove('dNone');
         visibilityOffIcon.classList.add('dNone');
+    }
+}
+
+
+async function checkIfDataInLocalStorage() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('Kein Token gefunden');
+        return;
+    }
+
+    try {
+        const check = await checkToken(token);
+        console.log(check);
+        if (check) {
+            window.location.href = 'summary.html';
+        } else {
+            console.log('Token ist ungültig');
+        }
+    } catch (error) {
+        console.error('Error check token:', error);
     }
 }
