@@ -140,7 +140,7 @@ async function editCurrentUser(index) {
     try {
         const response = await setItem(`auth/user`, updatedUserData, id, token);
         console.log('User updated successfully:', response);
-        await setLocalStorageAfterEdit(updatedUserData);
+        await setsessionStorageAfterEdit(updatedUserData);
         await refreshContactList();
         editCardWindow(false);
         showContactCard(index, `profile`);
@@ -153,14 +153,14 @@ async function editCurrentUser(index) {
 
 
 /**
- * Updates the stored data in localStorage when a user card has been edited.
+ * Updates the stored data in sessionStorage when a user card has been edited.
  * 
- * This function modifies the `localStorage` to save the updated user details, 
+ * This function modifies the `sessionStorage` to save the updated user details, 
  * ensuring that the updated data can be accessed elsewhere in the application.
  * 
  * @param {object} updatedUserData - The object containing the updated user data.
  */
-async function setLocalStorageAfterEdit(updatedUserData) {
+async function setsessionStorageAfterEdit(updatedUserData) {
     sessionStorage.setItem('lastName', updatedUserData.last_name);
     sessionStorage.setItem('firstName', updatedUserData.first_name);
 }

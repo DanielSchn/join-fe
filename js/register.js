@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 async function initRegister() {
     // await loadUsers();
-    checkIfDataInLocalStorage();
+    checkIfDataInsessionStorage();
 }
 
 
@@ -42,7 +42,7 @@ async function initRegister() {
  * If there are no Data we get an error log into the console
  */
 async function loadUsers() {
-    if (localStorage.getItem('token') && localStorage.getItem('userId')) {
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('userId')) {
         try {
             profiles = await getItem('auth/profiles');
             loadedUsers = await getItem('auth/user');
@@ -274,14 +274,14 @@ function togglePasswordVisibility(inputId, visibilityIconId, visibilityOffIconId
 
 
 /**
- * This function checks if a token is stored in localStorage and verifies its validity.
+ * This function checks if a token is stored in sessionStorage and verifies its validity.
  *
- * If a token is found in localStorage, it calls the `checkToken` function to validate it. 
+ * If a token is found in sessionStorage, it calls the `checkToken` function to validate it. 
  * If the token is valid, the user is redirected to the `summary.html` page. If the token is 
  * invalid or missing, appropriate messages are logged to the console.
  */
-async function checkIfDataInLocalStorage() {
-    const token = localStorage.getItem('token');
+async function checkIfDataInsessionStorage() {
+    const token = sessionStorage.getItem('token');
     if (!token) {
         console.log('Kein Token gefunden');
         return;

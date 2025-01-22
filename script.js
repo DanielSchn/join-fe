@@ -1,5 +1,5 @@
 const categories = ['Technical Task', 'User Story'];
-// const userId = getFromStorage('userId');
+const userId = sessionStorage.getItem('userId');
 let tasks = [];
 let userIconColor = [
   "#FDDC2F",
