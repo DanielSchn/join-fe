@@ -334,7 +334,6 @@ async function login() {
   if (data.error == 'Invalid email or password') {
     document.getElementById('userNotFound').style.display = 'block';
   } else {
-    
     sessionStorage.setItem("token", data.token);
     sessionStorage.setItem("userName", data.username);
     sessionStorage.setItem("firstName", data.first_name);

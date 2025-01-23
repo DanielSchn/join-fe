@@ -281,7 +281,7 @@ function togglePasswordVisibility(inputId, visibilityIconId, visibilityOffIconId
  * invalid or missing, appropriate messages are logged to the console.
  */
 async function checkIfDataInsessionStorage() {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('token')
     if (!token) {
         console.log('Kein Token gefunden');
         return;

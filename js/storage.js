@@ -207,6 +207,7 @@ async function checkToken(token) {
         if (response.ok) {
             return true;
         } else {
+            window.location.href = 'index.html';
             return false;
         }
     } catch (error) {
