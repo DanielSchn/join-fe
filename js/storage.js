@@ -207,8 +207,13 @@ async function checkToken(token) {
         if (response.ok) {
             return true;
         } else {
-            window.location.href = 'index.html';
-            return false;
+            if (window.location.pathname !== '/index.html') {
+                window.location.href = 'index.html';
+                return false;
+            } else {
+                return false;
+            }
+
         }
     } catch (error) {
         console.error('Error check token:', error);

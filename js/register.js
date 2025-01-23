@@ -3,7 +3,7 @@ let guests = [
     {
         'name': 'Guest',
         'email': 'guest@guest.de',
-        'password': 'guest',
+        'password': 'secureGuestUserPassword',
         'initials': 'G',
         'color': '#FF3D00',
     },

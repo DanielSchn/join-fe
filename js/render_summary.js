@@ -7,6 +7,8 @@ const uploadedSecureDomain = 'https://gruppe-815.developerakademie.net/';
  * Init function for the summary Page
  */
 async function initSummary() {
+    const token = sessionStorage.getItem('token');
+    await checkToken(token);
     await init();
     setDaytime();
     renderUserName();
@@ -74,7 +76,7 @@ function setDaytime() {
  */
 function fillInGuest() {
     document.getElementById('email').value = 'guest@guest.de';
-    document.getElementById('signUpPassword').value = 'guest';
+    document.getElementById('signUpPassword').value = 'secureGuestUserPassword';
     login();
 }
 

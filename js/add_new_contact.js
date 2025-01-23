@@ -5,6 +5,8 @@ let contacts = [];
  * This function initiate and loads the contact list
  */
 async function initContacts() {
+    const token = sessionStorage.getItem('token');
+    await checkToken(token);
     await init();
     await loadContacts();
     renderContacts();

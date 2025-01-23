@@ -7,6 +7,8 @@ let filteredTasks = [];
  *  Initializes Board Page
  */
 async function loadData() {
+    const token = sessionStorage.getItem('token');
+    await checkToken(token);
     await init();
     filteredTasks = tasks;
     updateHTML();

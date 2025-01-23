@@ -30,6 +30,8 @@ function isAddTaskFromBoard() {
  * @param {string} status - Bearbeitungsstatus des Tasks
  */
 async function initAddTask(status, assignedTo) {
+    const token = sessionStorage.getItem('token');
+    await checkToken(token);
     generateAddTaskTemplateInner();
     await renderAddTaskTemplate();
     await initCurrentTask(assignedTo);
