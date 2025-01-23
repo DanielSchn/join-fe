@@ -1,4 +1,7 @@
-const STORAGE_URL = 'http://127.0.0.1:8000/api/';
+// Development
+//const STORAGE_URL = 'http://127.0.0.1:8000/api/';
+//Productive
+const STORAGE_URL = 'https://join.schneider-remote.de/api/';
 
 
 /**
