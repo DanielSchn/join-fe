@@ -1,6 +1,6 @@
 const userName = [];
-const uploadedDomain = 'http://gruppe-815.developerakademie.net/';
-const uploadedSecureDomain = 'https://gruppe-815.developerakademie.net/';
+const uploadedDomain = 'http://join.dschneider-dev.de/';
+const uploadedSecureDomain = 'https://join.dschneider-dev.de/';
 
 
 /**
