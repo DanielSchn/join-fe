@@ -198,6 +198,13 @@ async function loginUser(email, password) {
  */
 async function checkToken(token) {
     try {
+        if (!token) {
+            console.warn('No token provided. Redirecting to login page.');
+            if (window.location.pathname !== '/index.html') {
+                window.location.href = 'index.html';
+            }
+            return false;
+        }
         const response = await fetch(STORAGE_URL + 'token-check/', {
             method: 'GET',
             headers: {
@@ -205,18 +212,20 @@ async function checkToken(token) {
             }
         });
         if (response.ok) {
+            console.log('Token is valid. RESPONSE OK.');
             return true;
-        } else {
+        } else if (response.status === 401 || response.status === 403) {
+            console.warn(`Authorization error (${response.status}). Redirecting to login page.`);
             if (window.location.pathname !== '/index.html') {
                 window.location.href = 'index.html';
-                return false;
-            } else {
-                return false;
             }
-
+            return false;
+        } else {
+            console.error('Unexpected error with token-check response:', response.status);
+            return false;
         }
     } catch (error) {
-        console.error('Error check token:', error);
+        console.error('Error checking token:', error);
         throw error;
     }
 }

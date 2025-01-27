@@ -283,17 +283,15 @@ function togglePasswordVisibility(inputId, visibilityIconId, visibilityOffIconId
 async function checkIfDataInsessionStorage() {
     const token = sessionStorage.getItem('token')
     if (!token) {
-        console.log('Kein Token gefunden');
+        console.log('No Token found.');
         return;
     }
-
     try {
         const check = await checkToken(token);
-        console.log(check);
         if (check) {
             window.location.href = 'summary.html';
         } else {
-            console.log('Token ist ungültig');
+            console.log('Invalid token.');
         }
     } catch (error) {
         console.error('Error check token:', error);
