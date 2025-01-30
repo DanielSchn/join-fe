@@ -28,7 +28,6 @@ let userIconColor = [
   "#36B3F0",
   "#BF59F2"
 ];
-let storage;
 
 
 /**

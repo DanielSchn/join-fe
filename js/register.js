@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
  * init function
  */
 async function initRegister() {
-    // await loadUsers();
     checkIfDataInsessionStorage();
 }
 
