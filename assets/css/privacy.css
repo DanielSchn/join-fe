@@ -17,6 +17,14 @@ a {
     color: rgb(0, 0, 192);
 }
 
+a:hover {
+    color: rgb(0, 115, 192);
+}
+
+h2 {
+    font-weight: 700;
+}
+
 p {
     margin-bottom: 24px;
 }
